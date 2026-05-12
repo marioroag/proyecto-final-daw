@@ -66,6 +66,14 @@ public class Registro {
         this.monedasGanadas = monedasGanadas;
     }
 
+    public Habito getHabito() {
+        return habito;
+    }
+
+    public void setHabito(Habito habito) {
+        this.habito = habito;
+    }
+
     @Override
     public String toString() {
         return "Registro [id=" + id + ", fechaCompletado=" + fechaCompletado

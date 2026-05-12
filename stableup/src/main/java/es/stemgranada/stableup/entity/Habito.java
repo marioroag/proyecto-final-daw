@@ -114,6 +114,16 @@ public class Habito {
         this.registros = registro;
     }
 
+    public void addRegistro(Registro registro) {
+        registros.add(registro);
+        registro.setHabito(this);
+    }
+
+    public void removeRegistro(Registro registro) {
+        registros.remove(registro);
+        registro.setHabito(null);
+    }
+
     @Override
     public String toString() {
         return "Habito [id=" + id + ", nombre=" + nombre + ", tipo=" + tipo + ", recompensa=" + recompensa
