@@ -1,6 +1,10 @@
 package es.stemgranada.stableup.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import es.stemgranada.stableup.enums.TipoHabito;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -10,6 +14,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -32,10 +37,14 @@ public class Habito {
     @Column(nullable = false)
     private int multiplicadorStreak;
 
-    // Relacion usuario
+    // Relacion usuarios
     @ManyToOne
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
+
+    // Relacion registros
+    @OneToMany(mappedBy = "habito", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Registro> registros = new ArrayList<>();
 
     public Habito(String nombre, TipoHabito tipo, int recompensa, int multiplicadorStreak, Usuario usuario) {
         this.nombre = nombre;
@@ -43,6 +52,7 @@ public class Habito {
         this.recompensa = recompensa;
         this.multiplicadorStreak = multiplicadorStreak;
         this.usuario = usuario;
+        this.registros = new ArrayList<>();
     }
 
     public Habito() {
@@ -96,9 +106,18 @@ public class Habito {
         this.usuario = usuario;
     }
 
+    public List<Registro> getRegistros() {
+        return registros;
+    }
+
+    public void setRegistros(List<Registro> registro) {
+        this.registros = registro;
+    }
+
     @Override
     public String toString() {
         return "Habito [id=" + id + ", nombre=" + nombre + ", tipo=" + tipo + ", recompensa=" + recompensa
                 + ", multiplicador: " + multiplicadorStreak + "]";
     }
+
 }

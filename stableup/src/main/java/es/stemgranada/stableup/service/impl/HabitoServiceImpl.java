@@ -1,5 +1,6 @@
 package es.stemgranada.stableup.service.impl;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -7,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import es.stemgranada.stableup.entity.Habito;
+import es.stemgranada.stableup.entity.Registro;
 import es.stemgranada.stableup.entity.Usuario;
 import es.stemgranada.stableup.repository.HabitoRepository;
+import es.stemgranada.stableup.repository.RegistroRepository;
 import es.stemgranada.stableup.repository.UsuarioRepository;
 import es.stemgranada.stableup.service.HabitoService;
 import jakarta.transaction.Transactional;
@@ -20,6 +23,9 @@ public class HabitoServiceImpl implements HabitoService {
 
     @Autowired
     HabitoRepository habitoRepository;
+
+    @Autowired
+    RegistroRepository registroRepository;
 
     @Override
     public List<Habito> findAll() {
@@ -57,6 +63,10 @@ public class HabitoServiceImpl implements HabitoService {
         int recompensa = habito.getRecompensa() * habito.getMultiplicadorStreak();
         usuario.setMonedas(usuario.getMonedas() + recompensa);
         habito.setMultiplicadorStreak(habito.getMultiplicadorStreak() + 1);
+
+        // Registra la complecion
+        Registro nuevoRegistro = new Registro(LocalDate.now(), recompensa, habito);
+        registroRepository.save(nuevoRegistro);
 
         // Guardado
         usuarioRepository.save(usuario);
