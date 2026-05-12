@@ -133,12 +133,10 @@ public class Usuario {
 
     public void addCaballo(Caballo caballo) {
         caballos.add(caballo);
-        caballo.setUsuario(this);
     }
 
     public void removeCaballo(Caballo caballo) {
         caballos.remove(caballo);
-        caballo.setUsuario(null);
     }
 
     @Override

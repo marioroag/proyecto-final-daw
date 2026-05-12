@@ -198,7 +198,7 @@ public class Caballo {
     @Override
     public String toString() {
         return "Caballo [id=" + id + ", nombre=" + nombre + ", rareza=" + rareza + ", velocidad=" + velocidad
-                + ", energia=" + energia + ", nivel=" + nivel + ", usuario=" + "]";
+                + ", energia=" + energia + ", nivel=" + nivel + "]";
     }
 
 }
