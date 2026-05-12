@@ -19,9 +19,9 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "caballos")
 public class Caballo {
-    private static final int RANGO_STATS = 25;
-    private static final int BONUS_COMUN = 20, BONUS_POCO_COMUN = 35, BONUS_RARO = 50, BONUS_EPICO = 65,
-            BONUS_LEGENDARIO = 80;
+    private static final int RANGO_STATS = 30;
+    private static final int BONUS_COMUN = 10, BONUS_POCO_COMUN = 20, BONUS_RARO = 30, BONUS_EPICO = 40,
+            BONUS_LEGENDARIO = 50;
     private static final int PROBABILIDAD_COMUN = 50, PROBABILIDAD_POCO_COMUN = 75, PROBABILIDAD_RARO = 90,
             PROBABILIDAD_EPICO = 98;
 
