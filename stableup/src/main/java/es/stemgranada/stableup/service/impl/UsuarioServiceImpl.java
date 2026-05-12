@@ -41,4 +41,9 @@ public class UsuarioServiceImpl implements UsuarioService {
         usuarioRepository.deleteAll();
     }
 
+    @Override
+    public Optional<Usuario> findByEmail(String email) {
+        return usuarioRepository.findByEmail(email);
+    }
+
 }
