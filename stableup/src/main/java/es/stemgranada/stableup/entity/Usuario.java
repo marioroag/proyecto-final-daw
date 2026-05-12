@@ -105,8 +105,46 @@ public class Usuario {
         this.nivel = nivel;
     }
 
+    public List<Habito> getHabitos() {
+        return habitos;
+    }
+
+    public void setHabitos(List<Habito> habitos) {
+        this.habitos = habitos;
+    }
+
+    public void addHabito(Habito habito) {
+        habitos.add(habito);
+        habito.setUsuario(this);
+    }
+
+    public void removeHabito(Habito habito) {
+        habitos.remove(habito);
+        habito.setUsuario(null);
+    }
+
+    public List<Caballo> getCaballos() {
+        return caballos;
+    }
+
+    public void setCaballos(List<Caballo> caballos) {
+        this.caballos = caballos;
+    }
+
+    public void addCaballo(Caballo caballo) {
+        caballos.add(caballo);
+        caballo.setUsuario(this);
+    }
+
+    public void removeCaballo(Caballo caballo) {
+        caballos.remove(caballo);
+        caballo.setUsuario(null);
+    }
+
     @Override
     public String toString() {
-        return "Usuario [id=" + id + ", username=" + username + ", monedas=" + monedas + ", nivel=" + nivel + "]";
+        return "Usuario [id=" + id + ", username=" + username + ", monedas=" + monedas + ", nivel=" + nivel
+                + "caballos: "
+                + caballos + ", habitos: " + habitos + "]";
     }
 }

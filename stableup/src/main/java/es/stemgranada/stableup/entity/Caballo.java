@@ -1,5 +1,9 @@
 package es.stemgranada.stableup.entity;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import es.stemgranada.stableup.enums.RarezaCaballo;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -15,6 +19,16 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "caballos")
 public class Caballo {
+    private static final int RANGO_STATS = 25;
+    private static final int BONUS_COMUN = 20, BONUS_POCO_COMUN = 35, BONUS_RARO = 50, BONUS_EPICO = 65,
+            BONUS_LEGENDARIO = 80;
+    private static final int PROBABILIDAD_COMUN = 20, PROBABILIDAD_POCO_COMUN = 35, PROBABILIDAD_RARO = 50,
+            PROBABILIDAD_EPICO = 65;
+
+    private static final List<String> NOMBRES = new ArrayList<>(Arrays.asList(
+            "Relampago", "Tormenta", "Pegaso", "Furia", "Cometa",
+            "Trueno", "Aurora", "Titan", "Sombra", "Huracan",
+            "Luna", "Bandido", "Centella", "Destino", "Rayo"));
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,7 +37,7 @@ public class Caballo {
     @Column(nullable = false, length = 50)
     private String nombre;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
     private RarezaCaballo rareza;
 
     @Column(nullable = false)
@@ -40,12 +54,23 @@ public class Caballo {
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
+    // En caso de querer hacer uno predeterminado
     public Caballo(String nombre, RarezaCaballo rareza, int velocidad, int energia, double nivel, Usuario usuario) {
         this.nombre = nombre;
         this.rareza = rareza;
         this.velocidad = velocidad;
         this.energia = energia;
         this.nivel = nivel;
+        this.usuario = usuario;
+    }
+
+    // Generador aleatorio
+    public Caballo(Usuario usuario) {
+        this.nombre = generarNombre();
+        this.rareza = generarRareza();
+        this.velocidad = generarVelocidad(rareza);
+        this.energia = generarEnergia(rareza);
+        this.nivel = 0;
         this.usuario = usuario;
     }
 
@@ -108,10 +133,72 @@ public class Caballo {
         this.usuario = usuario;
     }
 
+    private String generarNombre() {
+        int numeroRandom = (int) (Math.random() * NOMBRES.size());
+        return NOMBRES.get(numeroRandom);
+
+    }
+
+    private RarezaCaballo generarRareza() {
+        RarezaCaballo rareza = null;
+
+        int probabilidad = (int) (Math.random() * 100);
+
+        if (probabilidad < PROBABILIDAD_COMUN) {
+            rareza = RarezaCaballo.COMUN;
+        } else if (probabilidad < PROBABILIDAD_POCO_COMUN) {
+            rareza = RarezaCaballo.POCO_COMUN;
+        } else if (probabilidad < PROBABILIDAD_RARO) {
+            rareza = RarezaCaballo.RARO;
+        } else if (probabilidad < PROBABILIDAD_EPICO) {
+            rareza = RarezaCaballo.EPICO;
+        } else {
+            rareza = RarezaCaballo.LEGENDARIO;
+        }
+
+        return rareza;
+    }
+
+    private int generarVelocidad(RarezaCaballo rareza) {
+        int velocidad = 0;
+
+        if (rareza == RarezaCaballo.COMUN) {
+            velocidad = (int) (Math.random() * RANGO_STATS) + BONUS_COMUN;
+        } else if (rareza == RarezaCaballo.POCO_COMUN) {
+            velocidad = (int) (Math.random() * RANGO_STATS) + BONUS_POCO_COMUN;
+        } else if (rareza == RarezaCaballo.RARO) {
+            velocidad = (int) (Math.random() * RANGO_STATS) + BONUS_RARO;
+        } else if (rareza == RarezaCaballo.EPICO) {
+            velocidad = (int) (Math.random() * RANGO_STATS) + BONUS_EPICO;
+        } else {
+            velocidad = (int) (Math.random() * RANGO_STATS) + BONUS_LEGENDARIO;
+        }
+
+        return velocidad;
+    }
+
+    private int generarEnergia(RarezaCaballo rareza) {
+        int energia = 0;
+
+        if (rareza == RarezaCaballo.COMUN) {
+            energia = (int) (Math.random() * RANGO_STATS) + BONUS_COMUN;
+        } else if (rareza == RarezaCaballo.POCO_COMUN) {
+            energia = (int) (Math.random() * RANGO_STATS) + BONUS_POCO_COMUN;
+        } else if (rareza == RarezaCaballo.RARO) {
+            energia = (int) (Math.random() * RANGO_STATS) + BONUS_RARO;
+        } else if (rareza == RarezaCaballo.EPICO) {
+            energia = (int) (Math.random() * RANGO_STATS) + BONUS_EPICO;
+        } else {
+            energia = (int) (Math.random() * RANGO_STATS) + BONUS_LEGENDARIO;
+        }
+
+        return energia;
+    }
+
     @Override
     public String toString() {
         return "Caballo [id=" + id + ", nombre=" + nombre + ", rareza=" + rareza + ", velocidad=" + velocidad
-                + ", energia=" + energia + ", nivel=" + nivel + ", usuario=" + usuario + "]";
+                + ", energia=" + energia + ", nivel=" + nivel + ", usuario=" + "]";
     }
 
 }
