@@ -5,8 +5,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import es.stemgranada.stableup.entity.Caballo;
 import es.stemgranada.stableup.entity.Habito;
 import es.stemgranada.stableup.entity.Usuario;
+import es.stemgranada.stableup.enums.RarezaCaballo;
 import es.stemgranada.stableup.enums.TipoHabito;
 import es.stemgranada.stableup.service.HabitoService;
 import es.stemgranada.stableup.service.UsuarioService;
@@ -47,12 +49,14 @@ public class StableupApplication {
 			habitoService.save(h4);
 			habitoService.save(h5);
 
-			habitoService.completarHabito(1L);
-			habitoService.completarHabito(1L);
-			habitoService.completarHabito(1L);
-			habitoService.completarHabito(1L);
-			habitoService.completarHabito(3L);
-			habitoService.completarHabito(3L);
+			// String nombre, RarezaCaballo rareza, int velocidad, int energia, double
+			// nivel, Usuario usuario
+			Caballo c1 = new Caballo("Sombra", RarezaCaballo.COMUN, 8, 12, 9.5, u1);
+			Caballo c2 = new Caballo("Trueno", RarezaCaballo.RARO, 18, 20, 22.0, u2);
+			Caballo c3 = new Caballo("Brisa", RarezaCaballo.LEGENDARIO, 50, 9, 10.5, u3);
+			Caballo c4 = new Caballo("Relámpago", RarezaCaballo.EPICO, 32, 28, 35.0, u4);
+			Caballo c5 = new Caballo("Centella", RarezaCaballo.RARO, 21, 17, 19.5, u5);
+			// TODO: TERMINAR CABALLOS
 
 		};
 	}

@@ -1,8 +1,10 @@
 package es.stemgranada.stableup.entity;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,6 +16,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "usuarios")
 public class Usuario {
+    // TODO: Formar sistema de experiencia y niveles ¿Como funcionara?
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,8 +39,12 @@ public class Usuario {
                           // (nivel: 10) los decimales estan ahi para manejar la barra de progreso
 
     // Relacion habitos
-    @OneToMany(mappedBy = "usuario")
-    private List<Habito> habitos;
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Habito> habitos = new ArrayList<>();
+
+    // Relacion caballos
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Caballo> caballos = new ArrayList<>();
 
     public Usuario(String username, String email, int monedas, double nivel) {
         this.username = username;
