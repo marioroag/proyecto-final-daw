@@ -6,6 +6,7 @@ import java.util.Optional;
 import es.stemgranada.stableup.entity.Usuario;
 
 public interface UsuarioService {
+
     List<Usuario> findAll();
 
     Optional<Usuario> findById(Long id);

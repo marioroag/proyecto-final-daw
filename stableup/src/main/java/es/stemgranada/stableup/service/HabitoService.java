@@ -6,6 +6,7 @@ import java.util.Optional;
 import es.stemgranada.stableup.entity.Habito;
 
 public interface HabitoService {
+
     List<Habito> findAll();
 
     Optional<Habito> findById(Long id);
@@ -15,4 +16,6 @@ public interface HabitoService {
     void deleteById(Long id);
 
     void deleteAll();
+
+    void completarHabito(Long habitoId);
 }

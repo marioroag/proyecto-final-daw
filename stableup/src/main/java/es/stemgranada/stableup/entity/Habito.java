@@ -13,7 +13,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "habito")
+@Table(name = "habitos")
 public class Habito {
 
     @Id
@@ -88,8 +88,17 @@ public class Habito {
         this.multiplicadorStreak = multiplicadorStreak;
     }
 
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
     @Override
     public String toString() {
-        return "Habito [id=" + id + ", nombre=" + nombre + ", tipo=" + tipo + ", recompensa=" + recompensa + "]";
+        return "Habito [id=" + id + ", nombre=" + nombre + ", tipo=" + tipo + ", recompensa=" + recompensa
+                + ", multiplicador: " + multiplicadorStreak + "]";
     }
 }

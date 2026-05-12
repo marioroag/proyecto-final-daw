@@ -47,6 +47,12 @@ public class StableupApplication {
 			habitoService.save(h4);
 			habitoService.save(h5);
 
+			System.out.println(habitoService.findById(1L));
+			System.out.println(usuarioService.findById(1L));
+			habitoService.completarHabito(1L);
+			System.out.println(habitoService.findById(1L));
+			System.out.println(usuarioService.findById(1L));
+
 		};
 	}
 }
