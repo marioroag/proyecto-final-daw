@@ -18,6 +18,9 @@ public class Usuario {
     @Column(nullable = false, length = 50, unique = true)
     private String username;
 
+    @Column(unique = true, length = 100)
+    private String email;
+
     @Column(nullable = false)
     private int monedas;
 
