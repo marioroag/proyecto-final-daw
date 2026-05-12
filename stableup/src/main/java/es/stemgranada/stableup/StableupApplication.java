@@ -21,33 +21,31 @@ public class StableupApplication {
 	@Bean
 	CommandLineRunner run(UsuarioService usuarioService, HabitoService habitoService) {
 		return args -> {
-			System.out.println("CREADOS USUARIOS");
-			// Usuarios
+			// Creación Usuarios
+			System.out.println("CREANDO USUARIOS...");
 			Usuario u1 = new Usuario("alexfit", "alex@demo.com", 120, 3);
-			usuarioService.save(u1);
 			Usuario u2 = new Usuario("maria_read", "maria@demo.com", 80, 2);
-			usuarioService.save(u2);
 			Usuario u3 = new Usuario("javi_medita", "javi@demo.com", 200, 5);
-			usuarioService.save(u3);
 			Usuario u4 = new Usuario("lucia_pro", "lucia@demo.com", 50, 1);
-			usuarioService.save(u4);
 			Usuario u5 = new Usuario("dani_runner", "dani@demo.com", 300, 6);
+			usuarioService.save(u1);
+			usuarioService.save(u2);
+			usuarioService.save(u3);
+			usuarioService.save(u4);
 			usuarioService.save(u5);
 
-			System.out.println("CREADOS HABITOS");
-			// Habitos test
+			// Creación Habitos
+			System.out.println("CREANDO HABITOS...");
 			Habito h1 = new Habito("Gym", TipoHabito.STRENGTH, 10, 2, u1);
-			habitoService.save(h1);
 			Habito h2 = new Habito("Leer", TipoHabito.WELLBEING, 5, 2, u2);
-			habitoService.save(h2);
 			Habito h3 = new Habito("Meditación", TipoHabito.MENTAL_HEALTH, 8, 3, u3);
-			habitoService.save(h3);
 			Habito h4 = new Habito("Estudiar", TipoHabito.WELLBEING, 12, 2, u4);
-			habitoService.save(h4);
 			Habito h5 = new Habito("Correr", TipoHabito.STRENGTH, 15, 3, u5);
+			habitoService.save(h1);
+			habitoService.save(h2);
+			habitoService.save(h3);
+			habitoService.save(h4);
 			habitoService.save(h5);
-
-			System.out.println("HABITOS EN BD: " + habitoService.findAll().size());
 
 		};
 	}
