@@ -1,10 +1,14 @@
 package es.stemgranada.stableup.entity;
 
+import java.time.LocalDate;
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -14,6 +18,9 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false)
+    private LocalDate fechaRegistro;
 
     @Column(nullable = false, length = 50, unique = true)
     private String username;
@@ -28,10 +35,16 @@ public class Usuario {
     private double nivel; // Es double por que tengo idea de que aunque solo se muestre el numero completo
                           // (nivel: 10) los decimales estan ahi para manejar la barra de progreso
 
-    public Usuario(String username, int monedas, double nivel) {
+    // Relacion habitos
+    @OneToMany(mappedBy = "usuario")
+    private List<Habito> habitos;
+
+    public Usuario(String username, String email, int monedas, double nivel) {
         this.username = username;
+        this.email = email;
         this.monedas = monedas;
         this.nivel = nivel;
+        this.fechaRegistro = LocalDate.now();
     }
 
     public Usuario() {
@@ -43,6 +56,22 @@ public class Usuario {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public LocalDate getFechaRegistro() {
+        return fechaRegistro;
+    }
+
+    public void setFechaRegistro(LocalDate fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getUsername() {
