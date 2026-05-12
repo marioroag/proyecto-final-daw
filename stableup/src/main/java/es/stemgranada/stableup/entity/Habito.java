@@ -8,6 +8,8 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -27,10 +29,20 @@ public class Habito {
     @Column(nullable = false)
     private int recompensa;
 
-    public Habito(String nombre, TipoHabito tipo, int recompensa) {
+    @Column(nullable = false)
+    private int multiplicadorStreak;
+
+    // Relacion usuario
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
+
+    public Habito(String nombre, TipoHabito tipo, int recompensa, int multiplicadorStreak, Usuario usuario) {
         this.nombre = nombre;
         this.tipo = tipo;
         this.recompensa = recompensa;
+        this.multiplicadorStreak = multiplicadorStreak;
+        this.usuario = usuario;
     }
 
     public Habito() {
@@ -68,9 +80,16 @@ public class Habito {
         this.recompensa = recompensa;
     }
 
+    public int getMultiplicadorStreak() {
+        return multiplicadorStreak;
+    }
+
+    public void setMultiplicadorStreak(int multiplicadorStreak) {
+        this.multiplicadorStreak = multiplicadorStreak;
+    }
+
     @Override
     public String toString() {
         return "Habito [id=" + id + ", nombre=" + nombre + ", tipo=" + tipo + ", recompensa=" + recompensa + "]";
     }
-
 }
