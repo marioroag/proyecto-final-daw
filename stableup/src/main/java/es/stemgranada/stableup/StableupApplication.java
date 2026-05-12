@@ -70,6 +70,10 @@ public class StableupApplication {
 			// System.out.println(u1);
 			// System.out.println(usuarioService.findById(1L));
 
+			System.out.println(u1);
+			System.out.println(h1);
+			System.out.println(c1);
+
 		};
 	}
 }

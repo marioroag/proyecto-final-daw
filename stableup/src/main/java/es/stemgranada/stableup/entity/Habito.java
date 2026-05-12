@@ -126,8 +126,12 @@ public class Habito {
 
     @Override
     public String toString() {
-        return "Habito [id=" + id + ", nombre=" + nombre + ", tipo=" + tipo + ", recompensa=" + recompensa
-                + ", multiplicador: " + multiplicadorStreak + "]";
+        return "Habito #" + id + ": " + nombre + "\n"
+                + "  Tipo:           " + tipo + "\n"
+                + "  Recompensa:     " + recompensa + "\n"
+                + "  Multiplicador:  " + multiplicadorStreak + "\n"
+                + "  Registros:      " + registros.size() + "\n"
+                + "  ID Dueño:       " + usuario.getId();
     }
 
 }

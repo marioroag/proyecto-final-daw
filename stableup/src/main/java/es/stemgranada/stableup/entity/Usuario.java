@@ -141,8 +141,12 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return "Usuario [id=" + id + ", username=" + username + ", monedas=" + monedas + ", nivel=" + nivel
-                + "caballos: "
-                + caballos + ", habitos: " + habitos + "]";
+        return "Usuario #" + id + ": " + username + "\n"
+                + "  Email:           " + email + "\n"
+                + "  Fecha registro:  " + fechaRegistro + "\n"
+                + "  Monedas:         " + monedas + "\n"
+                + "  Nivel:           " + nivel + "\n"
+                + "  Caballos:        " + caballos.size() + "\n"
+                + "  Hábitos:         " + habitos.size();
     }
 }

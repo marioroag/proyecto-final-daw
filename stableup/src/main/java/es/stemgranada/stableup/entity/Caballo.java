@@ -70,7 +70,7 @@ public class Caballo {
         this.rareza = generarRareza();
         this.velocidad = generarVelocidad(rareza);
         this.energia = generarEnergia(rareza);
-        this.nivel = 0;
+        this.nivel = 1;
         this.usuario = usuario;
     }
 
@@ -197,8 +197,12 @@ public class Caballo {
 
     @Override
     public String toString() {
-        return "Caballo [id=" + id + ", nombre=" + nombre + ", rareza=" + rareza + ", velocidad=" + velocidad
-                + ", energia=" + energia + ", nivel=" + nivel + "]";
+        return "Caballo #" + id + ": " + nombre + "\n"
+                + "  Rareza:     " + rareza + "\n"
+                + "  Velocidad:  " + velocidad + "\n"
+                + "  Energía:    " + energia + "\n"
+                + "  Nivel:      " + nivel + "\n"
+                + "  ID Dueño:   " + usuario.getId();
     }
 
 }
