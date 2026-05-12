@@ -22,8 +22,8 @@ public class Caballo {
     private static final int RANGO_STATS = 25;
     private static final int BONUS_COMUN = 20, BONUS_POCO_COMUN = 35, BONUS_RARO = 50, BONUS_EPICO = 65,
             BONUS_LEGENDARIO = 80;
-    private static final int PROBABILIDAD_COMUN = 20, PROBABILIDAD_POCO_COMUN = 35, PROBABILIDAD_RARO = 50,
-            PROBABILIDAD_EPICO = 65;
+    private static final int PROBABILIDAD_COMUN = 50, PROBABILIDAD_POCO_COMUN = 75, PROBABILIDAD_RARO = 90,
+            PROBABILIDAD_EPICO = 98;
 
     private static final List<String> NOMBRES = new ArrayList<>(Arrays.asList(
             "Relampago", "Tormenta", "Pegaso", "Furia", "Cometa",
