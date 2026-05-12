@@ -13,4 +13,6 @@ public interface UsuarioService {
     Usuario save(Usuario usuario);
 
     void deleteById(Long id);
+
+    void deleteAll();
 }

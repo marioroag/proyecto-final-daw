@@ -13,4 +13,6 @@ public interface HabitoService {
     Habito save(Habito habito);
 
     void deleteById(Long id);
+
+    void deleteAll();
 }
