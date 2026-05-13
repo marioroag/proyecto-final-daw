@@ -29,7 +29,6 @@ public class StableupApplication {
 	CommandLineRunner run(UsuarioService usuarioService, HabitoService habitoService, CaballoService caballoService,
 			CarreraService carreraService, ParticipacionCarreraService participacionCarreraService) {
 		return args -> {
-			// Creación Usuarios
 			System.out.println("GENERANDO USUARIOS...");
 			Usuario u1 = new Usuario("alexfit", "alex@demo.com", 120, 3);
 			Usuario u2 = new Usuario("maria_read", "maria@demo.com", 80, 2);
@@ -42,7 +41,6 @@ public class StableupApplication {
 			usuarioService.save(u4);
 			usuarioService.save(u5);
 
-			// Creación Habitos
 			System.out.println("GENERANDO HABITOS...");
 			Habito h1 = new Habito("Gym", TipoHabito.STRENGTH, 10, 2, u1);
 			Habito h2 = new Habito("Leer", TipoHabito.WELLBEING, 5, 2, u2);
@@ -61,19 +59,14 @@ public class StableupApplication {
 			Caballo c3 = new Caballo("Brisa", RarezaCaballo.LEGENDARIO, 50, 9, 10.5, u3);
 			Caballo c4 = new Caballo("Relámpago", RarezaCaballo.EPICO, 32, 28, 35.0, u4);
 			Caballo c5 = new Caballo("Centella", RarezaCaballo.RARO, 21, 17, 19.5, u5);
+			caballoService.generarCaballoAleatorio(1L);
+			caballoService.generarCaballoAleatorio(1L);
+			caballoService.generarCaballoAleatorio(1L);
 			caballoService.save(c1);
 			caballoService.save(c2);
 			caballoService.save(c3);
 			caballoService.save(c4);
 			caballoService.save(c5);
-			caballoService.generarCaballoAleatorio(1L);
-			caballoService.generarCaballoAleatorio(1L);
-			caballoService.generarCaballoAleatorio(1L);
-
-			// TODO: Preguntar en clase si deberia de estar la lista de caballos en Usuario
-			// caballoService.generarCaballoAleatorio(1L);
-			// System.out.println(u1);
-			// System.out.println(usuarioService.findById(1L));
 
 			System.out.println("GENERANDO CARRERAS...");
 			Carrera ca1 = new Carrera(100, 200);
@@ -88,12 +81,11 @@ public class StableupApplication {
 			carreraService.save(ca5);
 
 			System.out.println("INSCRIBIENDO CABALLOS...");
-			ParticipacionCarrera p1 = participacionCarreraService.inscribir(1L, 1L);
-			ParticipacionCarrera p2 = participacionCarreraService.inscribir(2L, 1L);
-			ParticipacionCarrera p3 = participacionCarreraService.inscribir(3L, 1L);
-			ParticipacionCarrera p4 = participacionCarreraService.inscribir(4L, 1L);
-			ParticipacionCarrera p5 = participacionCarreraService.inscribir(5L, 1L);
-
+			participacionCarreraService.inscribir(1L, 1L);
+			participacionCarreraService.inscribir(2L, 1L);
+			participacionCarreraService.inscribir(3L, 1L);
+			participacionCarreraService.inscribir(4L, 1L);
+			participacionCarreraService.inscribir(5L, 1L);
 		};
 	}
 }
