@@ -1,0 +1,30 @@
+package es.stemgranada.stableup.controller;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import es.stemgranada.stableup.entity.Caballo;
+import es.stemgranada.stableup.service.CaballoService;
+
+@RestController
+@RequestMapping("api/caballos")
+public class CaballoController {
+    @Autowired
+    CaballoService caballoService;
+
+    @GetMapping("/{id}")
+    public Optional<Caballo> obtenerCaballo(@PathVariable Long id) {
+        return caballoService.findById(id);
+    }
+
+    @GetMapping
+    public List<Caballo> listarCaballos() {
+        return caballoService.findAll();
+    }
+}
