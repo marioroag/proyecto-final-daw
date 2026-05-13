@@ -3,6 +3,7 @@ package es.stemgranada.stableup.entity;
 import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -15,6 +16,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "registros")
+@JsonPropertyOrder({ "id", "fechaCompletado", "monedasGanadas" })
 public class Registro {
 
     @Id

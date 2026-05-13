@@ -1,6 +1,7 @@
 package es.stemgranada.stableup.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -13,6 +14,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "participacion_carrera")
+@JsonPropertyOrder({ "id", "posicion", "tiempoFinal", "recompensa" })
 public class ParticipacionCarrera {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,6 +22,9 @@ public class ParticipacionCarrera {
 
     @Column(nullable = false)
     private double tiempoFinal;
+
+    @Column(nullable = false)
+    private int posicion;
 
     @Column(nullable = false)
     private int recompensa;
@@ -34,7 +39,7 @@ public class ParticipacionCarrera {
     @JsonIgnore
     private Carrera carrera;
 
-    public ParticipacionCarrera(Caballo caballo, Carrera carrera, double tiempoFinal, int recompensa) {
+    public ParticipacionCarrera(Caballo caballo, Carrera carrera, int posicion, double tiempoFinal, int recompensa) {
         this.caballo = caballo;
         this.carrera = carrera;
         this.tiempoFinal = tiempoFinal;
@@ -50,6 +55,14 @@ public class ParticipacionCarrera {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public int getPosicion() {
+        return posicion;
+    }
+
+    public void setPosicion(int posicion) {
+        this.posicion = posicion;
     }
 
     public Caballo getCaballo() {
