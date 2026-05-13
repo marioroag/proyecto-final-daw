@@ -1,5 +1,7 @@
 package es.stemgranada.stableup.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,19 +18,21 @@ public class ParticipacionCarrera {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "caballo_id")
-    private Caballo caballo;
-
-    @ManyToOne
-    @JoinColumn(name = "carrera_id")
-    private Carrera carrera;
-
     @Column(nullable = false)
     private double tiempoFinal;
 
     @Column(nullable = false)
     private int recompensa;
+
+    @ManyToOne
+    @JoinColumn(name = "caballo_id")
+    @JsonIgnore
+    private Caballo caballo;
+
+    @ManyToOne
+    @JoinColumn(name = "carrera_id")
+    @JsonIgnore
+    private Carrera carrera;
 
     public ParticipacionCarrera(Caballo caballo, Carrera carrera, double tiempoFinal, int recompensa) {
         this.caballo = caballo;

@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -15,6 +17,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "usuarios")
+@JsonPropertyOrder({ "id", "username", "email", "fechaRegistro", "monedas", "nivel", "caballos", "habitos" })
 public class Usuario {
     // TODO: Formar sistema de experiencia y niveles ¿Como funcionara?
 

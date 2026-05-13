@@ -3,6 +3,9 @@ package es.stemgranada.stableup.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
 import es.stemgranada.stableup.enums.TipoHabito;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -19,6 +22,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "habitos")
+@JsonPropertyOrder({ "id", "nombre", "tipo", "recompensa", "multiplicadorStreak" })
 public class Habito {
 
     @Id
@@ -34,12 +38,14 @@ public class Habito {
     @Column(nullable = false)
     private int recompensa;
 
+    // TODO: Cambiar por variable de veces completado estatica?
     @Column(nullable = false)
     private int multiplicadorStreak;
 
     // Relacion usuarios
     @ManyToOne
     @JoinColumn(name = "usuario_id")
+    @JsonIgnore
     private Usuario usuario;
 
     // Relacion registros

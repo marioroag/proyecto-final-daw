@@ -2,6 +2,8 @@ package es.stemgranada.stableup.entity;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -31,6 +33,7 @@ public class Registro {
     // Relacion habitos
     @ManyToOne
     @JoinColumn(name = "habito_id")
+    @JsonIgnore
     private Habito habito;
 
     public Registro(LocalDate fechaCompletado, int monedasGanadas, Habito habito) {

@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
 import es.stemgranada.stableup.enums.RarezaCaballo;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -20,6 +23,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "caballos")
+@JsonPropertyOrder({ "id", "nombre", "rareza", "velocidad", "energia", "nivel", "participaciones" })
 public class Caballo {
     private static final int RANGO_STATS = 30;
     private static final int BONUS_COMUN = 10, BONUS_POCO_COMUN = 20, BONUS_RARO = 30, BONUS_EPICO = 40,
@@ -54,10 +58,12 @@ public class Caballo {
     // Relacion usuarios
     @ManyToOne
     @JoinColumn(name = "usuario_id")
+    @JsonIgnore
     private Usuario usuario;
 
     // Relacion ParticipacionCarrera
     @OneToMany(mappedBy = "caballo", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<ParticipacionCarrera> participaciones = new ArrayList<>();
 
     // En caso de querer hacer uno predeterminado
