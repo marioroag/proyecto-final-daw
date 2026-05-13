@@ -44,12 +44,10 @@ public class Usuario {
 
     // Relacion habitos
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnore
     private List<Habito> habitos = new ArrayList<>();
 
     // Relacion caballos
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnore
     private List<Caballo> caballos = new ArrayList<>();
 
     public Usuario(String username, String email, int monedas, double nivel) {

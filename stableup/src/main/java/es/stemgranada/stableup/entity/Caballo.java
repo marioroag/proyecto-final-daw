@@ -63,7 +63,6 @@ public class Caballo {
 
     // Relacion ParticipacionCarrera
     @OneToMany(mappedBy = "caballo", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnore
     private List<ParticipacionCarrera> participaciones = new ArrayList<>();
 
     // En caso de querer hacer uno predeterminado
