@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import es.stemgranada.stableup.enums.RarezaCaballo;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -14,6 +15,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -53,6 +55,10 @@ public class Caballo {
     @ManyToOne
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
+
+    // Relacion ParticipacionCarrera
+    @OneToMany(mappedBy = "caballo", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ParticipacionCarrera> participaciones = new ArrayList<>();
 
     // En caso de querer hacer uno predeterminado
     public Caballo(String nombre, RarezaCaballo rareza, int velocidad, int energia, double nivel, Usuario usuario) {
@@ -123,6 +129,14 @@ public class Caballo {
 
     public void setNivel(double nivel) {
         this.nivel = nivel;
+    }
+
+    public List<ParticipacionCarrera> getParticipaciones() {
+        return participaciones;
+    }
+
+    public void setParticipaciones(List<ParticipacionCarrera> participaciones) {
+        this.participaciones = participaciones;
     }
 
     public Usuario getUsuario() {
@@ -198,11 +212,11 @@ public class Caballo {
     @Override
     public String toString() {
         return "Caballo #" + id + ": " + nombre + "\n"
-                + "  Rareza:     " + rareza + "\n"
-                + "  Velocidad:  " + velocidad + "\n"
-                + "  Energía:    " + energia + "\n"
-                + "  Nivel:      " + nivel + "\n"
-                + "  ID Dueño:   " + usuario.getId();
+                + "  Rareza:         " + rareza + "\n"
+                + "  Velocidad:      " + velocidad + "\n"
+                + "  Energía:        " + energia + "\n"
+                + "  Nivel:          " + nivel + "\n"
+                + "  ID Dueño:       " + usuario.getId();
     }
 
 }

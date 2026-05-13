@@ -56,5 +56,4 @@ public class CaballoServiceImpl implements CaballoService {
 
         return Optional.of(caballoRepository.save(nuevoCaballo));
     }
-
 }

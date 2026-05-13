@@ -1,10 +1,15 @@
 package es.stemgranada.stableup.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -19,6 +24,10 @@ public class Carrera {
 
     @Column(nullable = false)
     private int recompensaBase;
+
+    // Relacion ParticipacionCarrera
+    @OneToMany(mappedBy = "carrera", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ParticipacionCarrera> participaciones = new ArrayList<>();
 
     public Carrera(double distancia, int recompensaBase) {
         this.distancia = distancia;
@@ -42,6 +51,14 @@ public class Carrera {
 
     public void setDistancia(double distancia) {
         this.distancia = distancia;
+    }
+
+    public List<ParticipacionCarrera> getParticipaciones() {
+        return participaciones;
+    }
+
+    public void setParticipaciones(List<ParticipacionCarrera> participaciones) {
+        this.participaciones = participaciones;
     }
 
     public int getRecompensaBase() {

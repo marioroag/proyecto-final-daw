@@ -6,12 +6,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import es.stemgranada.stableup.entity.Caballo;
+import es.stemgranada.stableup.entity.Carrera;
 import es.stemgranada.stableup.entity.Habito;
+import es.stemgranada.stableup.entity.ParticipacionCarrera;
 import es.stemgranada.stableup.entity.Usuario;
 import es.stemgranada.stableup.enums.RarezaCaballo;
 import es.stemgranada.stableup.enums.TipoHabito;
 import es.stemgranada.stableup.service.CaballoService;
+import es.stemgranada.stableup.service.CarreraService;
 import es.stemgranada.stableup.service.HabitoService;
+import es.stemgranada.stableup.service.ParticipacionCarreraService;
 import es.stemgranada.stableup.service.UsuarioService;
 
 @SpringBootApplication
@@ -22,7 +26,8 @@ public class StableupApplication {
 	}
 
 	@Bean
-	CommandLineRunner run(UsuarioService usuarioService, HabitoService habitoService, CaballoService caballoService) {
+	CommandLineRunner run(UsuarioService usuarioService, HabitoService habitoService, CaballoService caballoService,
+			CarreraService carreraService, ParticipacionCarreraService participacionCarreraService) {
 		return args -> {
 			// Creación Usuarios
 			System.out.println("GENERANDO USUARIOS...");
@@ -70,9 +75,24 @@ public class StableupApplication {
 			// System.out.println(u1);
 			// System.out.println(usuarioService.findById(1L));
 
-			System.out.println(u1);
-			System.out.println(h1);
-			System.out.println(c1);
+			System.out.println("GENERANDO CARRERAS...");
+			Carrera ca1 = new Carrera(100, 200);
+			Carrera ca2 = new Carrera(100, 200);
+			Carrera ca3 = new Carrera(100, 200);
+			Carrera ca4 = new Carrera(100, 200);
+			Carrera ca5 = new Carrera(100, 200);
+			carreraService.save(ca1);
+			carreraService.save(ca2);
+			carreraService.save(ca3);
+			carreraService.save(ca4);
+			carreraService.save(ca5);
+
+			System.out.println("INSCRIBIENDO CABALLOS...");
+			ParticipacionCarrera p1 = participacionCarreraService.inscribir(1L, 1L);
+			ParticipacionCarrera p2 = participacionCarreraService.inscribir(2L, 1L);
+			ParticipacionCarrera p3 = participacionCarreraService.inscribir(3L, 1L);
+			ParticipacionCarrera p4 = participacionCarreraService.inscribir(4L, 1L);
+			ParticipacionCarrera p5 = participacionCarreraService.inscribir(5L, 1L);
 
 		};
 	}
