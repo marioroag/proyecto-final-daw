@@ -69,11 +69,11 @@ public class StableupApplication {
 			caballoService.save(c5);
 
 			System.out.println("GENERANDO CARRERAS...");
-			Carrera ca1 = new Carrera(100, 200);
-			Carrera ca2 = new Carrera(100, 200);
-			Carrera ca3 = new Carrera(100, 200);
-			Carrera ca4 = new Carrera(100, 200);
-			Carrera ca5 = new Carrera(100, 200);
+			Carrera ca1 = new Carrera(8, 100, 200);
+			Carrera ca2 = new Carrera(8, 100, 200);
+			Carrera ca3 = new Carrera(8, 100, 200);
+			Carrera ca4 = new Carrera(8, 100, 200);
+			Carrera ca5 = new Carrera(8, 100, 200);
 			carreraService.save(ca1);
 			carreraService.save(ca2);
 			carreraService.save(ca3);

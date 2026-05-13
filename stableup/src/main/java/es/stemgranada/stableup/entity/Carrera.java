@@ -3,6 +3,8 @@ package es.stemgranada.stableup.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -14,10 +16,14 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "carreras")
+@JsonPropertyOrder({ "id", "aforoCaballos", "distancia", "recompensaBase" })
 public class Carrera {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false)
+    private int aforoCaballos;
 
     @Column(nullable = false)
     private double distancia;
@@ -29,7 +35,8 @@ public class Carrera {
     @OneToMany(mappedBy = "carrera", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ParticipacionCarrera> participaciones = new ArrayList<>();
 
-    public Carrera(double distancia, int recompensaBase) {
+    public Carrera(int aforoCaballos, double distancia, int recompensaBase) {
+        this.aforoCaballos = aforoCaballos;
         this.distancia = distancia;
         this.recompensaBase = recompensaBase;
     }
@@ -43,6 +50,14 @@ public class Carrera {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public int getAforoCaballos() {
+        return aforoCaballos;
+    }
+
+    public void setAforoCaballos(int aforoCaballos) {
+        this.aforoCaballos = aforoCaballos;
     }
 
     public double getDistancia() {
