@@ -57,7 +57,7 @@ public class ParticipacionCarreraServiceImpl implements ParticipacionCarreraServ
         Carrera carrera = carreraRepository.findById(carreraId).orElseThrow();
 
         // Sin datos de finalizacion hasta que termine la carrera
-        ParticipacionCarrera participacion = new ParticipacionCarrera(caballo, carrera, 0, 0);
+        ParticipacionCarrera participacion = new ParticipacionCarrera(caballo, carrera, 0, 0, 0);
 
         return participacionCarreraRepository.save(participacion);
     }

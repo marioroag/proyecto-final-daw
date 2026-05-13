@@ -42,6 +42,7 @@ public class ParticipacionCarrera {
     public ParticipacionCarrera(Caballo caballo, Carrera carrera, int posicion, double tiempoFinal, int recompensa) {
         this.caballo = caballo;
         this.carrera = carrera;
+        this.posicion = posicion;
         this.tiempoFinal = tiempoFinal;
         this.recompensa = recompensa;
     }
