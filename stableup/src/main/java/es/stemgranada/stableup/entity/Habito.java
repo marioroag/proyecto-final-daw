@@ -50,6 +50,7 @@ public class Habito {
 
     // Relacion registros
     @OneToMany(mappedBy = "habito", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<Registro> registros = new ArrayList<>();
 
     public Habito(String nombre, TipoHabito tipo, int recompensa, int multiplicadorStreak, Usuario usuario) {
