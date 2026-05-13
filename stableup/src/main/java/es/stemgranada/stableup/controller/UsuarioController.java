@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,8 +21,8 @@ public class UsuarioController {
     UsuarioService usuarioService;
 
     @GetMapping("/{id}")
-    public Optional<Usuario> obtenerUsuario(Long usuarioId) {
-        return usuarioService.findById(usuarioId);
+    public Optional<Usuario> obtenerUsuario(@PathVariable Long id) {
+        return usuarioService.findById(id);
     }
 
     @GetMapping
