@@ -11,7 +11,6 @@ import es.stemgranada.stableup.entity.Usuario;
 import es.stemgranada.stableup.repository.CaballoRepository;
 import es.stemgranada.stableup.repository.UsuarioRepository;
 import es.stemgranada.stableup.service.CaballoService;
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 
 @Service
@@ -49,13 +48,13 @@ public class CaballoServiceImpl implements CaballoService {
     }
 
     @Transactional
-    public Caballo generarCaballoAleatorio(Long usuarioId) {
+    public Optional<Caballo> generarCaballoAleatorio(Long usuarioId) {
         Usuario usuario = usuarioRepository.findById(usuarioId).orElseThrow();
 
         Caballo nuevoCaballo = new Caballo(usuario);
         usuario.addCaballo(nuevoCaballo);
 
-        return caballoRepository.save(nuevoCaballo);
+        return Optional.of(caballoRepository.save(nuevoCaballo));
     }
 
 }
