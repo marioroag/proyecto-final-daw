@@ -9,21 +9,27 @@ async function cargarCaballosUsuario() {
     contenedor.innerHTML = '';
 
     const listaCaballos = document.createElement("div");
-    listaCaballos.innerHTML += "<h2> Lista de caballos:</h2>"
+    console.log(caballosUsuario);
+    if (caballosUsuario.length > 0) {
+        listaCaballos.innerHTML += "<h2> Lista de caballos:</h2>"
 
-    caballosUsuario.forEach(caballo => {
-        const tarjetaCaballo = document.createElement("div");
-        tarjetaCaballo.classList.add("card-caballo");
-        const rareza = caballo.rareza.replace("_", " ")
+        caballosUsuario.forEach(caballo => {
+            const tarjetaCaballo = document.createElement("div");
+            tarjetaCaballo.classList.add("card-caballo");
+            const rareza = caballo.rareza.replace("_", " ")
 
-        tarjetaCaballo.innerHTML = `
+            tarjetaCaballo.innerHTML = `
                 <h3>${caballo.nombre}</h3>
                 <p>Nivel: ${caballo.nivel}
                 <br>${rareza}\n</p>
             `;
-        listaCaballos.appendChild(tarjetaCaballo);
-    });
-    contenedor.appendChild(listaCaballos);
+
+            listaCaballos.appendChild(tarjetaCaballo);
+
+        });
+        contenedor.appendChild(listaCaballos);
+    }
+
 }
 
 cargarCaballosUsuario();

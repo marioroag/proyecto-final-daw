@@ -35,7 +35,8 @@ p {
 
 /* Tarjeta */
 .card-usuario,
-.card-caballo {
+.card-caballo,
+.card-habitos {
     display: block;
     background: white;
     padding: 1rem 1.25rem;
@@ -48,7 +49,8 @@ p {
 }
 
 .card-usuario:hover,
-.card-caballo:hover {
+.card-caballo:hover,
+.card-habitos:hover {
     transform: translateY(-2px);
     border-color: #8b5e3c;
 }
