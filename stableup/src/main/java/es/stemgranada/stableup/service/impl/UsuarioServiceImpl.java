@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import es.stemgranada.stableup.entity.Caballo;
 import es.stemgranada.stableup.entity.Usuario;
 import es.stemgranada.stableup.repository.UsuarioRepository;
 import es.stemgranada.stableup.service.UsuarioService;
@@ -46,4 +47,8 @@ public class UsuarioServiceImpl implements UsuarioService {
         return usuarioRepository.findByEmail(email);
     }
 
+    @Override
+    public List<Caballo> findCaballosById(Long id) {
+        return usuarioRepository.findById(id).get().getCaballos();
+    }
 }

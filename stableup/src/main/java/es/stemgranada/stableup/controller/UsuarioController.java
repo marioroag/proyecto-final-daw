@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import es.stemgranada.stableup.entity.Caballo;
 import es.stemgranada.stableup.entity.Usuario;
 import es.stemgranada.stableup.service.UsuarioService;
 
 // Postman: http://localhost:8080/api/usuarios
-// Arreglas recursion con JsonIgnore
 @RestController
 @RequestMapping("api/usuarios")
 public class UsuarioController {
@@ -23,6 +23,11 @@ public class UsuarioController {
     @GetMapping("/{id}")
     public Optional<Usuario> obtenerUsuario(@PathVariable Long id) {
         return usuarioService.findById(id);
+    }
+
+    @GetMapping("/{id}/caballos")
+    public List<Caballo> obtenerCaballosUsuario(@PathVariable Long id) {
+        return usuarioService.findCaballosById(id);
     }
 
     @GetMapping

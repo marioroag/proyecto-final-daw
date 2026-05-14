@@ -3,6 +3,7 @@ package es.stemgranada.stableup.service;
 import java.util.List;
 import java.util.Optional;
 
+import es.stemgranada.stableup.entity.Caballo;
 import es.stemgranada.stableup.entity.Usuario;
 
 public interface UsuarioService {
@@ -19,4 +20,5 @@ public interface UsuarioService {
 
     void deleteAll();
 
+    List<Caballo> findCaballosById(Long id);
 }
