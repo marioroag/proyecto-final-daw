@@ -1,16 +1,22 @@
-async function cargarCaballosUsuario() {
+async function obtenerCaballosUsuario() {
     const params = new URLSearchParams(window.location.search);
     const id = params.get('id');
 
     const respuesta = await fetch(`${API_BASE}/usuarios/${id}/caballos`);
     const caballosUsuario = await respuesta.json();
 
+    return caballosUsuario;
+}
+
+async function cargarCaballosUsuario() {
+    const caballosUsuario = await obtenerCaballosUsuario()
+
     const contenedor = document.getElementById("lista-caballos");
     contenedor.innerHTML = '';
 
-    const listaCaballos = document.createElement("div");
 
     if (caballosUsuario.length > 0) {
+        const listaCaballos = document.createElement("div");
         listaCaballos.innerHTML += "<h2> Lista de caballos:</h2>"
 
         caballosUsuario.forEach(caballo => {
