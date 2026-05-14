@@ -37,14 +37,14 @@ async function cargarHabitosUsuario() {
             const emoji = emojiPorTipo(habito.tipo);
 
             tarjetaHabito.innerHTML = `
-            <div class="text-center p-4">
+            <div class="text-center px-5 py-4">
                 <div style="font-size: 4rem; line-height: 1;">${emoji}</div>
                 <h3 class="mt-3 mb-1">${habito.nombre}</h3>
                 <p class="text-muted mb-4">
                     Streak x${habito.multiplicadorStreak}  -  ${proximaRecompensa} 🪙
                 </p>
 
-                <div class="mb-4 mx-auto" style="min-height: 60px; max-width: 260px;">
+                <div class="mb-4 mx-auto">
                 <img class="card-img-top" src="https://placehold.co/600x300/png" alt="Imagen del caballo">
                     <!-- TODO: GRID TIPO GITHUB -->
                 </div>
