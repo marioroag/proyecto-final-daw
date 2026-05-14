@@ -2,21 +2,45 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <title>StableUp</title>
-    <link rel="stylesheet" href="css/styles.css">
+  <meta charset="UTF-8">
+  <title>StableUp</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
-<body>
-    <a href="index.html">
-        <h1>StableUp</h1>
-    </a>
-    <p>Lista de usuarios:</p>
+<body class="bg-light">
 
-    <div id="lista-usuarios"></div>
+  <!-- Hero -->
+  <main class="container d-flex flex-column justify-content-center align-items-center text-center min-vh-100">
+    <h1 class="display-3 fw-bold mb-3">🐎 StableUp</h1>
+    <p class="lead text-secondary mb-5">
+      Gamifica tus hábitos. Cría tus caballos. Compite en carreras.
+    </p>
 
-    <script src="config/apiConfig.js"></script>
-    <script src="js/index.js"></script>
+    <div class="d-flex gap-3 flex-wrap justify-content-center">
+      <button class="btn btn-dark btn-lg px-4" data-bs-toggle="modal" data-bs-target="#loginModal">
+        Iniciar sesión
+      </button>
+    </div>
+  </main>
+
+  <!-- Lista login -->
+  <div class="modal fade" id="loginModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Elige tu usuario</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div id="lista-usuarios-login" class="d-flex flex-column gap-2"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="config/apiConfig.js"></script>
+  <script src="js/index.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

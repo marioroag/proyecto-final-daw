@@ -1,21 +1,20 @@
-async function cargarUsuarios() {
+async function cargarUsuariosModal() {
     const respuesta = await fetch(`${API_BASE}/usuarios`);
     const usuarios = await respuesta.json();
 
-    const contenedor = document.getElementById("lista-usuarios");
+    const contenedor = document.getElementById("lista-usuarios-login");
     contenedor.innerHTML = "";
 
     usuarios.forEach(usuario => {
-        const perfil = document.createElement("a");
-        perfil.href = `perfilDetalle.html?id=${usuario.id}`;
-        perfil.classList.add("card-usuario");
-        perfil.innerHTML = `
-            <h3>${usuario.username}</h3>
-            <p>Nivel: ${usuario.nivel}
-            <br>${usuario.monedas} monedas</p>
+        const enlace = document.createElement("a");
+        enlace.href = `perfilDetalle.html?id=${usuario.id}`;
+        enlace.classList.add("btn", "btn-outline-secondary", "text-start");
+        enlace.innerHTML = `
+            <strong>${usuario.username}</strong>
+            <span class="text-muted ms-2">Nivel ${usuario.nivel}</span>
         `;
-        contenedor.appendChild(perfil);
+        contenedor.appendChild(enlace);
     });
 }
 
-cargarUsuarios();
+cargarUsuariosModal();
