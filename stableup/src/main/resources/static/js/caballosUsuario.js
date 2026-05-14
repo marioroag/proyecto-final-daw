@@ -17,24 +17,32 @@ async function cargarCaballosUsuario() {
 
     if (caballosUsuario.length > 0) {
         const listaCaballos = document.createElement("div");
+        listaCaballos.classList.add("row", "justify-content-center")
         listaCaballos.innerHTML += "<h2> Lista de caballos:</h2>"
 
         caballosUsuario.forEach(caballo => {
             const tarjetaCaballo = document.createElement("div");
-            tarjetaCaballo.classList.add("card-caballo");
+            tarjetaCaballo.classList.add("mx-3");
+            tarjetaCaballo.style.width = "18rem";
+
             const rareza = caballo.rareza.replace("_", " ")
 
             tarjetaCaballo.innerHTML = `
-                <h3>${caballo.nombre}</h3>
-                <p>${caballo.rareza} - Velocidad: ${caballo.velocidad} - Energía: ${caballo.energia}</p>
-            `;
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="https://placehold.co/600x400/png" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">${caballo.nombre}</h5>
+                    <p class="card-text">Velocidad: ${caballo.velocidad}<br>
+                    Energía: ${caballo.energia}</p>
+                    <a href="#" class="btn btn-primary">Ver historial</a>
+                </div>
+            </div>`
 
             listaCaballos.appendChild(tarjetaCaballo);
 
         });
         contenedor.appendChild(listaCaballos);
     }
-
 }
 
 cargarCaballosUsuario();

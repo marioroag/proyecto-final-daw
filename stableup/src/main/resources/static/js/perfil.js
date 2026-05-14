@@ -9,10 +9,10 @@ async function cargarUsuario() {
     contenedor.innerHTML = '';
 
     const perfil = document.createElement("div");
-    perfil.classList.add("card-usuario");
+    perfil.classList.add("card");
     perfil.innerHTML = `
-            <h3>${usuario.username}</h3>
-            <p>Nivel: ${usuario.nivel}
+            <h3 class="card-header">${usuario.username}</h3>
+            <p class="card-text">Nivel: ${usuario.nivel}
             <br>${usuario.monedas} monedas</br>
         `;
     contenedor.appendChild(perfil);
