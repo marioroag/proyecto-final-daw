@@ -45,11 +45,11 @@ async function cargarHabitosUsuario() {
                 </p>
 
                 <div class="mb-4 mx-4">
-                <img class="card-img-top" src="https://placehold.co/600x300/png" alt="Imagen del caballo">
+                <img class="card-img" src="https://placehold.co/600x400/png" alt="Imagen del caballo">
                     <!-- TODO: GRID TIPO GITHUB -->
                 </div>
 
-                <button class="btn btn-success">Marcar como completado</button>
+                <button class="btn btn-success py-3">Marcar como completado</button>
             </div>
         `;
 

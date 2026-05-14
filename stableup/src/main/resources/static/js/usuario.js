@@ -21,7 +21,7 @@ async function cargarUsuario() {
                     <div class="col">
                         <div class="bg-light rounded border p-3">
                             <div class="h4 mb-0">${usuario.nivel}</div>
-                            <div class="text-muted small">Nivel</div>
+                            <div class="text-muted small">🆙 Nivel</div>
                         </div>
                     </div>
                     <div class="col">
