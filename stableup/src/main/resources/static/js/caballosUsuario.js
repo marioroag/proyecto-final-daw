@@ -9,13 +9,19 @@ async function cargarCaballosUsuario() {
     contenedor.innerHTML = '';
 
     const listaCaballos = document.createElement("div");
-    listaCaballos.classList.add("card-usuario");
+    listaCaballos.innerHTML += "<h2> Lista de caballos:</h2>"
+
     caballosUsuario.forEach(caballo => {
-        listaCaballos.innerHTML += `
+        const tarjetaCaballo = document.createElement("div");
+        tarjetaCaballo.classList.add("card-caballo");
+        const rareza = caballo.rareza.replace("_", " ")
+
+        tarjetaCaballo.innerHTML = `
                 <h3>${caballo.nombre}</h3>
                 <p>Nivel: ${caballo.nivel}
-                <br>${caballo.rareza}</br>\n
+                <br>${rareza}\n</p>
             `;
+        listaCaballos.appendChild(tarjetaCaballo);
     });
     contenedor.appendChild(listaCaballos);
 }
