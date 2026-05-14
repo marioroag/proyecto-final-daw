@@ -40,11 +40,11 @@ async function cargarHabitosUsuario() {
             <div class="text-center px-5 py-4">
                 <div style="font-size: 4rem; line-height: 1;">${emoji}</div>
                 <h3 class="mt-3 mb-1">${habito.nombre}</h3>
-                <p class="text-muted mb-4">
+                <p class="mb-4">
                     Streak x${habito.multiplicadorStreak}  -  ${proximaRecompensa} 🪙
                 </p>
 
-                <div class="mb-4 mx-auto">
+                <div class="mb-4 mx-4">
                 <img class="card-img-top" src="https://placehold.co/600x300/png" alt="Imagen del caballo">
                     <!-- TODO: GRID TIPO GITHUB -->
                 </div>

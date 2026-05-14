@@ -7,16 +7,52 @@ async function cargarUsuario() {
     const usuario = await UsuarioAPI.obtenerPorId(id);
 
     const contenedor = document.getElementById("datos-usuario");
-    contenedor.innerHTML = '';
+    contenedor.innerHTML = `
+        <div class="card h-100 text-center">
+            <div class="card-body p-4">
 
-    const perfil = document.createElement("div");
-    perfil.classList.add("card", "h-100");
-    perfil.innerHTML = `
-            <h3 class="card-header">${usuario.username}</h3>
-            <p class="card-text">Nivel: ${usuario.nivel}
-            <br>${usuario.monedas} monedas</br>
+                <div class="mb-4">
+                    <div style="font-size: 5rem;">🐎</div>
+                    <h2 class="mt-2 mb-1">${usuario.username}</h2>
+                    <p class="text-muted small mb-0">Miembro desde ${usuario.fechaRegistro}</p>
+                </div>
+
+                <div class="row g-2 mb-5">
+                    <div class="col">
+                        <div class="bg-light rounded border p-3">
+                            <div class="h4 mb-0">${usuario.nivel}</div>
+                            <div class="text-muted small">Nivel</div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="bg-light rounded border p-3">
+                            <div class="h4 mb-0">${usuario.monedas}</div>
+                            <div class="text-muted small">🪙 monedas</div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="bg-light rounded border p-3">
+                            <div class="h4 mb-0">${usuario.caballos.length}</div>
+                            <div class="text-muted small">🐎 caballos</div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="bg-light rounded border p-3">
+                            <div class="h4 mb-0">${usuario.habitos.length}</div>
+                            <div class="text-muted small">🎯 hábitos</div>
+                        </div>
+                    </div>
+                </div>
+                    
+                <div class="d-flex gap-2 justify-content-center">
+                    <button class="btn btn-outline-success btn-sm">+ Hábito</button>
+                    <button class="btn btn-outline-dark btn-sm">+ Caballo</button>
+                </div>
+
+            </div>
+
+        </div>
         `;
-    contenedor.appendChild(perfil);
 }
 
 cargarUsuario();
