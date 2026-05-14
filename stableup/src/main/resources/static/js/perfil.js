@@ -5,7 +5,7 @@ async function cargarUsuario() {
     const respuesta = await fetch(`${API_BASE}/usuarios/${id}`);
     const usuario = await respuesta.json();
 
-    const contenedor = document.getElementById("perfil-detalle");
+    const contenedor = document.getElementById("datos-usuario");
     contenedor.innerHTML = '';
 
     const perfil = document.createElement("div");
