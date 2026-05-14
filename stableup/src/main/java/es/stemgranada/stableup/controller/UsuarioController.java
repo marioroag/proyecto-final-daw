@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import es.stemgranada.stableup.entity.Caballo;
+import es.stemgranada.stableup.entity.Habito;
 import es.stemgranada.stableup.entity.Usuario;
 import es.stemgranada.stableup.service.UsuarioService;
 
@@ -28,6 +29,11 @@ public class UsuarioController {
     @GetMapping("/{id}/caballos")
     public List<Caballo> obtenerCaballosUsuario(@PathVariable Long id) {
         return usuarioService.findCaballosById(id);
+    }
+
+    @GetMapping("/{id}/habitos")
+    public List<Habito> obtenerHabitosUsuario(@PathVariable Long id) {
+        return usuarioService.findHabitosById(id);
     }
 
     @GetMapping
