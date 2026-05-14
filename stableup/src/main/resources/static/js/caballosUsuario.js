@@ -20,8 +20,7 @@ async function cargarCaballosUsuario() {
 
             tarjetaCaballo.innerHTML = `
                 <h3>${caballo.nombre}</h3>
-                <p>Nivel: ${caballo.nivel}
-                <br>${rareza}\n</p>
+                <p>${caballo.rareza} - Velocidad: ${caballo.velocidad} - Energía: ${caballo.energia}</p>
             `;
 
             listaCaballos.appendChild(tarjetaCaballo);
