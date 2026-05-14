@@ -1,1 +1,3 @@
-const API_BASE = 'http://localhost:8080/api';
+export const API_CONFIG = {
+    baseURL: 'http://localhost:8080/api'
+};
