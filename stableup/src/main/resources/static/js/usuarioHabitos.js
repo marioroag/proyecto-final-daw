@@ -6,6 +6,14 @@
 
 import { UsuarioAPI } from '../api/usuarioApi.js';
 
+function emojiPorTipo(tipo) {
+    let emoji = "";
+    if (tipo === "STRENGTH") emoji = "💪";
+    if (tipo === "WELLBEING") emoji = "🌱";
+    if (tipo === "MENTAL_HEALTH") emoji = "🧠";
+    return emoji;
+}
+
 async function cargarHabitosUsuario() {
     const params = new URLSearchParams(window.location.search);
     const id = params.get('id');
@@ -26,9 +34,24 @@ async function cargarHabitosUsuario() {
             const proximaRecompensa = habito.recompensa * habito.multiplicadorStreak;
 
             // TODO: TERMINAR
+            const emoji = emojiPorTipo(habito.tipo);
+
             tarjetaHabito.innerHTML = `
-                <p>${habito.nombre}</p>
-            `
+            <div class="text-center p-4">
+                <div style="font-size: 4rem; line-height: 1;">${emoji}</div>
+                <h3 class="mt-3 mb-1">${habito.nombre}</h3>
+                <p class="text-muted mb-4">
+                    Streak x${habito.multiplicadorStreak}  -  ${proximaRecompensa} 🪙
+                </p>
+
+                <div class="mb-4 mx-auto" style="min-height: 60px; max-width: 260px;">
+                <img class="card-img-top" src="https://placehold.co/600x300/png" alt="Imagen del caballo">
+                    <!-- TODO: GRID TIPO GITHUB -->
+                </div>
+
+                <button class="btn btn-success">Marcar como completado</button>
+            </div>
+        `;
 
             contenedor.appendChild(tarjetaHabito);
         });
