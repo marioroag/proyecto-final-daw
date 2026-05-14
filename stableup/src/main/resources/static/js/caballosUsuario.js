@@ -9,7 +9,7 @@ async function cargarCaballosUsuario() {
     contenedor.innerHTML = '';
 
     const listaCaballos = document.createElement("div");
-    console.log(caballosUsuario);
+
     if (caballosUsuario.length > 0) {
         listaCaballos.innerHTML += "<h2> Lista de caballos:</h2>"
 
