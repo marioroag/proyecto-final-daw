@@ -4,19 +4,13 @@
 // 2: Recorrer array de registros para el habito
 // 3: Si hay registro -> colorear cuadrado
 
-async function obtenerHabitosUsuario() {
+import { UsuarioAPI } from '../api/usuarioApi.js';
+
+async function cargarHabitosUsuario() {
     const params = new URLSearchParams(window.location.search);
     const id = params.get('id');
 
-    const respuesta = await fetch(`${API_BASE}/usuarios/${id}/habitos`);
-    const habitosUsuario = await respuesta.json();
-
-    return habitosUsuario
-}
-
-
-async function cargarHabitosUsuario() {
-    const habitosUsuario = await obtenerHabitosUsuario();
+    const habitosUsuario = await UsuarioAPI.obtenerHabitos();
 
     const contenedor = document.getElementById("lista-habitos");
     contenedor.innerHTML = '';

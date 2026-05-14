@@ -1,9 +1,11 @@
+import { UsuarioAPI } from '../api/usuarioApi.js';
+
 async function cargarUsuario() {
     const params = new URLSearchParams(window.location.search);
     const id = params.get('id');
 
-    const respuesta = await fetch(`${API_BASE}/usuarios/${id}`);
-    const usuario = await respuesta.json();
+    const usuario = await UsuarioAPI.obtenerPorId(id);
+
 
     const contenedor = document.getElementById("datos-usuario");
     contenedor.innerHTML = '';

@@ -1,6 +1,7 @@
+import { UsuarioAPI } from '../api/usuarioApi.js';
+
 async function cargarUsuariosModal() {
-    const respuesta = await fetch(`${API_BASE}/usuarios`);
-    const usuarios = await respuesta.json();
+    const usuarios = await UsuarioAPI.obtenerTodos();
 
     const contenedor = document.getElementById("lista-usuarios-login");
     contenedor.innerHTML = "";
