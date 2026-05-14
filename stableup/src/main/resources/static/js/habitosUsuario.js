@@ -23,17 +23,27 @@ async function cargarHabitosUsuario() {
 
     if (habitosUsuario.length > 0) {
         const listaHabitos = document.createElement("div");
+        listaHabitos.classList.add("row", "justify-content-center")
         listaHabitos.innerHTML += "<h2> Lista de habitos:</h2>"
 
         habitosUsuario.forEach(habito => {
             const tarjetaHabito = document.createElement("div");
-            tarjetaHabito.classList.add("card-habitos");
+            tarjetaHabito.classList.add("my-3");
+            tarjetaHabito.style.width = "18rem";
+
             const proximaRecompensa = habito.recompensa * habito.multiplicadorStreak
 
             tarjetaHabito.innerHTML = `
-                <h3>${habito.nombre}</h3>
-                <p>${habito.tipo} - Streak: ${habito.multiplicadorStreak} - Proxima recompensa: ${proximaRecompensa}</p>
-            `;
+            <div class="card" >
+                <img class="card-img-top" src="https://placehold.co/600x400/png" alt="Imagen del habito">
+                <div class="card-body">
+                    <h5 class="card-title, align-items">${habito.nombre} <span class="badge rounded-pill bg-primary" style="font-size:0.75rem;">${habito.tipo}</span></h5>
+                    <p class="card-text">Streak: ${habito.multiplicadorStreak}<br>
+                    Proxima recompensa: ${proximaRecompensa}</p>
+                    <a href="#" class="btn btn-success">Marcar como completado</a>
+                </div>
+            </div>`
+
             listaHabitos.appendChild(tarjetaHabito);
         });
 
