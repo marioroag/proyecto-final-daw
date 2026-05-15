@@ -18,7 +18,7 @@ const params = new URLSearchParams(window.location.search);
 const id = params.get('id');
 
 // Datos del usuario
-async function cargarUsuario() {
+async function cargarDatosUsuario() {
     const usuario = await UsuarioAPI.obtenerPorId(id);
 
     const cantidadCaballos = usuario.caballos.length;
@@ -91,7 +91,7 @@ async function gachaCaballo() {
         await CaballoAPI.generarParaUsuario(id);
 
         // Refrescar la vista del usuario
-        cargarUsuario();
+        cargarDatosUsuario();
         cargarCaballosUsuario();
     });
 }
@@ -110,6 +110,7 @@ async function cargarHabitosUsuario() {
             const emoji = emojiPorTipo(habito.tipo);
 
             let activo = "";
+
             if (indice === 0) {
                 activo = "active";
             }
@@ -232,6 +233,6 @@ async function cargarCaballosUsuario() {
     contenedor.appendChild(listaCaballos);
 }
 
-cargarUsuario();
+cargarDatosUsuario();
 cargarHabitosUsuario();
 cargarCaballosUsuario();
