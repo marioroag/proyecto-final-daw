@@ -1,5 +1,6 @@
 import { UsuarioAPI } from '../api/usuarioApi.js';
 import { crearBarraNavegacion } from '../components/navbar.js';
+import { cargarModalHabito } from '../components/modalHabitoComponente.js';
 
 document.getElementById("navbar").innerHTML = crearBarraNavegacion();
 
@@ -57,13 +58,17 @@ async function cargarUsuario() {
                     </div>
 
                     <div class="d-flex gap-2 justify-content-center">
-                        <button class="btn btn-outline-success btn-sm">+ Hábito</button>
+                        <button class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#habitoModal">+ Hábito</button>
                         <button class="btn btn-outline-dark btn-sm">+ Caballo</button>
                     </div>
+
+                <div id="contenedorModalHabito"></div>
 
                 </div>
             </div>
         `;
+
+    cargarModalHabito();
 }
 
 // Lista de habitos
