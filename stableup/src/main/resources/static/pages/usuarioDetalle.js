@@ -20,6 +20,8 @@ const id = params.get('id');
 async function cargarUsuario() {
     const usuario = await UsuarioAPI.obtenerPorId(id);
 
+    const cantidadCaballos = usuario.caballos.length;
+
     const contenedor = document.getElementById("datos-usuario");
     contenedor.innerHTML = `
             <div class="card border border-primary h-100 text-center">
@@ -69,8 +71,7 @@ async function cargarUsuario() {
             </div>
         `;
 
-
-    gachaCaballo()
+    gachaCaballo();
     cargarModalHabito();
 }
 
@@ -78,7 +79,8 @@ async function gachaCaballo() {
     document.getElementById('gacha-caballos').addEventListener('click', async () => {
         await CaballoAPI.generarParaUsuario(id);
 
-        // Refrescar lista de caballos
+        // Refrescar la vista del usuario
+        cargarUsuario();
         cargarCaballosUsuario();
     });
 }
