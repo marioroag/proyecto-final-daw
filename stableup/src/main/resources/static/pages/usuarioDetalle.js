@@ -3,6 +3,7 @@ import { CaballoAPI } from '../api/CaballoApi.js';
 import { crearBarraNavegacion } from '../components/navbar.js';
 import { cargarModalHabito } from '../components/modalHabitoComponente.js';
 
+// Navbar
 document.getElementById("navbar").innerHTML = crearBarraNavegacion();
 
 function emojiPorTipo(tipo) {
@@ -62,7 +63,8 @@ async function cargarUsuario() {
 
                     <div class="d-flex gap-2 justify-content-center">
                         <button class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#habitoModal">+ Hábito</button>
-                        <button id="gacha-caballos" class="btn btn-outline-dark btn-sm">+ Caballo</button>
+                        <button id="gacha-caballos" class="btn btn-outline-dark btn-sm" data-bs-toggle="tooltip" data-bs-placement="top"
+                        data-bs-title="Cuesta 100 monedas">+ Caballo</button>
                     </div>
 
                 <div id="contenedorModalHabito"></div>
@@ -73,6 +75,9 @@ async function cargarUsuario() {
 
     gachaCaballo();
     cargarModalHabito();
+
+    const tooltips = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+    tooltips.forEach(elemento => new bootstrap.Tooltip(elemento));
 }
 
 async function gachaCaballo() {

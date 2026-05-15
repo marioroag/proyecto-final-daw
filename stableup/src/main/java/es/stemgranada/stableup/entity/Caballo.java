@@ -157,7 +157,6 @@ public class Caballo {
     private String generarNombre() {
         int numeroRandom = (int) (Math.random() * NOMBRES.size());
         return NOMBRES.get(numeroRandom);
-
     }
 
     public static int getCosteGacha() {
