@@ -64,7 +64,7 @@ async function cargarUsuario() {
                     <div class="d-flex gap-2 justify-content-center">
                         <button class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#habitoModal">+ Hábito</button>
                         <button id="gacha-caballos" class="btn btn-outline-dark btn-sm" data-bs-toggle="tooltip" data-bs-placement="top"
-                        data-bs-title="Cuesta 100 monedas">+ Caballo</button>
+                        data-bs-title="Cuesta 100 🪙">+ Caballo</button>
                     </div>
 
                 <div id="contenedorModalHabito"></div>
@@ -76,12 +76,18 @@ async function cargarUsuario() {
     gachaCaballo();
     cargarModalHabito();
 
+    // Inicializa tooltips
     const tooltips = document.querySelectorAll('[data-bs-toggle="tooltip"]');
     tooltips.forEach(elemento => new bootstrap.Tooltip(elemento));
 }
 
 async function gachaCaballo() {
     document.getElementById('gacha-caballos').addEventListener('click', async () => {
+        // Termina estancia vieja del tooltip
+        const boton = document.getElementById('gacha-caballos');
+        const tooltipBoton = bootstrap.Tooltip.getInstance(boton);
+        if (tooltipBoton) tooltipBoton.dispose();
+
         await CaballoAPI.generarParaUsuario(id);
 
         // Refrescar la vista del usuario

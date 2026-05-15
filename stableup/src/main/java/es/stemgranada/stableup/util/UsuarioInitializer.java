@@ -40,7 +40,7 @@ public class UsuarioInitializer {
 
         String email = faker.internet().emailAddress();
 
-        int monedas = faker.number().numberBetween(0, 300);
+        int monedas = faker.number().numberBetween(200, 1000);
 
         double nivel = faker.number().randomDouble(1, 1, 15);
 
