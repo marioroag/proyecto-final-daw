@@ -27,7 +27,7 @@ async function cargarDatosUsuario() {
 
     const contenedor = document.getElementById("datos-usuario");
     contenedor.innerHTML = `
-            <div class="card border border-primary text-center p-3 h-100" style="min-height: 425px;>
+            <div class="card border-secondary-subtle text-center p-3 h-100" style="min-height: 425px;>
                 <div class="card-body">
 
                     <div class="mb-4">
@@ -166,7 +166,7 @@ async function cargarHabitosUsuario() {
     }
 
     contenedor.innerHTML = `
-            <div id="carouselExampleControls" class="carousel slide bg-white border border-success rounded"
+            <div id="carouselExampleControls" class="carousel slide bg-white border border-primary rounded"
                 data-bs-ride="carousel" data-bs-theme="dark">
                 <div class="carousel-inner">
                     ${contenidoCarrousel}
