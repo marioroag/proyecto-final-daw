@@ -60,7 +60,7 @@ async function cargarUsuario() {
 
                     <div class="d-flex gap-2 justify-content-center">
                         <button class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#habitoModal">+ Hábito</button>
-                        <button class="btn btn-outline-dark btn-sm">+ Caballo</button>
+                        <button id="gacha-caballos" class="btn btn-outline-dark btn-sm">+ Caballo</button>
                     </div>
 
                 <div id="contenedorModalHabito"></div>
@@ -69,7 +69,18 @@ async function cargarUsuario() {
             </div>
         `;
 
+
+    gachaCaballo()
     cargarModalHabito();
+}
+
+async function gachaCaballo() {
+    document.getElementById('gacha-caballos').addEventListener('click', async () => {
+        await CaballoAPI.generarParaUsuario(id);
+
+        // Refrescar lista de caballos
+        cargarCaballosUsuario();
+    });
 }
 
 // Lista de habitos
@@ -204,12 +215,6 @@ async function cargarCaballosUsuario() {
         listaCaballos.appendChild(tarjetaVacia);
     }
 
-    document.getElementById('test').addEventListener('click', async () => {
-        await CaballoAPI.generarParaUsuario(id);
-
-        // Refrescar lista de caballos
-        cargarCaballosUsuario();
-    });
 
     contenedor.appendChild(listaCaballos);
 }
