@@ -65,7 +65,8 @@ public class UsuarioInitializer {
 
             String nombre = "";
             do {
-                nombre = faker.programmingLanguage().name();
+                nombre = faker.app().name();
+                // nombre = faker.programmingLanguage().name();
             } while (nombre.length() > 12);
 
             TipoHabito tipo = TipoHabito.values()[faker.random().nextInt(TipoHabito.values().length)];
@@ -84,7 +85,7 @@ public class UsuarioInitializer {
 
     private void crearCaballos(Usuario usuario) {
 
-        int numCaballos = faker.number().numberBetween(1, 4);
+        int numCaballos = faker.number().numberBetween(2, 4);
 
         for (int i = 0; i < numCaballos; i++) {
 
