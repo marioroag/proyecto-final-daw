@@ -59,7 +59,7 @@ public class UsuarioInitializer {
 
     private void crearHabitos(Usuario usuario) {
 
-        int numHabitos = faker.number().numberBetween(1, 6);
+        int numHabitos = faker.number().numberBetween(1, 4);
 
         for (int i = 0; i < numHabitos; i++) {
 
@@ -84,7 +84,7 @@ public class UsuarioInitializer {
 
     private void crearCaballos(Usuario usuario) {
 
-        int numCaballos = faker.number().numberBetween(4, 8);
+        int numCaballos = faker.number().numberBetween(1, 4);
 
         for (int i = 0; i < numCaballos; i++) {
 
