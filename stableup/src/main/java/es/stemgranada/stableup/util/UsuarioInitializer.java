@@ -20,6 +20,7 @@ public class UsuarioInitializer {
     @Autowired
     private UsuarioService usuarioService;
 
+    @SuppressWarnings("deprecation")
     private final Faker faker = new Faker(new Locale("es"));
 
     @Transactional
