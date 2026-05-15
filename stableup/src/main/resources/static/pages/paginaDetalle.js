@@ -205,9 +205,12 @@ async function cargarCaballosUsuario() {
     }
 
     document.getElementById('test').addEventListener('click', async () => {
-        await CaballoAPI.darNuevoCaballo(id);
-        window.location.href = 'reservaLista.html';
+        await CaballoAPI.generarParaUsuario(id);
+
+        // Refrescar lista de caballos
+        cargarCaballosUsuario();
     });
+
     contenedor.appendChild(listaCaballos);
 }
 

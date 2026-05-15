@@ -17,5 +17,5 @@ public interface CaballoService {
 
     void deleteAll();
 
-    Optional<Caballo> generarCaballoAleatorio(Long usuarioId);
+    Optional<Caballo> generarCaballoAleatorioAsignado(Long usuarioId);
 }

@@ -4,5 +4,5 @@ import { fetchApi } from '../utils/apiUtils.js';
 export const CaballoAPI = {
     obtenerTodos: () => fetchApi('GET', '/caballos'),
     obtenerPorId: (id) => fetchApi('GET', `/caballos/${id}`),
-    darNuevoCaballo: (id) => fetchApi('POST', `/caballos/${id}`, caballo)
+    generarParaUsuario: (usuarioId) => fetchApi('POST', `/caballos/usuario/${usuarioId}`)
 };

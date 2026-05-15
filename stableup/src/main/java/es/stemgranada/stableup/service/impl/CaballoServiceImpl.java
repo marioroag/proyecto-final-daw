@@ -48,7 +48,7 @@ public class CaballoServiceImpl implements CaballoService {
     }
 
     @Transactional
-    public Optional<Caballo> generarCaballoAleatorio(Long usuarioId) {
+    public Optional<Caballo> generarCaballoAleatorioAsignado(Long usuarioId) {
         Usuario usuario = usuarioRepository.findById(usuarioId).orElseThrow();
 
         Caballo nuevoCaballo = new Caballo(usuario);
