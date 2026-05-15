@@ -8,7 +8,7 @@ async function cargarUsuariosModal() {
 
     usuarios.forEach(usuario => {
         const enlace = document.createElement("a");
-        enlace.href = `perfilDetalle.html?id=${usuario.id}`;
+        enlace.href = `usuarioDetalle.html?id=${usuario.id}`;
         enlace.classList.add("btn", "btn-outline-secondary", "text-start");
         enlace.innerHTML = `
             <strong>${usuario.username}</strong>
