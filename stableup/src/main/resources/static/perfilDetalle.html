@@ -25,24 +25,28 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="staticBackdropLabel">Crear hábito</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
                     <div class="modal-body">
                         <form action="">
+                            <div class="mb-3">
+                                <label for="fullName" class="form-label">Nombre del habito</label>
+                                <input type="text" class="form-control" id="fullName" placeholder="Leer">
+                            </div>
                             <div>
-                                <label for="language" class="form-label">Tipo de habito</label>
-                                <select class="form-select" aria-label="Default select example">
+                                <label for="language" class="form-label">Tipo de hábito</label>
+                                <select class="form-select">
                                     <option selected>Elegir</option>
                                     <option value="fuerza">Fuerza</option>
                                     <option value="bienestar">Bienestar</option>
-                                    <option value="salud">Salud Mental</option>
+                                    <option value="salud">Salúd Mental</option>
                                 </select>
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-success">Crear</button>
+                        <button type="button" class="btn btn-primary">Crear</button>
                     </div>
                 </div>
             </div>
