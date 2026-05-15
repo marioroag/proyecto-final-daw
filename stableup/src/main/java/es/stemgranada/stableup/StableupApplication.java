@@ -42,11 +42,11 @@ public class StableupApplication {
 			usuarioService.save(u5);
 
 			System.out.println("GENERANDO HABITOS...");
-			Habito h1 = new Habito("Gym", TipoHabito.STRENGTH, 10, 2, u1);
-			Habito h2 = new Habito("Leer", TipoHabito.WELLBEING, 5, 2, u1);
-			Habito h3 = new Habito("Meditación", TipoHabito.MENTAL_HEALTH, 8, 3, u3);
-			Habito h4 = new Habito("Estudiar", TipoHabito.WELLBEING, 12, 2, u4);
-			Habito h5 = new Habito("Correr", TipoHabito.STRENGTH, 15, 3, u5);
+			Habito h1 = new Habito("Gym", TipoHabito.STRENGTH, 2, u1);
+			Habito h2 = new Habito("Leer", TipoHabito.WELLBEING, 2, u1);
+			Habito h3 = new Habito("Meditación", TipoHabito.MENTAL_HEALTH, 3, u3);
+			Habito h4 = new Habito("Estudiar", TipoHabito.WELLBEING, 2, u4);
+			Habito h5 = new Habito("Correr", TipoHabito.STRENGTH, 3, u5);
 			habitoService.save(h1);
 			habitoService.save(h2);
 			habitoService.save(h3);

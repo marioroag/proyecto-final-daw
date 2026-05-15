@@ -35,9 +35,6 @@ public class Habito {
     @Enumerated(EnumType.STRING)
     private TipoHabito tipo;
 
-    @Column(nullable = false)
-    private int recompensa;
-
     // TODO: Cambiar por variable de veces completado estatica?
     @Column(nullable = false)
     private int multiplicadorStreak;
@@ -52,10 +49,11 @@ public class Habito {
     @OneToMany(mappedBy = "habito", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Registro> registros = new ArrayList<>();
 
-    public Habito(String nombre, TipoHabito tipo, int recompensa, int multiplicadorStreak, Usuario usuario) {
+    static final int recompensaBase = 15;
+
+    public Habito(String nombre, TipoHabito tipo, int multiplicadorStreak, Usuario usuario) {
         this.nombre = nombre;
         this.tipo = tipo;
-        this.recompensa = recompensa;
         this.multiplicadorStreak = multiplicadorStreak;
         this.usuario = usuario;
         this.registros = new ArrayList<>();
@@ -88,12 +86,8 @@ public class Habito {
         this.tipo = tipo;
     }
 
-    public int getRecompensa() {
-        return recompensa;
-    }
-
-    public void setRecompensa(int recompensa) {
-        this.recompensa = recompensa;
+    public int getRecompensaBase() {
+        return recompensaBase;
     }
 
     public int getMultiplicadorStreak() {
@@ -134,7 +128,7 @@ public class Habito {
     public String toString() {
         return "Habito #" + id + ": " + nombre + "\n"
                 + "  Tipo:           " + tipo + "\n"
-                + "  Recompensa:     " + recompensa + "\n"
+                + "  Recompensa:     " + recompensaBase + "\n"
                 + "  Multiplicador:  " + multiplicadorStreak + "\n"
                 + "  Registros:      " + registros.size() + "\n"
                 + "  ID Dueño:       " + usuario.getId();

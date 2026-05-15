@@ -60,7 +60,7 @@ public class HabitoServiceImpl implements HabitoService {
         Usuario usuario = habito.getUsuario();
 
         // Recompensa al usuario y actualiza el streak
-        int recompensa = habito.getRecompensa() * habito.getMultiplicadorStreak();
+        int recompensa = habito.getRecompensaBase() * habito.getMultiplicadorStreak();
         usuario.setMonedas(usuario.getMonedas() + recompensa);
         habito.setMultiplicadorStreak(habito.getMultiplicadorStreak() + 1);
 

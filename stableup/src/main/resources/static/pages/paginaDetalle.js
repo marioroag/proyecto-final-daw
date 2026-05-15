@@ -76,7 +76,7 @@ async function cargarHabitosUsuario() {
 
     if (habitosUsuario.length > 0) {
         habitosUsuario.forEach((habito, indice) => {
-            const proximaRecompensa = habito.recompensa * habito.multiplicadorStreak;
+            const proximaRecompensa = habito.recompensaBase * habito.multiplicadorStreak;
             const emoji = emojiPorTipo(habito.tipo);
 
             let activo = "";
@@ -150,7 +150,7 @@ async function cargarCaballosUsuario() {
 
     const contenedor = document.getElementById("lista-caballos");
     contenedor.innerHTML = `
-            <h2 class="mt-5">Lista de caballos:</h2>
+            <h2 class="mt-4">Lista de caballos:</h2>
             `;
 
     const listaCaballos = document.createElement("div");
