@@ -31,6 +31,8 @@ public class Caballo {
     private static final int PROBABILIDAD_COMUN = 50, PROBABILIDAD_POCO_COMUN = 75, PROBABILIDAD_RARO = 90,
             PROBABILIDAD_EPICO = 98;
 
+    private static final int COSTE_GACHA = 100;
+
     private static final List<String> NOMBRES = new ArrayList<>(Arrays.asList(
             "Relampago", "Tormenta", "Pegaso", "Furia", "Cometa",
             "Trueno", "Aurora", "Titan", "Sombra", "Huracan",
@@ -156,6 +158,10 @@ public class Caballo {
         int numeroRandom = (int) (Math.random() * NOMBRES.size());
         return NOMBRES.get(numeroRandom);
 
+    }
+
+    public static int getCosteGacha() {
+        return COSTE_GACHA;
     }
 
     private RarezaCaballo generarRareza() {
