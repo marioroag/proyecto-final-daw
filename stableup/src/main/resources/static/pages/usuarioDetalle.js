@@ -27,8 +27,8 @@ async function cargarDatosUsuario() {
 
     const contenedor = document.getElementById("datos-usuario");
     contenedor.innerHTML = `
-            <div class="card border border-primary text-center px-4 h-100" style="min-height: 425px;>
-                <div class="card-body p-4">
+            <div class="card border border-primary text-center p-3 h-100" style="min-height: 425px;>
+                <div class="card-body">
 
                     <div class="mb-4">
                         <div style="font-size: 5rem;">👤</div>
@@ -64,8 +64,8 @@ async function cargarDatosUsuario() {
                     </div>
 
                     <div class="d-flex gap-2 justify-content-center">
-                        <button class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#habitoModal">+ Hábito</button>
-                        <button id="gacha-caballos" class="btn btn-outline-dark btn-sm" data-bs-toggle="tooltip" data-bs-placement="top"
+                        <button class="btn btn-outline-success btn-sm px-4 py-2" data-bs-toggle="modal" data-bs-target="#habitoModal">+ Hábito</button>
+                        <button class="btn btn-outline-dark btn-sm px-4 py-2" id="gacha-caballos" data-bs-toggle="tooltip" data-bs-placement="top"
                         data-bs-title="Cuesta 100 🪙">+ Caballo</button>
                     </div>
 
@@ -140,7 +140,7 @@ async function cargarHabitosUsuario() {
                                 <!-- TODO: GRID TIPO GITHUB -->
                             </div>
 
-                            <button class="btn btn-success py-3">Marcar como completado</button>
+                            <button class="btn btn-success py-2">Marcar como completado</button>
                         </div>
                     </div>
                 `;
@@ -196,17 +196,17 @@ async function cargarCaballosUsuario() {
             `;
 
     const listaCaballos = document.createElement("div");
-    listaCaballos.classList.add("d-flex", "flex-wrap", "justify-content-center", "gap-4", "mt-4", "mb-5");
+    listaCaballos.classList.add("d-flex", "flex-wrap", "justify-content-center", "gap-5", "p-2", "mt-4", "mb-5");
 
     if (caballosUsuario.length > 0) {
         caballosUsuario.forEach(caballo => {
             const tarjetaCaballo = document.createElement("div");
-            tarjetaCaballo.style.width = "18rem";
+            tarjetaCaballo.style.width = "16rem";
 
             const rareza = caballo.rareza.replace("_", " ");
 
             tarjetaCaballo.innerHTML = `
-                    <div class="card hover-zoom">
+                    <div class="card hover-zoom mb-4">
                         <div style="font-size: 5rem;">🐴</div>
 
                         <div class="card-body">
