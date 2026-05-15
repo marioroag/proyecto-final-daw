@@ -51,16 +51,17 @@ public class CaballoServiceImpl implements CaballoService {
     public Optional<Caballo> generarCaballoAleatorioAsignado(Long usuarioId) {
         Usuario usuario = usuarioRepository.findById(usuarioId).orElseThrow();
 
-        Caballo nuevoCaballo = null;
-        
-        if (usuario.getMonedas() > Caballo.getCosteGacha()) {
+        Optional<Caballo> resultado = Optional.empty();
+
+        if (usuario.getMonedas() >= Caballo.getCosteGacha()) {
             usuario.setMonedas(usuario.getMonedas() - Caballo.getCosteGacha());
 
-            nuevoCaballo = new Caballo(usuario);
+            Caballo nuevoCaballo = new Caballo(usuario);
             usuario.addCaballo(nuevoCaballo);
 
+            resultado = Optional.of(caballoRepository.save(nuevoCaballo));
         }
 
-        return Optional.of(caballoRepository.save(nuevoCaballo));
+        return resultado;
     }
 }

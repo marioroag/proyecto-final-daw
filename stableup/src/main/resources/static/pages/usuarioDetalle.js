@@ -83,12 +83,20 @@ async function cargarDatosUsuario() {
 
 async function gachaCaballo() {
     document.getElementById('gacha-caballos').addEventListener('click', async () => {
-        // Termina estancia vieja del tooltip
         const boton = document.getElementById('gacha-caballos');
         const tooltipBoton = bootstrap.Tooltip.getInstance(boton);
-        if (tooltipBoton) tooltipBoton.dispose();
 
-        await CaballoAPI.generarParaUsuario(id);
+        // Mensaje de monedas insuficientes
+        const resultado = await CaballoAPI.generarParaUsuario(id);
+
+        if (resultado == null) {
+            tooltipBoton.setContent({ '.tooltip-inner': '¡No tienes suficientes monedas!' });
+            tooltipBoton.show();
+            return;
+        }
+
+        // Termina estancia vieja del tooltip
+        if (tooltipBoton) tooltipBoton.dispose();
 
         // Refrescar la vista del usuario
         cargarDatosUsuario();
