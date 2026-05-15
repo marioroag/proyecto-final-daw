@@ -27,7 +27,7 @@ async function cargarDatosUsuario() {
 
     const contenedor = document.getElementById("datos-usuario");
     contenedor.innerHTML = `
-            <div class="card border border-primary h-100 text-center">
+            <div class="card border border-primary text-center px-4 h-100" style="min-height: 425px;>
                 <div class="card-body p-4">
 
                     <div class="mb-4">
@@ -126,7 +126,8 @@ async function cargarHabitosUsuario() {
             }
 
             contenidoCarrousel += `
-                    <div class="carousel-item ${activo}">
+                    <div class="carousel-item ${activo}" style="min-height: 425px;">
+                    
                         <div class="text-center px-5 py-4">
                             <div style="font-size: 4rem; line-height: 1;">${emoji}</div>
                             <h3 class="mt-3 mb-1">${habito.nombre}</h3>
