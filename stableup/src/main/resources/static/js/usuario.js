@@ -8,11 +8,11 @@ async function cargarUsuario() {
 
     const contenedor = document.getElementById("datos-usuario");
     contenedor.innerHTML = `
-        <div class="card h-100 text-center">
+        <div class="card border border-primary h-100 text-center">
             <div class="card-body p-4">
 
                 <div class="mb-4">
-                    <div style="font-size: 5rem;">🐎</div>
+                    <div style="font-size: 5rem;">👤</div>
                     <h2 class="mt-2 mb-1">${usuario.username}</h2>
                     <p class="text-muted small mb-0">Miembro desde ${usuario.fechaRegistro}</p>
                 </div>
@@ -21,7 +21,7 @@ async function cargarUsuario() {
                     <div class="col">
                         <div class="bg-light rounded border p-3">
                             <div class="h4 mb-0">${usuario.nivel}</div>
-                            <div class="text-muted small">🆙 Nivel</div>
+                            <div class="text-muted small">🆙 nivel</div>
                         </div>
                     </div>
                     <div class="col">

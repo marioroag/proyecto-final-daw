@@ -23,10 +23,11 @@ async function cargarHabitosUsuario() {
     const contenedor = document.getElementById("carrusel-habitos");
     contenedor.innerHTML = '';
 
+    const tarjetaHabito = document.createElement("div");
+    tarjetaHabito.classList.add("carousel-item");
+
     if (habitosUsuario.length > 0) {
         habitosUsuario.forEach((habito, indice) => {
-            const tarjetaHabito = document.createElement("div");
-            tarjetaHabito.classList.add("carousel-item");
             if (indice === 0) {
                 tarjetaHabito.classList.add("active");
             }
@@ -45,17 +46,34 @@ async function cargarHabitosUsuario() {
                 </p>
 
                 <div class="mb-4 mx-4">
-                <img class="card-img" src="https://placehold.co/600x400/png" alt="Imagen del caballo">
+                <img class="card-img" src="https://placehold.co/600x400/png">
                     <!-- TODO: GRID TIPO GITHUB -->
                 </div>
 
                 <button class="btn btn-success py-3">Marcar como completado</button>
             </div>
-        `;
-
-            contenedor.appendChild(tarjetaHabito);
+        `
         });
 
+    } else {
+        tarjetaHabito.classList.add("active");
+        tarjetaHabito.innerHTML = `
+        <div class="text-center px-5 py-4">
+            <div style="font-size: 4rem; line-height: 1;">📭</div>
+            <h3 class="mt-3 mb-1">Aún no tienes hábitos</h3>
+            <p class="mb-4">
+                Crea tu primer hábito para empezar a sumar recompensas
+            </p>
+
+            <div class="mb-4 mx-4">
+                <img class="card-img" src="https://placehold.co/600x400/png">
+                <!-- Sin grid porque todavía no hay registros que pintar -->
+            </div>
+
+            <button class="btn btn-success py-3">Crear hábito</button>
+        </div>
+        `
     }
+    contenedor.appendChild(tarjetaHabito);
 }
 cargarHabitosUsuario();
