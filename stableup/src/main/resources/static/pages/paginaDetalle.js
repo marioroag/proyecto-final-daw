@@ -1,4 +1,5 @@
 import { UsuarioAPI } from '../api/usuarioApi.js';
+import { CaballoAPI } from '../api/CaballoApi.js';
 import { crearBarraNavegacion } from '../components/navbar.js';
 import { cargarModalHabito } from '../components/modalHabitoComponente.js';
 
@@ -33,7 +34,7 @@ async function cargarUsuario() {
                     <div class="row g-2 mb-5">
                         <div class="col">
                             <div class="bg-light rounded border p-3">
-                                <div class="h4 mb-0">${usuario.nivel}</div>
+                                <div class="h4 mb-0">${Math.trunc(usuario.nivel)}</div>
                                 <div class="text-muted small">🆙 nivel</div>
                             </div>
                         </div>
@@ -169,7 +170,7 @@ async function cargarCaballosUsuario() {
             const rareza = caballo.rareza.replace("_", " ");
 
             tarjetaCaballo.innerHTML = `
-                    <div class="card">
+                    <div class="card hover-zoom">
                         <div style="font-size: 5rem;">🐴</div>
 
                         <div class="card-body">
@@ -202,6 +203,11 @@ async function cargarCaballosUsuario() {
 
         listaCaballos.appendChild(tarjetaVacia);
     }
+
+    document.getElementById('test').addEventListener('click', async () => {
+        await CaballoAPI.darNuevoCaballo(id);
+        window.location.href = 'reservaLista.html';
+    });
     contenedor.appendChild(listaCaballos);
 }
 

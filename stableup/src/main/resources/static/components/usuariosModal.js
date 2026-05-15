@@ -12,7 +12,7 @@ async function cargarUsuariosModal() {
         enlace.classList.add("btn", "btn-outline-secondary", "text-start");
         enlace.innerHTML = `
             <strong>${usuario.username}</strong>
-            <span class="text-muted ms-2">Nivel ${usuario.nivel}</span>
+            <span class="text-muted ms-2">Nivel ${Math.trunc(usuario.nivel)}</span>
         `;
         contenedor.appendChild(enlace);
     });
