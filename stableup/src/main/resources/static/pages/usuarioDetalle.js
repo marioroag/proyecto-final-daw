@@ -192,7 +192,7 @@ async function cargarCaballosUsuario() {
 
     const contenedor = document.getElementById("lista-caballos");
     contenedor.innerHTML = `
-            <h2 class="mt-4">Lista de caballos:</h2>
+            <h2 class="m-5">Tu establo</h2>
             `;
 
     const listaCaballos = document.createElement("div");
@@ -206,7 +206,7 @@ async function cargarCaballosUsuario() {
             const rareza = caballo.rareza.replace("_", " ");
 
             tarjetaCaballo.innerHTML = `
-                    <div class="card hover-zoom mb-4">
+                    <div class="card hover-zoom mb-2">
                         <div style="font-size: 5rem;">🐴</div>
 
                         <div class="card-body">
