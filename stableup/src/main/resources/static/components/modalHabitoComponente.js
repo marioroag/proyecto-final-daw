@@ -1,6 +1,4 @@
 export function cargarModalHabito() {
-
-
     document.getElementById("contenedorModalHabito").innerHTML = `
         <div class="modal fade" id="habitoModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="staticBackdropLabel" aria-hidden="true">

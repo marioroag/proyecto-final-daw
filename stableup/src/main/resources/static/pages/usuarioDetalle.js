@@ -1,10 +1,12 @@
 import { UsuarioAPI } from '../api/usuarioApi.js';
 import { CaballoAPI } from '../api/CaballoApi.js';
 import { crearBarraNavegacion } from '../components/navbar.js';
+import { crearFooter } from '../components/footer.js';
 import { cargarModalHabito } from '../components/modalHabitoComponente.js';
 
 // Navbar
 document.getElementById("navbar").innerHTML = crearBarraNavegacion();
+document.getElementById("stable-footer").innerHTML = crearFooter();
 
 function emojiPorTipo(tipo) {
     let emoji = "";
@@ -193,7 +195,7 @@ async function cargarCaballosUsuario() {
             `;
 
     const listaCaballos = document.createElement("div");
-    listaCaballos.classList.add("d-flex", "flex-wrap", "justify-content-center", "gap-4", "my-5");
+    listaCaballos.classList.add("d-flex", "flex-wrap", "justify-content-center", "gap-4", "mt-4", "mb-5");
 
     if (caballosUsuario.length > 0) {
         caballosUsuario.forEach(caballo => {
@@ -236,7 +238,6 @@ async function cargarCaballosUsuario() {
 
         listaCaballos.appendChild(tarjetaVacia);
     }
-
 
     contenedor.appendChild(listaCaballos);
 }
