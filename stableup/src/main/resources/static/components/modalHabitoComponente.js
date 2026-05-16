@@ -8,6 +8,7 @@ export function cargarModalHabito() {
                         <h5 class="modal-title" id="staticBackdropLabel">Crear hábito</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
+
                     <div class="modal-body">
                         <form action="">
                             <div class="mb-3">
@@ -25,6 +26,7 @@ export function cargarModalHabito() {
                             </div>
                         </form>
                     </div>
+                    
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                         <button type="button" class="btn btn-primary">Crear</button>

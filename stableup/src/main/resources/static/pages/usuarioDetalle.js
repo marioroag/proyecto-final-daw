@@ -16,6 +16,16 @@ function emojiPorTipo(tipo) {
     return emoji;
 }
 
+function colorPorRareza(rareza) {
+    let color = "";
+    if (rareza === "COMUN") color = "lightgrey";
+    if (rareza === "POCO_COMUN") color = "lightskyblue";
+    if (rareza === "RARO") color = "stateblue";
+    if (rareza === "EPICO") color = "mediumpurple";
+    if (rareza === "LEGENDARIO") color = "gold";
+    return color;
+}
+
 const params = new URLSearchParams(window.location.search);
 const id = params.get('id');
 
@@ -199,23 +209,33 @@ async function cargarCaballosUsuario() {
     listaCaballos.classList.add("d-flex", "flex-wrap", "justify-content-center", "gap-5", "p-2", "mt-4", "mb-5");
 
     if (caballosUsuario.length > 0) {
-        caballosUsuario.forEach(caballo => {
+        caballosUsuario.forEach((caballo, indice) => {
             const tarjetaCaballo = document.createElement("div");
             tarjetaCaballo.style.width = "16rem";
 
-            const rareza = caballo.rareza.replace("_", " ");
+            console.log(indice);
+
+            const rarezaMostrar = caballo.rareza.replace("_", " ");
 
             tarjetaCaballo.innerHTML = `
-                    <div class="card hover-zoom mb-2">
+                    <div  id="tarjeta-caballo-${indice}" class="card mb-2">
                         <div style="font-size: 5rem;">🐴</div>
 
                         <div class="card-body">
-                            <h5 class="card-title align-items-center">${caballo.nombre} <span class="badge rounded-pill bg-primary" style="font-size:0.75rem;">${rareza}</span></h5>
+                            <h5 class="card-title align-items-center">${caballo.nombre} <span class="badge rounded-pill bg-primary" style="font-size:0.75rem;">${rarezaMostrar}</span></h5>
                             <p class="card-text">Velocidad: ${caballo.velocidad}<br>
                             Energía: ${caballo.energia}</p>
                             <a href="#" class="btn btn-dark">Ver historial</a>
                         </div>
                     </div>`;
+
+            tarjetaCaballo.innerHTML += `
+            <style>
+                #tarjeta-caballo-${indice} {
+                    background-color: ${colorPorRareza(caballo.rareza)};
+                }
+            </style>
+            `
 
             listaCaballos.appendChild(tarjetaCaballo);
         });
