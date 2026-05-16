@@ -4,6 +4,7 @@ import { crearBarraNavegacion } from '../components/navbar.js';
 import { crearFooter } from '../components/footer.js';
 import { cargarModalHabito } from '../components/crearHabitoComponente.js';
 import { cargarModalEditarHabito } from '../components/editarHabitoComponente.js';
+import { cargarBarraPorgreso } from '../components/nivelBarraComponente.js';
 
 // Navbar
 document.getElementById("navbar").innerHTML = crearBarraNavegacion();
@@ -51,8 +52,9 @@ async function cargarDatosUsuario() {
     const contenedor = document.getElementById("datos-usuario");
     contenedor.innerHTML = `
             <div id="contenedorModalEditarHabito"></div>
+            <div id="contenedorModalHabito"></div>
 
-            <div class="card border-secondary-subtle text-center p-3 h-100" style="min-height: 425px;">
+            <div class="card border-secondary-subtle text-center px-4 pb-3 h-100" style="min-height: 425px;">
                 <div class="card-body">
 
                     <div class="mb-4">
@@ -88,22 +90,26 @@ async function cargarDatosUsuario() {
                         </div>
                     </div>
 
+                    <div id="barra-progreso"></div>
+
                     <div class="d-flex gap-2 justify-content-center">
                         <button class="btn btn-outline-primary btn-sm px-4 py-2" data-bs-toggle="modal" data-bs-target="#habitoModal">+ Hábito</button>
                         <button class="btn btn-outline-success btn-sm px-4 py-2" id="gacha-caballos" data-bs-toggle="tooltip" data-bs-placement="top"
                         data-bs-title="Cuesta 100 🪙">+ Caballo</button>
                     </div>
 
-                <div id="contenedorModalHabito"></div>
-
                 </div>
             </div>
         `;
+
+    const porcentajeNivel = (usuario.nivel - Math.trunc(usuario.nivel)) * 100
 
     gachaCaballo();
     cargarModalHabito();
     cargarModalEditarHabito();
     crearHabito();
+    cargarBarraPorgreso(porcentajeNivel);
+
 
     // Inicializa tooltips
     const tooltips = document.querySelectorAll('[data-bs-toggle="tooltip"]');
@@ -188,7 +194,7 @@ async function cargarHabitosUsuario() {
                     <div class="carousel-item ${activo}" style="height: 425px;">
                     
                         <div class="text-center px-5 py-4">
-                            <div style="font-size: 4rem; line-height: 1;">${emoji}</div>
+                            <div class="mt-3" style="font-size: 4rem; line-height: 1;">${emoji}</div>
                             <h3 class="mt-3 mb-1">${habito.nombre}</h3>
                             <p class="mb-4">
                                 Streak x${habito.multiplicadorStreak}  -  ${proximaRecompensa} 🪙
@@ -225,8 +231,8 @@ async function cargarHabitosUsuario() {
     contenedor.innerHTML = `
             <div id="carouselExampleControls" class="carousel slide bg-white border border-primary rounded h-100"
                 data-bs-ride="carousel" data-bs-theme="dark">
-                
-                <div class="carousel-inner">
+
+                <div class="carousel-inner h-100">
                     ${contenidoCarrousel}
                 </div>
 
