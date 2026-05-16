@@ -17,7 +17,7 @@ public interface HabitoService {
 
     void deleteAll();
 
-    void completarHabito(Long habitoId);
+    void completarHabito(Long id);
 
-    Habito editar(Long habitoId, Habito habitoNuevo);
+    Habito editar(Long id, Habito habitoNuevo);
 }
