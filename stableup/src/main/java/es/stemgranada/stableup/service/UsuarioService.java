@@ -24,4 +24,6 @@ public interface UsuarioService {
     List<Caballo> findCaballosById(Long id);
 
     List<Habito> findHabitosById(Long id);
+
+    Habito crearHabito(Long id, Habito habito);
 }

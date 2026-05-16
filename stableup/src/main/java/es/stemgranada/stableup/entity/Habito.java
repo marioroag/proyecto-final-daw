@@ -59,6 +59,13 @@ public class Habito {
         this.registros = new ArrayList<>();
     }
 
+    public Habito(String nombre, TipoHabito tipo) {
+        this.nombre = nombre;
+        this.tipo = tipo;
+        this.multiplicadorStreak = 1;
+        this.registros = new ArrayList<>();
+    }
+
     public Habito() {
     }
 
