@@ -2,48 +2,19 @@ import { UsuarioAPI } from '../api/UsuarioApi.js';
 import { CaballoAPI } from '../api/CaballoApi.js';
 import { HabitoAPI } from '../api/HabitoApi.js';
 
+import { emojiPorTipo, colorPorRareza, formatearFechaRegistro } from '../utils/formatos.js';
 import { crearBarraNavegacion } from '../components/navbar.js';
 import { crearFooter } from '../components/footer.js';
 import { cargarModalHabito } from '../components/crearHabitoComponente.js';
 import { cargarModalEditarHabito } from '../components/editarHabitoComponente.js';
 import { cargarBarraExperiencia } from '../components/experienciaBarraComponenete.js';
 
-// Navbar
-document.getElementById("navbar").innerHTML = crearBarraNavegacion();
-document.getElementById("stable-footer").innerHTML = crearFooter();
-
-function emojiPorTipo(tipo) {
-    let emoji = "";
-    if (tipo === "STRENGTH") emoji = "💪";
-    if (tipo === "WELLBEING") emoji = "🌱";
-    if (tipo === "MENTAL_HEALTH") emoji = "🧠";
-    return emoji;
-}
-
-function colorPorRareza(rareza) {
-    let color = "";
-    if (rareza === "COMUN") color = "#dce1e6";
-    if (rareza === "POCO_COMUN") color = "#d1e7dd";
-    if (rareza === "RARO") color = "#BFDBFE";
-    if (rareza === "EPICO") color = "#DDD6FE";
-    if (rareza === "LEGENDARIO") color = "#ffe26e";
-    return color;
-}
-
 const params = new URLSearchParams(window.location.search);
 const id = params.get('id');
 
-function formatearFechaRegistro(fechaRegistro) {
-    const fecha = new Date(fechaRegistro);
-
-    const fechaFormateada = fecha.toLocaleDateString('es-ES', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-    });
-
-    return fechaFormateada;
-}
+// Navbar
+document.getElementById("navbar").innerHTML = crearBarraNavegacion();
+document.getElementById("stable-footer").innerHTML = crearFooter();
 
 // Datos del usuario
 async function cargarDatosUsuario() {
