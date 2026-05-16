@@ -6,6 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,5 +28,10 @@ public class HabitoController {
     @GetMapping
     public List<Habito> listarHabitos() {
         return habitoService.findAll();
+    }
+
+    @PutMapping("/{id}")
+    public Habito editar(@PathVariable Long id, @RequestBody Habito habitoNuevo) {
+        return habitoService.editar(id, habitoNuevo);
     }
 }

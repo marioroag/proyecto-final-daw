@@ -72,4 +72,13 @@ public class HabitoServiceImpl implements HabitoService {
         usuarioRepository.save(usuario);
     }
 
+    @Transactional
+    @Override
+    public Habito editar(Long habitoId, Habito habitoNuevo) {
+        Habito habito = habitoRepository.findById(habitoId).orElseThrow();
+        habito.setNombre(habitoNuevo.getNombre());
+        habito.setTipo(habitoNuevo.getTipo());
+        return habitoRepository.save(habito);
+    }
+
 }
