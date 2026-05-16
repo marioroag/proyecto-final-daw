@@ -2,7 +2,8 @@ import { UsuarioAPI } from '../api/usuarioApi.js';
 import { CaballoAPI } from '../api/CaballoApi.js';
 import { crearBarraNavegacion } from '../components/navbar.js';
 import { crearFooter } from '../components/footer.js';
-import { cargarModalHabito } from '../components/modalHabitoComponente.js';
+import { cargarModalHabito } from '../components/crearHabitoComponente.js';
+import { cargarModalEditarHabito } from '../components/editarHabitoComponente.js';
 
 // Navbar
 document.getElementById("navbar").innerHTML = crearBarraNavegacion();
@@ -37,7 +38,9 @@ async function cargarDatosUsuario() {
 
     const contenedor = document.getElementById("datos-usuario");
     contenedor.innerHTML = `
-            <div class="card border-secondary-subtle text-center p-3 h-100" style="min-height: 425px;>
+            <div id="contenedorModalEditarHabito"></div>
+
+            <div class="card border-secondary-subtle text-center p-3 h-100" style="min-height: 425px;">
                 <div class="card-body">
 
                     <div class="mb-4">
@@ -87,6 +90,7 @@ async function cargarDatosUsuario() {
 
     gachaCaballo();
     cargarModalHabito();
+    cargarModalEditarHabito();
     crearHabito();
 
     // Inicializa tooltips
@@ -118,6 +122,11 @@ async function crearHabito() {
             alert("Tipo o nombre invalidos")
         }
     })
+}
+
+// TODO: funcionalidad para editar y borrar
+async function editarHabito() {
+
 }
 
 async function gachaCaballo() {
@@ -172,13 +181,13 @@ async function cargarHabitosUsuario() {
                                 Streak x${habito.multiplicadorStreak}  -  ${proximaRecompensa} 🪙
                             </p>
 
+                            <!-- TODO: GRID TIPO GITHUB -->
                             <div class="mb-4 mx-5">
                                 <img class="card-img" src="https://placehold.co/600x400/png">
-                                <!-- TODO: GRID TIPO GITHUB -->
                             </div>
 
                             <div class="d-flex gap-2 justify-content-center">
-                                <button class="btn btn-warning btn-sm px-4 py-2">Editar</button>
+                                <button id="boton-editar-habito" class="btn btn-warning btn-sm px-4 py-2" data-bs-toggle="modal" data-bs-target="#editarHabitoModal">Editar</button>
                                 <button class="btn btn-success btn-sm px-4 py-2">Marcar como completado</button>
                             </div>
 
@@ -258,7 +267,7 @@ async function cargarCaballosUsuario() {
                     background-color: ${colorPorRareza(caballo.rareza)};
                 }
             </style>
-            `
+            `;
 
             listaCaballos.appendChild(tarjetaCaballo);
         });

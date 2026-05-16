@@ -18,7 +18,7 @@ export function cargarModalHabito() {
                             <div>
                                 <label for="language" class="form-label">Tipo</label>
                                 <select id="tipo-habito" class="form-select">
-                                    <option selected>Elegir</option>
+                                    <option value="" selected disabled>Elegir tipo</option>
                                     <option value="STRENGTH">Fuerza</option>
                                     <option value="WELLBEING">Bienestar</option>
                                     <option value="MENTAL_HEALTH">Salúd Mental</option>
