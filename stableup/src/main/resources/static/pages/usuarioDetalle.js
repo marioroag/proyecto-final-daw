@@ -89,8 +89,8 @@ async function cargarDatosUsuario() {
                     </div>
 
                     <div class="d-flex gap-2 justify-content-center">
-                        <button class="btn btn-outline-success btn-sm px-4 py-2" data-bs-toggle="modal" data-bs-target="#habitoModal">+ Hábito</button>
-                        <button class="btn btn-outline-dark btn-sm px-4 py-2" id="gacha-caballos" data-bs-toggle="tooltip" data-bs-placement="top"
+                        <button class="btn btn-outline-primary btn-sm px-4 py-2" data-bs-toggle="modal" data-bs-target="#habitoModal">+ Hábito</button>
+                        <button class="btn btn-outline-success btn-sm px-4 py-2" id="gacha-caballos" data-bs-toggle="tooltip" data-bs-placement="top"
                         data-bs-title="Cuesta 100 🪙">+ Caballo</button>
                     </div>
 
@@ -115,13 +115,11 @@ async function crearHabito() {
         const nombreHabito = document.getElementById("nombre-habito").value
         const tipoHabito = document.getElementById("tipo-habito").value
 
-        console.log(nombreHabito);
-        console.log(tipoHabito);
-
         if (nombreHabito != "" && tipoHabito != "") {
             // Esconde el modal
             const modal = bootstrap.Modal.getInstance(document.getElementById("habitoModal"));
             modal.hide();
+
             // Devuelve un objeto que la api convierte a json despues para java como habito
             const habito = {
                 nombre: nombreHabito,
@@ -133,6 +131,7 @@ async function crearHabito() {
             // Recarga
             cargarHabitosUsuario();
         } else {
+            // TODO: mejorar alert
             alert("Tipo o nombre invalidos")
         }
     })
@@ -196,7 +195,7 @@ async function cargarHabitosUsuario() {
                             </p>
 
                             <!-- TODO: GRID TIPO GITHUB -->
-                            <div class="mb-4 mx-5">
+                            <div class="mb-5 mx-5">
                                 <img class="card-img" src="https://placehold.co/600x400/png">
                             </div>
 
@@ -226,6 +225,7 @@ async function cargarHabitosUsuario() {
     contenedor.innerHTML = `
             <div id="carouselExampleControls" class="carousel slide bg-white border border-primary rounded h-100"
                 data-bs-ride="carousel" data-bs-theme="dark">
+                
                 <div class="carousel-inner">
                     ${contenidoCarrousel}
                 </div>
