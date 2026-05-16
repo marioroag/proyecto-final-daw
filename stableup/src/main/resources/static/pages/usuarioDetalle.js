@@ -1,5 +1,7 @@
-import { UsuarioAPI } from '../api/usuarioApi.js';
+import { UsuarioAPI } from '../api/UsuarioApi.js';
 import { CaballoAPI } from '../api/CaballoApi.js';
+import { HabitoAPI } from '../api/HabitoApi.js';
+
 import { crearBarraNavegacion } from '../components/navbar.js';
 import { crearFooter } from '../components/footer.js';
 import { cargarModalHabito } from '../components/crearHabitoComponente.js';
@@ -104,12 +106,16 @@ async function cargarDatosUsuario() {
 
     const porcentajeNivel = (usuario.nivel - Math.trunc(usuario.nivel)) * 100
 
-    gachaCaballo();
-    cargarModalHabito();
     cargarModalEditarHabito();
-    crearHabito();
-    cargarBarraExperiencia(porcentajeNivel);
 
+    guardarHabitoEditado();
+    eliminarHabitoSeleccionado();
+
+    cargarModalHabito();
+    crearHabito();
+
+    gachaCaballo();
+    cargarBarraExperiencia(porcentajeNivel);
 
     // Inicializa tooltips
     const tooltips = document.querySelectorAll('[data-bs-toggle="tooltip"]');
@@ -141,11 +147,6 @@ async function crearHabito() {
             alert("Tipo o nombre invalidos")
         }
     })
-}
-
-// TODO: funcionalidad para editar y borrar
-async function editarHabito() {
-
 }
 
 async function gachaCaballo() {
@@ -206,7 +207,7 @@ async function cargarHabitosUsuario() {
                             </div>
 
                             <div class="d-flex gap-2 justify-content-center">
-                                <button id="boton-editar-habito" class="btn btn-warning btn-sm px-4 py-2" data-bs-toggle="modal" data-bs-target="#editarHabitoModal">Editar</button>
+                                <button class="boton-editar-habito btn btn-warning btn-sm px-4 py-2" data-bs-toggle="modal" data-bs-target="#editarHabitoModal" data-id-habito="${habito.id}">Editar</button>
                                 <button class="btn btn-success btn-sm px-4 py-2">Marcar como completado</button>
                             </div>
 
@@ -248,7 +249,75 @@ async function cargarHabitosUsuario() {
                 </button>
             </div>
         `;
+
+    prepararEditarHabito();
 }
+
+function prepararEditarHabito() {
+    // Recorre botones de editar (hay uno por habito)
+    document.querySelectorAll(".boton-editar-habito").forEach(function (boton) {
+        boton.addEventListener("click", async function () {
+
+            const idHabito = boton.dataset.idHabito;
+
+            // Aplica los datos actuales del habito
+            const habito = await HabitoAPI.obtenerPorId(idHabito);
+
+            document.getElementById("nuevo-nombre-habito").value = habito.nombre;
+            document.getElementById("nuevo-tipo-habito").value = habito.tipo;
+
+            // Guarda el id del habito en el data del modal
+            document.getElementById("editarHabitoModal").dataset.idHabito = idHabito;
+        });
+    });
+}
+
+function eliminarHabitoSeleccionado() {
+    document.getElementById("boton-eliminar-habito").addEventListener("click", async function () {
+
+        const idHabito = document.getElementById("editarHabitoModal").dataset.idHabito;
+
+        await HabitoAPI.eliminar(idHabito);
+
+        const modal = bootstrap.Modal.getInstance(document.getElementById("editarHabitoModal"));
+        modal.hide();
+
+        // Recarga los datos
+        cargarHabitosUsuario();
+        cargarDatosUsuario();
+    });
+}
+
+function guardarHabitoEditado() {
+    document.getElementById("boton-guardar-habito").addEventListener("click", async function () {
+
+        // Lee el formulario
+        const nuevoNombre = document.getElementById("nuevo-nombre-habito").value
+        const nuevoTipo = document.getElementById("nuevo-tipo-habito").value
+
+        const idHabito = document.getElementById("editarHabitoModal").dataset.idHabito
+
+        // Si no esta vacio lo axctualiza en la api
+        if (nuevoNombre != "" && nuevoTipo != "") {
+            const habitoNuevo = {
+                nombre: nuevoNombre,
+                tipo: nuevoTipo
+            };
+
+            await HabitoAPI.editar(idHabito, habitoNuevo);
+
+            // Cierra el modal
+            const modal = bootstrap.Modal.getInstance(document.getElementById("editarHabitoModal"));
+            modal.hide();
+
+            // Recarga
+            cargarHabitosUsuario();
+        } else {
+            alert("Nombre o tipo invalidos");
+        }
+    });
+}
+
 
 // Lista de caballos
 async function cargarCaballosUsuario() {
