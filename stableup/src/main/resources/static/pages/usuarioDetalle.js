@@ -87,10 +87,21 @@ async function cargarDatosUsuario() {
 
     gachaCaballo();
     cargarModalHabito();
+    crearHabito();
 
     // Inicializa tooltips
     const tooltips = document.querySelectorAll('[data-bs-toggle="tooltip"]');
     tooltips.forEach(elemento => new bootstrap.Tooltip(elemento));
+}
+
+async function crearHabito() {
+    document.getElementById("boton-crear-habito").addEventListener("click", async () => {
+        const nombreHabito = document.getElementById("nombre-habito").value
+        const tipoHabito = document.getElementById("tipo-habito").value
+
+        console.log(nombreHabito);
+        console.log(tipoHabito);
+    })
 }
 
 async function gachaCaballo() {
@@ -212,8 +223,6 @@ async function cargarCaballosUsuario() {
         caballosUsuario.forEach((caballo, indice) => {
             const tarjetaCaballo = document.createElement("div");
             tarjetaCaballo.style.width = "16rem";
-
-            console.log(indice);
 
             const rarezaMostrar = caballo.rareza.replace("_", " ");
 
