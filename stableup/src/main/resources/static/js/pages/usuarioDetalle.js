@@ -45,6 +45,7 @@ async function cargarDatosUsuario() {
     tooltips.forEach(elemento => new bootstrap.Tooltip(elemento));
 }
 
+// Crea el habito con los datos proporcionados
 async function crearHabito() {
     document.getElementById("boton-crear-habito").addEventListener("click", async () => {
         const nombreHabito = document.getElementById("nombre-habito").value
@@ -72,29 +73,6 @@ async function crearHabito() {
     })
 }
 
-async function gachaCaballo() {
-    document.getElementById('gacha-caballos').addEventListener('click', async () => {
-        const boton = document.getElementById('gacha-caballos');
-        const tooltipBoton = bootstrap.Tooltip.getInstance(boton);
-
-        // Mensaje de monedas insuficientes
-        const resultado = await CaballoAPI.generarParaUsuario(id);
-
-        if (resultado == null) {
-            tooltipBoton.setContent({ '.tooltip-inner': '¡No tienes suficientes monedas!' });
-            tooltipBoton.show();
-            return;
-        }
-
-        // Termina estancia vieja del tooltip
-        if (tooltipBoton) tooltipBoton.dispose();
-
-        // Refrescar la vista del usuario
-        cargarDatosUsuario();
-        cargarCaballosUsuario();
-    });
-}
-
 // Lista de habitos
 async function cargarHabitosUsuario() {
     const habitosUsuario = await UsuarioAPI.obtenerHabitos(id);
@@ -105,6 +83,7 @@ async function cargarHabitosUsuario() {
     prepararEditarHabito();
 }
 
+// Prepara el modal de editar habito con los datos del habito seleccionado
 function prepararEditarHabito() {
     // Recorre botones de editar (hay uno por habito)
     document.querySelectorAll(".boton-editar-habito").forEach(function (boton) {
@@ -124,6 +103,7 @@ function prepararEditarHabito() {
     });
 }
 
+// Elimina el habito seleccionado
 function eliminarHabitoSeleccionado() {
     document.getElementById("boton-eliminar-habito").addEventListener("click", async function () {
 
@@ -140,6 +120,7 @@ function eliminarHabitoSeleccionado() {
     });
 }
 
+// Guarda el habito con los nuevos datos
 function guardarHabitoEditado() {
     document.getElementById("boton-guardar-habito").addEventListener("click", async function () {
 
@@ -174,6 +155,30 @@ function guardarHabitoEditado() {
 async function cargarCaballosUsuario() {
     const caballos = await UsuarioAPI.obtenerCaballos(id);
     document.getElementById("lista-caballos").innerHTML = establo(caballos);
+}
+
+// Gacha de nuevo caballo
+async function gachaCaballo() {
+    document.getElementById('gacha-caballos').addEventListener('click', async () => {
+        const boton = document.getElementById('gacha-caballos');
+        const tooltipBoton = bootstrap.Tooltip.getInstance(boton);
+
+        // Mensaje de monedas insuficientes
+        const resultado = await CaballoAPI.generarParaUsuario(id);
+
+        if (resultado == null) {
+            tooltipBoton.setContent({ '.tooltip-inner': '¡No tienes suficientes monedas!' });
+            tooltipBoton.show();
+            return;
+        }
+
+        // Termina estancia vieja del tooltip
+        if (tooltipBoton) tooltipBoton.dispose();
+
+        // Refrescar la vista del usuario
+        cargarDatosUsuario();
+        cargarCaballosUsuario();
+    });
 }
 
 cargarDatosUsuario();
