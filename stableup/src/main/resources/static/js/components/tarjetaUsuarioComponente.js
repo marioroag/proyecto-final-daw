@@ -5,7 +5,7 @@ export function tarjetaUsuario(usuario) {
         <div id="contenedorModalEditarHabito"></div>
         <div id="contenedorModalHabito"></div>
 
-        <div class="card border-secondary-subtle text-center px-4 pb-3 h-100" style="min-height: 425px;">
+        <div class="card border-dark-subtle text-center px-4 pb-3 h-100" style="min-height: 425px;">
             <div class="card-body">
 
                 <div class="mb-4">
