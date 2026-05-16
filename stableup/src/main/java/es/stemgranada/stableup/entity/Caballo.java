@@ -28,8 +28,8 @@ public class Caballo {
     private static final int RANGO_STATS = 30;
     private static final int BONUS_COMUN = 10, BONUS_POCO_COMUN = 20, BONUS_RARO = 30, BONUS_EPICO = 40,
             BONUS_LEGENDARIO = 50;
-    private static final int PROBABILIDAD_COMUN = 50, PROBABILIDAD_POCO_COMUN = 75, PROBABILIDAD_RARO = 90,
-            PROBABILIDAD_EPICO = 98;
+    private static final int PROBABILIDAD_COMUN = 30, PROBABILIDAD_POCO_COMUN = 55, PROBABILIDAD_RARO = 75,
+            PROBABILIDAD_EPICO = 94;
 
     private static final int COSTE_GACHA = 100;
 

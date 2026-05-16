@@ -18,11 +18,11 @@ function emojiPorTipo(tipo) {
 
 function colorPorRareza(rareza) {
     let color = "";
-    if (rareza === "COMUN") color = "lightgrey";
-    if (rareza === "POCO_COMUN") color = "lightskyblue";
-    if (rareza === "RARO") color = "stateblue";
-    if (rareza === "EPICO") color = "mediumpurple";
-    if (rareza === "LEGENDARIO") color = "gold";
+    if (rareza === "COMUN") color = "#f8f9fa";
+    if (rareza === "POCO_COMUN") color = "#d1e7dd";
+    if (rareza === "RARO") color = "#BFDBFE";
+    if (rareza === "EPICO") color = "#DDD6FE";
+    if (rareza === "LEGENDARIO") color = "#ffe476";
     return color;
 }
 
