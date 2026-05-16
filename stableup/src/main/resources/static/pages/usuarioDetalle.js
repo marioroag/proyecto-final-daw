@@ -172,7 +172,7 @@ async function cargarHabitosUsuario() {
             }
 
             contenidoCarrousel += `
-                    <div class="carousel-item ${activo}" style="min-height: 425px;">
+                    <div class="carousel-item ${activo}" style="height: 425px;">
                     
                         <div class="text-center px-5 py-4">
                             <div style="font-size: 4rem; line-height: 1;">${emoji}</div>
@@ -197,20 +197,20 @@ async function cargarHabitosUsuario() {
         });
     } else {
         contenidoCarrousel = `
-                <div class="carousel-item active">
-                    <div class="text-center px-5 py-4">
-                        <div style="font-size: 4rem; line-height: 1;">📭</div>
-                        <h3 class="mt-3 mb-1">Aún no tienes hábitos</h3>
-                        <p class="mb-4">
-                            Crea tu primer hábito para empezar a sumar recompensas
-                        </p>
-                    </div>
-                </div>
-            `;
+        <div class="carousel-item active" style="height: 425px;">
+            <div class="text-center px-5 py-4 d-flex flex-column justify-content-center h-100">
+                <div style="font-size: 4rem; line-height: 1;">📭</div>
+                <h3 class="mt-3 mb-2">Aún no tienes hábitos</h3>
+                <p class="mb-4">
+                    Crea tu primer hábito para empezar a sumar recompensas
+                </p>
+            </div>
+        </div>
+    `;
     }
 
     contenedor.innerHTML = `
-            <div id="carouselExampleControls" class="carousel slide bg-white border border-primary rounded"
+            <div id="carouselExampleControls" class="carousel slide bg-white border border-primary rounded h-100"
                 data-bs-ride="carousel" data-bs-theme="dark">
                 <div class="carousel-inner">
                     ${contenidoCarrousel}
@@ -250,7 +250,7 @@ async function cargarCaballosUsuario() {
             const rarezaMostrar = caballo.rareza.replace("_", " ");
 
             tarjetaCaballo.innerHTML = `
-                    <div  id="tarjeta-caballo-${indice}" class="card mb-2">
+                    <div id="tarjeta-caballo-${indice}" class="card mb-2">
                         <div style="font-size: 5rem;">🐴</div>
 
                         <div class="card-body">
@@ -281,7 +281,7 @@ async function cargarCaballosUsuario() {
         tarjetaVacia.classList.add("w-75");
 
         tarjetaVacia.innerHTML = `
-        < div class="card" >
+        <div class="card">
                     <div style="font-size: 5rem;">🐴</div>
 
                     <div class="card-body">
@@ -291,7 +291,7 @@ async function cargarCaballosUsuario() {
                         </p>
                         <a href="#" class="btn btn-dark">Ir a la cuadra</a>
                     </div>
-                </ >
+                </div>
         `;
 
         listaCaballos.appendChild(tarjetaVacia);
