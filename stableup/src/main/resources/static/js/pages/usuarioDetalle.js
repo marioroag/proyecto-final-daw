@@ -2,8 +2,8 @@ import { UsuarioAPI } from '../api/UsuarioApi.js';
 import { CaballoAPI } from '../api/CaballoApi.js';
 import { HabitoAPI } from '../api/HabitoApi.js';
 
-import { crearBarraNavegacion } from '../components/navbar.js';
-import { crearFooter } from '../components/footer.js';
+import { crearBarraNavegacion } from '../components/navbarComponente.js';
+import { crearFooter } from '../components/footerComponente.js';
 
 import { tarjetaUsuario } from '../components/tarjetaUsuarioComponente.js';
 import { establo } from '../components/establoComponente.js';
