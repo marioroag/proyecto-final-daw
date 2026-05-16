@@ -13,11 +13,11 @@ export function cargarModalEditarHabito() {
                         <form action="">
                             <div class="mb-3">
                                 <label for="fullName" class="form-label">Nombre</label>
-                                <input id="nombre-habito" type="text" class="form-control" id="fullName" placeholder="Leer">
+                                <input id="nuevo-nombre-habito" type="text" class="form-control" id="fullName" placeholder="Leer">
                             </div>
                             <div>
                                 <label for="language" class="form-label">Tipo</label>
-                                <select id="tipo-habito" class="form-select">
+                                <select id="nuevo-tipo-habito" class="form-select">
                                     <option value="" selected disabled>Elegir tipo</option>
                                     <option value="STRENGTH">Fuerza</option>
                                     <option value="WELLBEING">Bienestar</option>

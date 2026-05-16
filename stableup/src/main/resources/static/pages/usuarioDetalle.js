@@ -112,14 +112,16 @@ async function cargarDatosUsuario() {
 
 async function crearHabito() {
     document.getElementById("boton-crear-habito").addEventListener("click", async () => {
-        // Esconde el modal
-        const modal = bootstrap.Modal.getInstance(document.getElementById("habitoModal"));
-        modal.hide();
-
         const nombreHabito = document.getElementById("nombre-habito").value
         const tipoHabito = document.getElementById("tipo-habito").value
 
-        if (nombreHabito != "" && tipoHabito != "Elegir") {
+        console.log(nombreHabito);
+        console.log(tipoHabito);
+
+        if (nombreHabito != "" && tipoHabito != "") {
+            // Esconde el modal
+            const modal = bootstrap.Modal.getInstance(document.getElementById("habitoModal"));
+            modal.hide();
             // Devuelve un objeto que la api convierte a json despues para java como habito
             const habito = {
                 nombre: nombreHabito,
