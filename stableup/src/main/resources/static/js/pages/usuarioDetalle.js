@@ -2,11 +2,13 @@ import { UsuarioAPI } from '../api/UsuarioApi.js';
 import { CaballoAPI } from '../api/CaballoApi.js';
 import { HabitoAPI } from '../api/HabitoApi.js';
 
+import { emojiPorTipo } from '../utils/formatos.js';
+
 import { crearBarraNavegacion } from '../components/navbar.js';
 import { crearFooter } from '../components/footer.js';
 
-import { emojiPorTipo, colorPorRareza, formatearFechaRegistro } from '../utils/formatos.js';
 import { tarjetaUsuario } from '../components/tarjetaUsuarioComponente.js';
+import { establo } from '../components/establoComponente.js';
 
 import { cargarModalHabito } from '../components/crearHabitoComponente.js';
 import { cargarModalEditarHabito } from '../components/editarHabitoComponente.js';
@@ -239,75 +241,10 @@ function guardarHabitoEditado() {
     });
 }
 
-
 // Lista de caballos
 async function cargarCaballosUsuario() {
-    const caballosUsuario = await UsuarioAPI.obtenerCaballos(id);
-
-    const contenedor = document.getElementById("lista-caballos");
-    contenedor.innerHTML = `
-            <h2 class="m-5">Tu establo</h2>
-            `;
-
-    const listaCaballos = document.createElement("div");
-    listaCaballos.classList.add("d-flex", "flex-wrap", "justify-content-center", "gap-5", "p-2", "mt-4", "mb-5");
-
-    if (caballosUsuario.length > 0) {
-        caballosUsuario.forEach((caballo, indice) => {
-            const tarjetaCaballo = document.createElement("div");
-            tarjetaCaballo.style.width = "16rem";
-
-            const rarezaMostrar = caballo.rareza.replace("_", " ");
-
-            tarjetaCaballo.innerHTML = `
-                    <div id="tarjeta-caballo-${indice}" class="card mb-2">
-                        <div style="font-size: 5rem;">🐴</div>
-
-                        <div class="card-body">
-                            <h5 class="card-title align-items-center">${caballo.nombre} <span class="badge rounded-pill bg-primary" style="font-size:0.75rem;">${rarezaMostrar}</span></h5>
-                            <p class="card-text">Velocidad: ${caballo.velocidad}<br>
-                            Energía: ${caballo.energia}</p>
-                            <a href="#" class="btn btn-dark">Ver historial</a>
-                        </div>
-                    </div>`;
-
-            tarjetaCaballo.innerHTML += `
-            <style>
-                #tarjeta-caballo-${indice} {
-                    background-image: linear-gradient(to top, ${colorPorRareza(caballo.rareza)}, white);
-                    transition: all .5s ease-in-out;
-                }
-                #tarjeta-caballo-${indice}:hover {
-                    transform: translateY(-0.25rem);
-                    box-shadow: 0 0 1.25rem ${colorPorRareza(caballo.rareza)};
-                }
-            </style >
-        `;
-
-            listaCaballos.appendChild(tarjetaCaballo);
-        });
-    } else {
-        const tarjetaVacia = document.createElement("div");
-        tarjetaVacia.classList.add("w-75");
-
-        tarjetaVacia.innerHTML = `
-        <div class="card">
-                    <div style="font-size: 5rem;">🐴</div>
-
-                    <div class="card-body">
-                        <h5 class="card-title">Aún no tienes caballos</h5>
-                        <p class="card-text text-muted">
-                            Consigue tu primer caballo para empezar a competir.
-                        </p>
-                        <a href="#" class="btn btn-dark">Ir a la cuadra</a>
-                    </div>
-                </div>
-        `;
-
-        listaCaballos.appendChild(tarjetaVacia);
-    }
-
-    contenedor.appendChild(listaCaballos);
+    const caballos = await UsuarioAPI.obtenerCaballos(id);
+    document.getElementById("lista-caballos").innerHTML = establo(caballos);
 }
 
 cargarDatosUsuario();
