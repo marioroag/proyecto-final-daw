@@ -25,20 +25,22 @@ document.getElementById("stable-footer").innerHTML = crearFooter();
 async function cargarDatosUsuario() {
     const usuario = await UsuarioAPI.obtenerPorId(id);
 
+    // Crea la tarjeta de usuario
     const contenedor = document.getElementById("datos-usuario");
     contenedor.innerHTML = tarjetaUsuario(usuario);
 
     const porcentajeNivel = (usuario.nivel - Math.trunc(usuario.nivel)) * 100;
 
-    cargarModalEditarHabito();
-    guardarHabitoEditado();
-    eliminarHabitoSeleccionado();
+    cargarBarraExperiencia(porcentajeNivel);
 
+    cargarModalEditarHabito();
     cargarModalHabito();
+
     botonCrearHabito();
+    botonGuardarHabito();
+    botonEliminarHabito();
 
     gachaCaballo();
-    cargarBarraExperiencia(porcentajeNivel);
 
     // Inicializa tooltips de bootstrap
     const tooltips = document.querySelectorAll('[data-bs-toggle="tooltip"]');
@@ -105,13 +107,14 @@ function prepararEditarHabito() {
 }
 
 // Elimina el habito seleccionado
-function eliminarHabitoSeleccionado() {
+function botonEliminarHabito() {
     document.getElementById("boton-eliminar-habito").addEventListener("click", async function () {
 
+        // Encuentra y elimina el habito
         const idHabito = document.getElementById("editarHabitoModal").dataset.idHabito;
-
         await HabitoAPI.eliminar(idHabito);
 
+        // Esconde el modal
         const modal = bootstrap.Modal.getInstance(document.getElementById("editarHabitoModal"));
         modal.hide();
 
@@ -122,7 +125,7 @@ function eliminarHabitoSeleccionado() {
 }
 
 // Guarda el habito con los nuevos datos
-function guardarHabitoEditado() {
+function botonGuardarHabito() {
     document.getElementById("boton-guardar-habito").addEventListener("click", async function () {
 
         // Lee el formulario
