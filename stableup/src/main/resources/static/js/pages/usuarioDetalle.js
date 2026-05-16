@@ -35,18 +35,18 @@ async function cargarDatosUsuario() {
     eliminarHabitoSeleccionado();
 
     cargarModalHabito();
-    crearHabito();
+    botonCrearHabito();
 
     gachaCaballo();
     cargarBarraExperiencia(porcentajeNivel);
 
-    // Inicializa tooltips
+    // Inicializa tooltips de bootstrap
     const tooltips = document.querySelectorAll('[data-bs-toggle="tooltip"]');
     tooltips.forEach(elemento => new bootstrap.Tooltip(elemento));
 }
 
 // Crea el habito con los datos proporcionados
-async function crearHabito() {
+async function botonCrearHabito() {
     document.getElementById("boton-crear-habito").addEventListener("click", async () => {
         const nombreHabito = document.getElementById("nombre-habito").value
         const tipoHabito = document.getElementById("tipo-habito").value
@@ -65,6 +65,7 @@ async function crearHabito() {
             await UsuarioAPI.crearHabito(id, habito);
 
             // Recarga
+            cargarDatosUsuario();
             cargarHabitosUsuario();
         } else {
             // TODO: mejorar alert
