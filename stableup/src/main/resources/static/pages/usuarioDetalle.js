@@ -103,16 +103,20 @@ async function crearHabito() {
         const nombreHabito = document.getElementById("nombre-habito").value
         const tipoHabito = document.getElementById("tipo-habito").value
 
-        // Devuelve un objeto que la api convierte a json despues para java como habito
-        const habito = {
-            nombre: nombreHabito,
-            tipo: tipoHabito
-        };
+        if (nombreHabito != "" && tipoHabito != "Elegir") {
+            // Devuelve un objeto que la api convierte a json despues para java como habito
+            const habito = {
+                nombre: nombreHabito,
+                tipo: tipoHabito
+            };
 
-        await UsuarioAPI.crearHabito(id, habito);
+            await UsuarioAPI.crearHabito(id, habito);
 
-        // Recarga
-        cargarHabitosUsuario();
+            // Recarga
+            cargarHabitosUsuario();
+        } else {
+            alert("Tipo o nombre invalidos")
+        }
     })
 }
 
