@@ -19,11 +19,11 @@ function emojiPorTipo(tipo) {
 
 function colorPorRareza(rareza) {
     let color = "";
-    if (rareza === "COMUN") color = "#f8f9fa";
+    if (rareza === "COMUN") color = "#dce1e6";
     if (rareza === "POCO_COMUN") color = "#d1e7dd";
     if (rareza === "RARO") color = "#BFDBFE";
     if (rareza === "EPICO") color = "#DDD6FE";
-    if (rareza === "LEGENDARIO") color = "#ffe476";
+    if (rareza === "LEGENDARIO") color = "#ffe26e";
     return color;
 }
 
@@ -264,10 +264,15 @@ async function cargarCaballosUsuario() {
             tarjetaCaballo.innerHTML += `
             <style>
                 #tarjeta-caballo-${indice} {
-                    background-color: ${colorPorRareza(caballo.rareza)};
+                    background-image: linear-gradient(to top, ${colorPorRareza(caballo.rareza)}, white);
+                    transition: all .5s ease-in-out;
                 }
-            </style>
-            `;
+                #tarjeta-caballo-${indice}:hover {
+                    transform: translateY(-0.25rem);
+                    box-shadow: 0 0 1.25rem ${colorPorRareza(caballo.rareza)};
+                }
+            </style >
+        `;
 
             listaCaballos.appendChild(tarjetaCaballo);
         });
@@ -276,7 +281,7 @@ async function cargarCaballosUsuario() {
         tarjetaVacia.classList.add("w-75");
 
         tarjetaVacia.innerHTML = `
-                <div class="card">
+        < div class="card" >
                     <div style="font-size: 5rem;">🐴</div>
 
                     <div class="card-body">
@@ -286,8 +291,8 @@ async function cargarCaballosUsuario() {
                         </p>
                         <a href="#" class="btn btn-dark">Ir a la cuadra</a>
                     </div>
-                </div>
-            `;
+                </ >
+        `;
 
         listaCaballos.appendChild(tarjetaVacia);
     }
