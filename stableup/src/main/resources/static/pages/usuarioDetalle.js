@@ -30,6 +30,18 @@ function colorPorRareza(rareza) {
 const params = new URLSearchParams(window.location.search);
 const id = params.get('id');
 
+function formatearFechaRegistro(fechaRegistro) {
+    const fecha = new Date(fechaRegistro);
+
+    const fechaFormateada = fecha.toLocaleDateString('es-ES', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    });
+
+    return fechaFormateada;
+}
+
 // Datos del usuario
 async function cargarDatosUsuario() {
     const usuario = await UsuarioAPI.obtenerPorId(id);
@@ -46,7 +58,7 @@ async function cargarDatosUsuario() {
                     <div class="mb-4">
                         <div style="font-size: 5rem;">👤</div>
                         <h2 class="mt-2 mb-1">${usuario.username}</h2>
-                        <p class="text-muted small mb-0">Miembro desde ${usuario.fechaRegistro}</p>
+                        <p class="text-muted small mb-0">Miembro desde el ${formatearFechaRegistro(usuario.fechaRegistro)}</p>
                     </div>
 
                     <div class="row g-2 mb-5">
