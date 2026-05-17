@@ -13,20 +13,18 @@
             - IMPORTANTE: 
                 + URGENTE: ARREGLAR LAG, EMPEZO A PASAR DESPUES DE AÑADIR EDITAR/ELIMINAR HABITO 
                     (Puede ser poca bateria, tengo que probar si con los ordenadores de clase funciona bien)
-                + ARREGLAR: En el modal editar si pulsas ENTER carshea la pagina
-
-                + CONTROL ERRORES: Limitar caracteres al dar nombre a un habito
                 
                 + Crear páginas de carreras con historial
                 + Sistema de participar y hacer carreras
 
                 + Hacer el grid tipo github con los dias que se ha completado cada habito
+
+                + Separar cargarDatosUsuario de las otras funciones
             - VISUAL: 
                 + Añadir mas tipos de habito
                 + Investigar enums para ver si se puede asociar emoji con el tipo o rarezas con color
             - EXTRA:
                 + Pagina diferente si se introduce un id de usuario que no exista en la url
-                + Al crear habito se le da la clase "active" del carousel al nuevo habito
                 + Sort by en establo
 -->
 
@@ -34,16 +32,20 @@
     <!-- Navbar -->
     <nav id="navbar"></nav>
 
+    <!-- Modales -->
+    <div id="contenedorModalCrearHabito"></div>
+    <div id="contenedorModalEditarHabito"></div>
+
     <!-- Datos -->
     <main class="container my-4 d-flex flex-column text-center">
 
         <div class="row mb-5">
             <div class="col-md-8" id="datos-usuario"></div>
-
             <div class="col-md-4" id="lista-habitos"></div>
         </div>
 
-        <div class="border border-success-subtle bg-white rounded" id="lista-caballos"></div>
+        <div class="border border-dark-subtle bg-white rounded" id="lista-caballos"></div>
+
     </main>
 
     <!-- Footer -->

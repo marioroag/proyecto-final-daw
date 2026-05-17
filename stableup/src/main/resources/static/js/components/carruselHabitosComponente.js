@@ -1,7 +1,7 @@
 import { emojiPorTipo } from '../utils/formatos.js';
 
 export function carruselHabitos(habitos, habitoActivo) {
-    let contenidoCarrousel = "";
+    let contenidoCarousel = "";
 
     if (habitos.length > 0) {
         const hoy = new Date().toJSON().slice(0, 10);
@@ -39,7 +39,7 @@ export function carruselHabitos(habitos, habitoActivo) {
                 estiloTarjetaCompletado = "";
             }
 
-            contenidoCarrousel += `
+            contenidoCarousel += `
                     <div id="habito-${habito.id}" class="carousel-item ${activo} h-100" style="${estiloTarjetaCompletado}">
                     
                         <div class="text-center px-5 py-4">
@@ -64,7 +64,7 @@ export function carruselHabitos(habitos, habitoActivo) {
                 `;
         });
     } else {
-        contenidoCarrousel = `
+        contenidoCarousel = `
         <div class="carousel-item active" style="height: 425px;">
             <div class="text-center px-5 py-4 d-flex flex-column justify-content-center h-100">
                 <div style="font-size: 4rem; line-height: 1;">📭</div>
@@ -78,20 +78,20 @@ export function carruselHabitos(habitos, habitoActivo) {
     }
 
     return `
-            <div id="carouselExampleControls" class="carousel slide bg-white border border-primary rounded h-100"
-                data-bs-ride="carousel" data-bs-theme="dark">
+                <div id="carousel-habitos" class="carousel slide carousel-dark bg-white border border-dark-subtle rounded h-100"
+                    data-bs-ride="carousel">
 
                 <div class="carousel-inner h-100">
-                    ${contenidoCarrousel}
+                    ${contenidoCarousel}
                 </div>
 
                 <button class="carousel-control-prev" type="button"
-                    data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                    data-bs-target="#carousel-habitos" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
                 </button>
                 <button class="carousel-control-next" type="button"
-                    data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                    data-bs-target="#carousel-habitos" data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </button>

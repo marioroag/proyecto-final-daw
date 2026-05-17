@@ -2,9 +2,6 @@ import { formatearFechaRegistro } from '../utils/formatos.js';
 
 export function tarjetaUsuario(usuario) {
     return `
-        <div id="contenedorModalEditarHabito"></div>
-        <div id="contenedorModalHabito"></div>
-
         <div class="card border-dark-subtle text-center px-4 pb-3 h-100" style="min-height: 425px;">
             <div class="card-body">
 

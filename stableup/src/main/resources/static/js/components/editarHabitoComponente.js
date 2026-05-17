@@ -11,7 +11,7 @@ export function cargarModalEditarHabito() {
 
                     <div class="modal-body">
                         <form id="formulario-editar-habito">
-                        <div id="mensaje-error-editar" class="text-danger mb-1 fw-bold"></div>
+                        <div id="mensaje-error-editar" class="text-danger mb-1 fw-bold d-flex justify-content-center"></div>
                             <div class="mb-3">
                                 <label class="form-label">Nombre</label>
                                 <input id="nuevo-nombre-habito" type="text" maxlength="20" class="form-control" placeholder="Leer">

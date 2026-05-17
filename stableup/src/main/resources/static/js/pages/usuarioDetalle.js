@@ -6,18 +6,19 @@ import { crearBarraNavegacion } from '../components/navbarComponente.js';
 import { crearFooter } from '../components/footerComponente.js';
 
 import { tarjetaUsuario } from '../components/tarjetaUsuarioComponente.js';
+import { cargarBarraExperiencia } from '../components/barraExperienciaComponente.js';
+
 import { establo } from '../components/establoComponente.js';
 
 import { carruselHabitos } from '../components/carruselHabitosComponente.js';
 
 import { cargarModalHabito } from '../components/crearHabitoComponente.js';
 import { cargarModalEditarHabito } from '../components/editarHabitoComponente.js';
-import { cargarBarraExperiencia } from '../components/barraExperienciaComponente.js';
 
 const params = new URLSearchParams(window.location.search);
 const id = params.get('id');
 
-// Navbar
+// Navbar y footer
 document.getElementById("navbar").innerHTML = crearBarraNavegacion();
 document.getElementById("stable-footer").innerHTML = crearFooter();
 
@@ -51,13 +52,6 @@ async function cargarDatosUsuario() {
     const porcentajeNivel = (usuario.nivel - Math.trunc(usuario.nivel)) * 100;
 
     cargarBarraExperiencia(porcentajeNivel);
-
-    cargarModalEditarHabito();
-    cargarModalHabito();
-
-    botonCrearHabito();
-    botonGuardarHabito();
-    botonEliminarHabito();
 
     gachaCaballo();
 
@@ -159,7 +153,7 @@ function botonGuardarHabito() {
             // Recarga
             cargarHabitosUsuario();
         } else {
-            document.getElementById("mensaje-error-editar").innerText = "Tipo o nombre invalidos"
+            document.getElementById("mensaje-error-editar").innerText = "Tipo o nombre inválidos";
         }
     });
 }
@@ -189,7 +183,7 @@ function botonCrearHabito() {
             cargarDatosUsuario();
             cargarHabitosUsuario();
         } else {
-            document.getElementById("mensaje-error-crear").innerText = "Tipo o nombre invalidos"
+            document.getElementById("mensaje-error-crear").innerText = "Tipo o nombre inválidos";
         }
     });
 }
@@ -224,6 +218,14 @@ async function gachaCaballo() {
         cargarCaballosUsuario();
     });
 }
+
+// Inicializa la pagina
+cargarModalEditarHabito();
+cargarModalHabito();
+
+botonCrearHabito();
+botonGuardarHabito();
+botonEliminarHabito();
 
 cargarDatosUsuario();
 cargarHabitosUsuario();

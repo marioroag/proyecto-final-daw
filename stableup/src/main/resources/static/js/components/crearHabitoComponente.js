@@ -1,5 +1,5 @@
 export function cargarModalHabito() {
-    document.getElementById("contenedorModalHabito").innerHTML = `
+    document.getElementById("contenedorModalCrearHabito").innerHTML = `
         <div class="modal fade" id="habitoModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -11,7 +11,7 @@ export function cargarModalHabito() {
 
                     <div class="modal-body">
                         <form id="formulario-crear-habito">
-                        <div id="mensaje-error-crear" class="text-danger mb-1 fw-bold"></div>
+                        <div id="mensaje-error-crear" class="text-danger mb-1 fw-bold d-flex justify-content-center"></div>
                         <div class="mb-3">
                                 <label class="form-label">Nombre</label>
                                 <input id="nombre-habito" type="text" maxlength="20" class="form-control" placeholder="Leer">
