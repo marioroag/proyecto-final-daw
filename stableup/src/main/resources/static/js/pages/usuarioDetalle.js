@@ -153,7 +153,7 @@ function botonGuardarHabito() {
             modal.hide();
 
             // Recarga
-            cargarHabitosUsuario();
+            cargarHabitosUsuario(idHabito);
         } else {
             document.getElementById("mensaje-error-editar").innerHTML = alertaErrorFormulario();
         }

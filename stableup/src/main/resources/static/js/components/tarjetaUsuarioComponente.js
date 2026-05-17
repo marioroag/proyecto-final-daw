@@ -6,8 +6,8 @@ export function tarjetaUsuario(usuario) {
             <div class="card-body">
 
                 <div class="mb-4">
-                    <div style="font-size: 5rem;">👤</div>
-                    <h2 class="mt-2 mb-1">${usuario.username}</h2>
+                    <img class="card-img my-3 border border-secondary-subtle rounded" src="https://placecats.com/200/200" style="width: 125px; height: 125px">
+                    <h2 class="mt-1 mb-1">${usuario.username}</h2>
                     <p class="text-muted small mb-0">Miembro desde el ${formatearFechaRegistro(usuario.fechaRegistro)}</p>
                 </div>
 

@@ -48,16 +48,16 @@ export function carruselHabitos(habitos, habitoActivo) {
                         <div class="text-center px-5 py-4">
                             <div class="mt-3" style="font-size: 4rem; line-height: 1;">${emoji}</div>
                             <h3 class="mt-3 mb-1">${habito.nombre}</h3>
-                            <p class="mb-4">
+                            <p class="mb-4 text-muted">
                                 Streak x${habito.multiplicadorStreak}  -  ${proximaRecompensa} 🪙
                             </p>
 
                             <!-- TODO: GRID TIPO GITHUB -->
-                            <div class="mb-5 mx-5">
-                                <img class="card-img my-3 ${estiloImagen}" src="/images/grid-placeholder-nobg.png" style="width: 225px">
+                            <div class="mb-5 mx-5 d-flex justify-content-center">
+                                <img class="card-img my-4 ${estiloImagen}" src="/images/grid-placeholder.png" style="width: 225px">
                             </div>
 
-                            <div class="d-flex gap-2 justify-content-center">
+                            <div class=" d-flex gap-2 justify-content-center">
                                 <button class="boton-editar-habito btn btn-warning btn-sm px-4 py-2" data-bs-toggle="modal" data-bs-target="#editarHabitoModal" data-id-habito="${habito.id}">Editar</button>
                                 ${botonCompletar}
                             </div>
