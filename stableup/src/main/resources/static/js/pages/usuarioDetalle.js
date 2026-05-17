@@ -77,34 +77,20 @@ async function cargarHabitosUsuario(idHabitoActivo) {
     prepararCompletarHabito();
 }
 
-// Crea el habito con los datos proporcionados
-function botonCrearHabito() {
-    document.getElementById("formulario-crear-habito").addEventListener("submit", async function (e) {
-        e.preventDefault();
+// Prepara el boton de completar habito
+function prepararCompletarHabito() {
+    // Recorre botones de editar (hay uno por habito)
+    document.querySelectorAll(".boton-completar-habito").forEach(function (boton) {
+        boton.addEventListener("click", async function () {
 
-        const nombreHabito = document.getElementById("nombre-habito").value;
-        const tipoHabito = document.getElementById("tipo-habito").value;
+            const idHabito = boton.dataset.idHabito;
 
-        if (nombreHabito != "" && tipoHabito != "") {
-            // Esconde el modal
-            const modal = bootstrap.Modal.getInstance(document.getElementById("habitoModal"));
-            modal.hide();
+            await HabitoAPI.completar(idHabito);
 
-            // Devuelve un objeto que la api convierte a json despues para java como habito
-            const habito = {
-                nombre: nombreHabito,
-                tipo: tipoHabito
-            };
-
-            await UsuarioAPI.crearHabito(id, habito);
-
-            // Recarga
+            cargarHabitosUsuario(idHabito);
             cargarDatosUsuario();
-            cargarHabitosUsuario();
-        } else {
-            // TODO: mejorar alert
-            alert("Tipo o nombre invalidos");
-        }
+
+        });
     });
 }
 
@@ -157,7 +143,7 @@ function botonGuardarHabito() {
 
         const idHabito = document.getElementById("editarHabitoModal").dataset.idHabito
 
-        // Si no esta vacio lo axctualiza en la api
+        // Si no esta vacio lo actualiza en la api
         if (nuevoNombre != "" && nuevoTipo != "") {
             const habitoNuevo = {
                 nombre: nuevoNombre,
@@ -173,25 +159,38 @@ function botonGuardarHabito() {
             // Recarga
             cargarHabitosUsuario();
         } else {
-            alert("Nombre o tipo invalidos");
+            document.getElementById("mensaje-error-editar").innerText = "Tipo o nombre invalidos"
         }
     });
 }
 
-// Prepara el boton de completar habito
-function prepararCompletarHabito() {
-    // Recorre botones de editar (hay uno por habito)
-    document.querySelectorAll(".boton-completar-habito").forEach(function (boton) {
-        boton.addEventListener("click", async function () {
+// Crea el habito con los datos proporcionados
+function botonCrearHabito() {
+    document.getElementById("formulario-crear-habito").addEventListener("submit", async function (e) {
+        e.preventDefault();
 
-            const idHabito = boton.dataset.idHabito;
+        const nombreHabito = document.getElementById("nombre-habito").value;
+        const tipoHabito = document.getElementById("tipo-habito").value;
 
-            await HabitoAPI.completar(idHabito);
+        if (nombreHabito != "" && tipoHabito != "") {
+            // Esconde el modal
+            const modal = bootstrap.Modal.getInstance(document.getElementById("habitoModal"));
+            modal.hide();
 
-            cargarHabitosUsuario(idHabito);
+            // Devuelve un objeto que la api convierte a json despues para java como habito
+            const habito = {
+                nombre: nombreHabito,
+                tipo: tipoHabito
+            };
+
+            await UsuarioAPI.crearHabito(id, habito);
+
+            // Recarga
             cargarDatosUsuario();
-
-        });
+            cargarHabitosUsuario();
+        } else {
+            document.getElementById("mensaje-error-crear").innerText = "Tipo o nombre invalidos"
+        }
     });
 }
 

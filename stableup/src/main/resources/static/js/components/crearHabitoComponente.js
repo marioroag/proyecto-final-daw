@@ -11,7 +11,8 @@ export function cargarModalHabito() {
 
                     <div class="modal-body">
                         <form id="formulario-crear-habito">
-                            <div class="mb-3">
+                        <div id="mensaje-error-crear" class="text-danger mb-1 fw-bold"></div>
+                        <div class="mb-3">
                                 <label class="form-label">Nombre</label>
                                 <input id="nombre-habito" type="text" maxlength="20" class="form-control" placeholder="Leer">
                             </div>
