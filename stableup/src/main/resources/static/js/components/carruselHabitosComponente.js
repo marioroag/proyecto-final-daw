@@ -31,7 +31,7 @@ export function carruselHabitos(habitos) {
 
                             <div class="d-flex gap-2 justify-content-center">
                                 <button class="boton-editar-habito btn btn-warning btn-sm px-4 py-2" data-bs-toggle="modal" data-bs-target="#editarHabitoModal" data-id-habito="${habito.id}">Editar</button>
-                                <button class="btn btn-success btn-sm px-4 py-2">Marcar como completado</button>
+                                <button class="btn btn-success btn-sm px-4 py-2 boton-completar-habito" data-id-habito="${habito.id}">Marcar como completado</button>
                             </div>
 
                         </div>

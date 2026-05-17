@@ -69,6 +69,7 @@ async function cargarDatosUsuario() {
 // Crea el habito con los datos proporcionados
 async function botonCrearHabito() {
     document.getElementById("boton-crear-habito").addEventListener("click", async () => {
+
         const nombreHabito = document.getElementById("nombre-habito").value
         const tipoHabito = document.getElementById("tipo-habito").value
 
@@ -103,6 +104,7 @@ async function cargarHabitosUsuario() {
     contenedor.innerHTML = carruselHabitos(habitosUsuario);
 
     prepararEditarHabito();
+    prepararCompletarHabito();
 }
 
 // Prepara el modal de editar habito con los datos del habito seleccionado
@@ -121,6 +123,19 @@ function prepararEditarHabito() {
 
             // Guarda el id del habito en el data del modal
             document.getElementById("editarHabitoModal").dataset.idHabito = idHabito;
+        });
+    });
+}
+
+// Prepara el boton de completar habito
+function prepararCompletarHabito() {
+    // Recorre botones de editar (hay uno por habito)
+    document.querySelectorAll(".boton-completar-habito").forEach(function (boton) {
+        boton.addEventListener("click", async function () {
+
+            const idHabito = boton.dataset.idHabito;
+
+            await HabitoAPI.completar(idHabito);
         });
     });
 }
@@ -183,6 +198,7 @@ async function cargarCaballosUsuario() {
 // Gacha de nuevo caballo
 async function gachaCaballo() {
     document.getElementById('gacha-caballos').addEventListener('click', async () => {
+
         const boton = document.getElementById('gacha-caballos');
         const tooltipBoton = bootstrap.Tooltip.getInstance(boton);
 
@@ -207,5 +223,3 @@ async function gachaCaballo() {
 cargarDatosUsuario();
 cargarHabitosUsuario();
 cargarCaballosUsuario();
-
-await HabitoAPI.completar(1);
