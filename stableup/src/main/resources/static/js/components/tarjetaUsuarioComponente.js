@@ -41,9 +41,9 @@ export function tarjetaUsuario(usuario) {
                 <div class="mb-5" id="barra-progreso"></div>
 
                 <div class="d-flex gap-2 justify-content-center">
+                <button class="btn btn-outline-dark btn-sm px-4 py-2" id="gacha-caballos" data-bs-toggle="tooltip" data-bs-placement="top"
+                data-bs-title="Cuesta 100 🪙">+ Caballo</button>
                     <button class="btn btn-outline-primary btn-sm px-4 py-2" data-bs-toggle="modal" data-bs-target="#habitoModal">+ Hábito</button>
-                    <button class="btn btn-outline-success btn-sm px-4 py-2" id="gacha-caballos" data-bs-toggle="tooltip" data-bs-placement="top"
-                    data-bs-title="Cuesta 100 🪙">+ Caballo</button>
                 </div>
 
             </div>

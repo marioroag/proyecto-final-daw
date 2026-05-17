@@ -30,13 +30,16 @@ export function carruselHabitos(habitos, habitoActivo) {
 
             let botonCompletar = "";
             let estiloTarjetaCompletado = "";
+            let estiloImagen = ""
 
             if (completadoHoy) {
                 botonCompletar = `<button class="btn btn-success btn-sm px-4 py-2 border border-success-subtle" disabled>Completado hoy</button>`;
                 estiloTarjetaCompletado = `background-image: linear-gradient(to top, #5b9358, #c6f3c4);`;
+                estiloImagen = "border border-white-subtle p-2 bg-dark bg-opacity-50 rounded"
             } else {
                 botonCompletar = `<button class="boton-completar-habito btn btn-success btn-sm px-4 py-2" data-id-habito="${habito.id}">Marcar como completado</button>`;
                 estiloTarjetaCompletado = "";
+                estiloImagen = "border border-secondary p-2 bg-success bg-opacity-75 rounded"
             }
 
             contenidoCarousel += `
@@ -51,7 +54,7 @@ export function carruselHabitos(habitos, habitoActivo) {
 
                             <!-- TODO: GRID TIPO GITHUB -->
                             <div class="mb-5 mx-5">
-                                <img class="card-img my-3" src="/images/grid-placeholder.png" style="width: 225px">
+                                <img class="card-img my-3 ${estiloImagen}" src="/images/grid-placeholder-nobg.png" style="width: 225px">
                             </div>
 
                             <div class="d-flex gap-2 justify-content-center">
