@@ -15,6 +15,8 @@ import { carruselHabitos } from '../components/carouselHabitosComponente.js';
 import { cargarModalHabito } from '../components/crearHabitoComponente.js';
 import { cargarModalEditarHabito } from '../components/editarHabitoComponente.js';
 
+import { alertaErrorFormulario } from '../components/alertaFormularioComponente.js';
+
 const params = new URLSearchParams(window.location.search);
 const id = params.get('id');
 
@@ -153,7 +155,7 @@ function botonGuardarHabito() {
             // Recarga
             cargarHabitosUsuario();
         } else {
-            document.getElementById("mensaje-error-editar").innerText = "Tipo o nombre inválidos";
+            document.getElementById("mensaje-error-editar").innerHTML = alertaErrorFormulario();
         }
     });
 }
@@ -162,6 +164,8 @@ function botonGuardarHabito() {
 function botonCrearHabito() {
     document.getElementById("formulario-crear-habito").addEventListener("submit", async function (e) {
         e.preventDefault();
+        // Resetea mensaje de error
+        document.getElementById("mensaje-error-crear").innerHTML = ""
 
         const nombreHabito = document.getElementById("nombre-habito").value;
         const tipoHabito = document.getElementById("tipo-habito").value;
@@ -183,7 +187,7 @@ function botonCrearHabito() {
             cargarDatosUsuario();
             cargarHabitosUsuario();
         } else {
-            document.getElementById("mensaje-error-crear").innerText = "Tipo o nombre inválidos";
+            document.getElementById("mensaje-error-crear").innerHTML = alertaErrorFormulario();
         }
     });
 }

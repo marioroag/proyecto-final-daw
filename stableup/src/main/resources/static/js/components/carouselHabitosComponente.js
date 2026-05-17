@@ -32,7 +32,7 @@ export function carruselHabitos(habitos, habitoActivo) {
             let estiloTarjetaCompletado = "";
 
             if (completadoHoy) {
-                botonCompletar = `<button class="btn btn-success btn-sm px-4 py-2 border" disabled>Completado hoy</button>`;
+                botonCompletar = `<button class="btn btn-success btn-sm px-4 py-2 border border-success-subtle" disabled>Completado hoy</button>`;
                 estiloTarjetaCompletado = `background-image: linear-gradient(to top, #5b9358, #c6f3c4);`;
             } else {
                 botonCompletar = `<button class="boton-completar-habito btn btn-success btn-sm px-4 py-2" data-id-habito="${habito.id}">Marcar como completado</button>`;
@@ -40,7 +40,7 @@ export function carruselHabitos(habitos, habitoActivo) {
             }
 
             contenidoCarousel += `
-                    <div id="habito-${habito.id}" class="carousel-item ${activo} h-100" style="${estiloTarjetaCompletado}">
+                    <div id="habito-${habito.id}" class="carousel-item ${activo} h-100 rounded" style="${estiloTarjetaCompletado}">
                     
                         <div class="text-center px-5 py-4">
                             <div class="mt-3" style="font-size: 4rem; line-height: 1;">${emoji}</div>
@@ -55,7 +55,7 @@ export function carruselHabitos(habitos, habitoActivo) {
                             </div>
 
                             <div class="d-flex gap-2 justify-content-center">
-                                <button class="boton-editar-habito btn btn-warning btn-sm px-4 py-2 border" data-bs-toggle="modal" data-bs-target="#editarHabitoModal" data-id-habito="${habito.id}">Editar</button>
+                                <button class="boton-editar-habito btn btn-warning btn-sm px-4 py-2" data-bs-toggle="modal" data-bs-target="#editarHabitoModal" data-id-habito="${habito.id}">Editar</button>
                                 ${botonCompletar}
                             </div>
 
