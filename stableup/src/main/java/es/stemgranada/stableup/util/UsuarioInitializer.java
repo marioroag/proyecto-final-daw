@@ -1,5 +1,7 @@
 package es.stemgranada.stableup.util;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
@@ -11,6 +13,7 @@ import com.github.javafaker.Faker;
 
 import es.stemgranada.stableup.entity.Caballo;
 import es.stemgranada.stableup.entity.Habito;
+import es.stemgranada.stableup.entity.RegistroHabito;
 import es.stemgranada.stableup.entity.Usuario;
 import es.stemgranada.stableup.enums.TipoHabito;
 import es.stemgranada.stableup.service.UsuarioService;
@@ -116,13 +119,34 @@ public class UsuarioInitializer {
 
             int multiplicador = faker.number().numberBetween(1, 10);
 
-            Habito habito = new Habito(
-                    nombre,
-                    tipo,
-                    multiplicador,
-                    usuario);
+            Habito habito = new Habito(nombre, tipo, multiplicador, usuario);
+
+            crearRegistrosAleatorios(habito);
 
             usuario.addHabito(habito);
+        }
+    }
+
+    private void crearRegistrosAleatorios(Habito habito) {
+
+        int numRegistros = faker.number().numberBetween(5, 25);
+
+        List<LocalDate> fechasUsadas = new ArrayList<>();
+
+        for (int i = 0; i < numRegistros; i++) {
+
+            int diasAtras = faker.number().numberBetween(1, 30);
+            LocalDate fecha = LocalDate.now().minusDays(diasAtras);
+
+            // Evita duplicados (no completar dos veces el mismo día)
+            if (!fechasUsadas.contains(fecha)) {
+                fechasUsadas.add(fecha);
+
+                int recompensa = habito.getRecompensaBase() * faker.number().numberBetween(1, 5);
+
+                RegistroHabito registro = new RegistroHabito(fecha, recompensa, habito);
+                habito.addRegistro(registro);
+            }
         }
     }
 
