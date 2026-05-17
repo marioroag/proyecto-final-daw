@@ -15,7 +15,7 @@ export function carruselHabitos(habitos) {
             }
 
             contenidoCarrousel += `
-                    <div class="carousel-item ${activo}" style="height: 425px;">
+                    <div id="habito-${habito.id}" class="carousel-item ${activo} h-100">
                     
                         <div class="text-center px-5 py-4">
                             <div class="mt-3" style="font-size: 4rem; line-height: 1;">${emoji}</div>
@@ -30,7 +30,7 @@ export function carruselHabitos(habitos) {
                             </div>
 
                             <div class="d-flex gap-2 justify-content-center">
-                                <button class="boton-editar-habito btn btn-warning btn-sm px-4 py-2" data-bs-toggle="modal" data-bs-target="#editarHabitoModal" data-id-habito="${habito.id}">Editar</button>
+                                <button class="boton-editar-habito btn btn-warning btn-sm px-4 py-2 border" data-bs-toggle="modal" data-bs-target="#editarHabitoModal" data-id-habito="${habito.id}">Editar</button>
                                 <button class="btn btn-success btn-sm px-4 py-2 boton-completar-habito" data-id-habito="${habito.id}">Marcar como completado</button>
                             </div>
 

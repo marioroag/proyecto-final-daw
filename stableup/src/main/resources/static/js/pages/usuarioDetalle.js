@@ -136,8 +136,27 @@ function prepararCompletarHabito() {
             const idHabito = boton.dataset.idHabito;
 
             await HabitoAPI.completar(idHabito);
+
+            boton.innerText = "Completado hoy"
+            boton.classList.add("disabled")
+            boton.classList.add("border")
+
+            mostrarHabitoCompletado(idHabito)
+
         });
     });
+}
+
+function mostrarHabitoCompletado(id) {
+    const habito = document.getElementById("habito-" + id);
+    habito.innerHTML += `
+    <style>
+            #habito-${id} {
+                background-image: linear-gradient(to top, #3d9c38, #c6f3c4);
+            }
+    </style>
+    `
+    console.log(habito);
 }
 
 // Elimina el habito seleccionado
