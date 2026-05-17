@@ -22,7 +22,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "habitos")
-@JsonPropertyOrder({ "id", "nombre", "tipo", "recompensa", "multiplicadorStreak" })
+@JsonPropertyOrder({ "id", "nombre", "tipo", "recompensaBase", "multiplicadorStreak" })
 public class Habito {
 
     @Id
@@ -49,7 +49,8 @@ public class Habito {
     @OneToMany(mappedBy = "habito", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<RegistroHabito> registros = new ArrayList<>();
 
-    static final int recompensaBase = 15;
+    static final int RECOMPENSA_BASE = 15;
+    static final double RECOMPENSA_XP = 0.25;
 
     public Habito(String nombre, TipoHabito tipo, int multiplicadorStreak, Usuario usuario) {
         this.nombre = nombre;
@@ -81,6 +82,14 @@ public class Habito {
         return nombre;
     }
 
+    public int getRecompensaBase() {
+        return RECOMPENSA_BASE;
+    }
+
+    public double getRecompensaXp() {
+        return RECOMPENSA_XP;
+    }
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
@@ -93,16 +102,12 @@ public class Habito {
         this.tipo = tipo;
     }
 
-    public int getRecompensaBase() {
-        return recompensaBase;
+    public void setMultiplicadorStreak(int multiplicadorStreak) {
+        this.multiplicadorStreak = multiplicadorStreak;
     }
 
     public int getMultiplicadorStreak() {
         return multiplicadorStreak;
-    }
-
-    public void setMultiplicadorStreak(int multiplicadorStreak) {
-        this.multiplicadorStreak = multiplicadorStreak;
     }
 
     public Usuario getUsuario() {
@@ -135,7 +140,7 @@ public class Habito {
     public String toString() {
         return "Habito #" + id + ": " + nombre + "\n"
                 + "  Tipo:           " + tipo + "\n"
-                + "  Recompensa:     " + recompensaBase + "\n"
+                + "  Recompensa:     " + RECOMPENSA_BASE + "\n"
                 + "  Multiplicador:  " + multiplicadorStreak + "\n"
                 + "  Registros:      " + registros.size() + "\n"
                 + "  ID Dueño:       " + usuario.getId();

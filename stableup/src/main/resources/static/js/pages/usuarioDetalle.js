@@ -227,8 +227,3 @@ async function gachaCaballo() {
 cargarDatosUsuario();
 cargarHabitosUsuario();
 cargarCaballosUsuario();
-
-await HabitoAPI.completar(1);
-await HabitoAPI.completar(1);
-await HabitoAPI.completar(1);
-await HabitoAPI.completar(1);

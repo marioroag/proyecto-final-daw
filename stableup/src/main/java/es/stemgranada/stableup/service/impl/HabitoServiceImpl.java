@@ -52,7 +52,6 @@ public class HabitoServiceImpl implements HabitoService {
         habitoRepository.deleteAll();
     }
 
-    // TODO: Hacer que el streak se pierda si pasa un dia sin completar
     @Override
     @Transactional
     public Habito completarHabito(Long habitoId) {
@@ -63,6 +62,7 @@ public class HabitoServiceImpl implements HabitoService {
 
         boolean completadoHoy = false;
 
+        // Comprueba si ya se completo hoy
         for (RegistroHabito registro : registros) {
             if (registro.getFechaCompletado().equals(LocalDate.now())) {
                 completadoHoy = true;
@@ -73,7 +73,7 @@ public class HabitoServiceImpl implements HabitoService {
             // Recompensa al usuario y actualiza el streak
             int recompensa = habito.getRecompensaBase() * habito.getMultiplicadorStreak();
             usuario.setMonedas(usuario.getMonedas() + recompensa);
-            usuario.setNivel(usuario.getNivel() + 0.25);
+            usuario.setNivel(usuario.getNivel() + habito.getRecompensaXp());
             habito.setMultiplicadorStreak(habito.getMultiplicadorStreak() + 1);
 
             // Registra la complecion
@@ -83,6 +83,15 @@ public class HabitoServiceImpl implements HabitoService {
 
             // Guardado
             usuarioRepository.save(usuario);
+        }
+
+        // Si lleva mas de un dia sin completarse rompe la racha
+        if (!registros.isEmpty()) {
+            LocalDate ayer = LocalDate.now().minusDays(1);
+
+            if (registros.getLast().getFechaCompletado().isBefore(ayer)) {
+                habito.setMultiplicadorStreak(1);
+            }
         }
 
         return habitoRepository.save(habito);
