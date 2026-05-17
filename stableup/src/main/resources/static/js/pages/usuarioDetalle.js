@@ -10,7 +10,7 @@ import { cargarBarraExperiencia } from '../components/barraExperienciaComponente
 
 import { establo } from '../components/establoComponente.js';
 
-import { carruselHabitos } from '../components/carruselHabitosComponente.js';
+import { carruselHabitos } from '../components/carouselHabitosComponente.js';
 
 import { cargarModalHabito } from '../components/crearHabitoComponente.js';
 import { cargarModalEditarHabito } from '../components/editarHabitoComponente.js';
