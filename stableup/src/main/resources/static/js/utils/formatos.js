@@ -12,6 +12,7 @@ export function colorPorRareza(rareza) {
     if (rareza === "POCO_COMUN") color = "#d1e7dd";
     if (rareza === "RARO") color = "#BFDBFE";
     if (rareza === "EPICO") color = "#DDD6FE";
+    if (rareza === "LEGENDARIO") color = "#ffed95";
     return color;
 }
 

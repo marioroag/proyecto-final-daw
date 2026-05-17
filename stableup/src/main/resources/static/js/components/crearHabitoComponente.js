@@ -10,13 +10,13 @@ export function cargarModalHabito() {
                     </div>
 
                     <div class="modal-body">
-                        <form action="">
+                        <form id="formulario-crear-habito">
                             <div class="mb-3">
-                                <label for="fullName" class="form-label">Nombre</label>
-                                <input id="nombre-habito" type="text" class="form-control" id="fullName" placeholder="Leer">
+                                <label class="form-label">Nombre</label>
+                                <input id="nombre-habito" type="text" maxlength="20" class="form-control" placeholder="Leer">
                             </div>
                             <div>
-                                <label for="language" class="form-label">Tipo</label>
+                                <label class="form-label">Tipo</label>
                                 <select id="tipo-habito" class="form-select">
                                     <option value="" selected disabled>Elegir tipo</option>
                                     <option value="STRENGTH">Fuerza</option>
@@ -29,7 +29,7 @@ export function cargarModalHabito() {
                     
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button id="boton-crear-habito" type="button" class="btn btn-primary">Crear</button>
+                        <button type="submit" id="boton-crear-habito" form="formulario-crear-habito" class="btn btn-primary">Crear</button>
                     </div>
                 </div>
             </div>

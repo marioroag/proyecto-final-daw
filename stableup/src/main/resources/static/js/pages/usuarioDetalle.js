@@ -66,12 +66,24 @@ async function cargarDatosUsuario() {
     tooltips.forEach(elemento => new bootstrap.Tooltip(elemento));
 }
 
-// Crea el habito con los datos proporcionados
-async function botonCrearHabito() {
-    document.getElementById("boton-crear-habito").addEventListener("click", async () => {
+// Lista de habitos
+async function cargarHabitosUsuario(idHabitoActivo) {
+    const habitosUsuario = await UsuarioAPI.obtenerHabitos(id);
 
-        const nombreHabito = document.getElementById("nombre-habito").value
-        const tipoHabito = document.getElementById("tipo-habito").value
+    const contenedor = document.getElementById("lista-habitos");
+    contenedor.innerHTML = carruselHabitos(habitosUsuario, idHabitoActivo);
+
+    prepararEditarHabito();
+    prepararCompletarHabito();
+}
+
+// Crea el habito con los datos proporcionados
+function botonCrearHabito() {
+    document.getElementById("formulario-crear-habito").addEventListener("submit", async function (e) {
+        e.preventDefault();
+
+        const nombreHabito = document.getElementById("nombre-habito").value;
+        const tipoHabito = document.getElementById("tipo-habito").value;
 
         if (nombreHabito != "" && tipoHabito != "") {
             // Esconde el modal
@@ -91,20 +103,9 @@ async function botonCrearHabito() {
             cargarHabitosUsuario();
         } else {
             // TODO: mejorar alert
-            alert("Tipo o nombre invalidos")
+            alert("Tipo o nombre invalidos");
         }
-    })
-}
-
-// Lista de habitos
-async function cargarHabitosUsuario(idHabitoActivo) {
-    const habitosUsuario = await UsuarioAPI.obtenerHabitos(id);
-
-    const contenedor = document.getElementById("lista-habitos");
-    contenedor.innerHTML = carruselHabitos(habitosUsuario, idHabitoActivo);
-
-    prepararEditarHabito();
-    prepararCompletarHabito();
+    });
 }
 
 // Prepara el modal de editar habito con los datos del habito seleccionado
@@ -123,23 +124,6 @@ function prepararEditarHabito() {
 
             // Guarda el id del habito en el data del modal
             document.getElementById("editarHabitoModal").dataset.idHabito = idHabito;
-        });
-    });
-}
-
-// Prepara el boton de completar habito
-function prepararCompletarHabito() {
-    // Recorre botones de editar (hay uno por habito)
-    document.querySelectorAll(".boton-completar-habito").forEach(function (boton) {
-        boton.addEventListener("click", async function () {
-
-            const idHabito = boton.dataset.idHabito;
-
-            await HabitoAPI.completar(idHabito);
-
-            cargarHabitosUsuario(idHabito);
-            cargarDatosUsuario();
-
         });
     });
 }
@@ -164,7 +148,8 @@ function botonEliminarHabito() {
 
 // Guarda el habito con los nuevos datos
 function botonGuardarHabito() {
-    document.getElementById("boton-guardar-habito").addEventListener("click", async function () {
+    document.getElementById("formulario-editar-habito").addEventListener("submit", async function (e) {
+        e.preventDefault();
 
         // Lee el formulario
         const nuevoNombre = document.getElementById("nuevo-nombre-habito").value
@@ -190,6 +175,23 @@ function botonGuardarHabito() {
         } else {
             alert("Nombre o tipo invalidos");
         }
+    });
+}
+
+// Prepara el boton de completar habito
+function prepararCompletarHabito() {
+    // Recorre botones de editar (hay uno por habito)
+    document.querySelectorAll(".boton-completar-habito").forEach(function (boton) {
+        boton.addEventListener("click", async function () {
+
+            const idHabito = boton.dataset.idHabito;
+
+            await HabitoAPI.completar(idHabito);
+
+            cargarHabitosUsuario(idHabito);
+            cargarDatosUsuario();
+
+        });
     });
 }
 

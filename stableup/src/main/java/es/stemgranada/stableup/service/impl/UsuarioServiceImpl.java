@@ -66,6 +66,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     public Habito crearHabito(Long id, Habito habito) {
         Usuario usuario = usuarioRepository.findById(id).orElseThrow();
         habito.setUsuario(usuario);
+        habito.setMultiplicadorStreak(1);
         usuario.addHabito(habito);
         return habitoRepository.save(habito);
     }
