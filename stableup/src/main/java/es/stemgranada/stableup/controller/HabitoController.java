@@ -45,7 +45,7 @@ public class HabitoController {
     }
 
     @PostMapping("/{id}/completar")
-    public void completarHabito(@PathVariable Long id) {
-        habitoService.completarHabito(id);
+    public Habito completarHabito(@PathVariable Long id) {
+        return habitoService.completarHabito(id);
     }
 }

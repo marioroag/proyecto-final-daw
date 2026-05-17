@@ -54,7 +54,7 @@ public class HabitoServiceImpl implements HabitoService {
 
     @Override
     @Transactional
-    public void completarHabito(Long habitoId) {
+    public Habito completarHabito(Long habitoId) {
         // Encuentra el habito y su dueño
         Habito habito = habitoRepository.findById(habitoId).orElseThrow();
         Usuario usuario = habito.getUsuario();
@@ -70,6 +70,8 @@ public class HabitoServiceImpl implements HabitoService {
 
         // Guardado
         usuarioRepository.save(usuario);
+
+        return habitoRepository.save(habito);
     }
 
     @Transactional
