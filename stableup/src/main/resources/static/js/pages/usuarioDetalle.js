@@ -21,7 +21,7 @@ const id = params.get('id');
 document.getElementById("navbar").innerHTML = crearBarraNavegacion();
 document.getElementById("stable-footer").innerHTML = crearFooter();
 
-textoRotacionEfecto()
+textoRotacionEfecto();
 
 // Lo vi en una pagina y me gusto
 function textoRotacionEfecto() {
@@ -137,8 +137,8 @@ function prepararCompletarHabito() {
 
             await HabitoAPI.completar(idHabito);
 
-            cargarHabitosUsuario(idHabito)
-            cargarDatosUsuario()
+            cargarHabitosUsuario(idHabito);
+            cargarDatosUsuario();
 
         });
     });
@@ -227,3 +227,8 @@ async function gachaCaballo() {
 cargarDatosUsuario();
 cargarHabitosUsuario();
 cargarCaballosUsuario();
+
+await HabitoAPI.completar(1);
+await HabitoAPI.completar(1);
+await HabitoAPI.completar(1);
+await HabitoAPI.completar(1);

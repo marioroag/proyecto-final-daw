@@ -52,25 +52,38 @@ public class HabitoServiceImpl implements HabitoService {
         habitoRepository.deleteAll();
     }
 
+    // TODO: Hacer que el streak se pierda si pasa un dia sin completar
     @Override
     @Transactional
     public Habito completarHabito(Long habitoId) {
-        // Encuentra el habito y su dueño
+        // Encuentra el dueño, habito y sus registros
         Habito habito = habitoRepository.findById(habitoId).orElseThrow();
         Usuario usuario = habito.getUsuario();
+        List<RegistroHabito> registros = habito.getRegistros();
 
-        // Recompensa al usuario y actualiza el streak
-        int recompensa = habito.getRecompensaBase() * habito.getMultiplicadorStreak();
-        usuario.setMonedas(usuario.getMonedas() + recompensa);
-        habito.setMultiplicadorStreak(habito.getMultiplicadorStreak() + 1);
+        boolean completadoHoy = false;
 
-        // Registra la complecion
-        RegistroHabito nuevoRegistro = new RegistroHabito(LocalDate.now(), recompensa, habito);
-        habito.addRegistro(nuevoRegistro);
-        registroHabitoRepository.save(nuevoRegistro);
+        for (RegistroHabito registro : registros) {
+            if (registro.getFechaCompletado().equals(LocalDate.now())) {
+                completadoHoy = true;
+            }
+        }
 
-        // Guardado
-        usuarioRepository.save(usuario);
+        if (!completadoHoy) {
+            // Recompensa al usuario y actualiza el streak
+            int recompensa = habito.getRecompensaBase() * habito.getMultiplicadorStreak();
+            usuario.setMonedas(usuario.getMonedas() + recompensa);
+            usuario.setNivel(usuario.getNivel() + 0.25);
+            habito.setMultiplicadorStreak(habito.getMultiplicadorStreak() + 1);
+
+            // Registra la complecion
+            RegistroHabito nuevoRegistro = new RegistroHabito(LocalDate.now(), recompensa, habito);
+            habito.addRegistro(nuevoRegistro);
+            registroHabitoRepository.save(nuevoRegistro);
+
+            // Guardado
+            usuarioRepository.save(usuario);
+        }
 
         return habitoRepository.save(habito);
     }

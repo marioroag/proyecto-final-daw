@@ -32,8 +32,8 @@ export function carruselHabitos(habitos, habitoActivo) {
             let estiloTarjetaCompletado = "";
 
             if (completadoHoy) {
-                botonCompletar = `<button class="btn btn-success btn-sm px-4 py-2" disabled>Completado hoy</button>`;
-                estiloTarjetaCompletado = `background-image: linear-gradient(to top, #3d9c38, #c6f3c4);`;
+                botonCompletar = `<button class="btn btn-success btn-sm px-4 py-2 border" disabled>Completado hoy</button>`;
+                estiloTarjetaCompletado = `background-image: linear-gradient(to top, #5b9358, #c6f3c4);`;
             } else {
                 botonCompletar = `<button class="boton-completar-habito btn btn-success btn-sm px-4 py-2" data-id-habito="${habito.id}">Marcar como completado</button>`;
                 estiloTarjetaCompletado = "";
