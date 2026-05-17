@@ -47,7 +47,7 @@ public class Habito {
 
     // Relacion registros
     @OneToMany(mappedBy = "habito", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Registro> registros = new ArrayList<>();
+    private List<RegistroHabito> registros = new ArrayList<>();
 
     static final int recompensaBase = 15;
 
@@ -113,20 +113,20 @@ public class Habito {
         this.usuario = usuario;
     }
 
-    public List<Registro> getRegistros() {
+    public List<RegistroHabito> getRegistros() {
         return registros;
     }
 
-    public void setRegistros(List<Registro> registro) {
+    public void setRegistros(List<RegistroHabito> registro) {
         this.registros = registro;
     }
 
-    public void addRegistro(Registro registro) {
+    public void addRegistro(RegistroHabito registro) {
         registros.add(registro);
         registro.setHabito(this);
     }
 
-    public void removeRegistro(Registro registro) {
+    public void removeRegistro(RegistroHabito registro) {
         registros.remove(registro);
         registro.setHabito(null);
     }

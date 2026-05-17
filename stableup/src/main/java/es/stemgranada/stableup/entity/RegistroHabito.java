@@ -17,7 +17,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "registros")
 @JsonPropertyOrder({ "id", "fechaCompletado", "monedasGanadas" })
-public class Registro {
+public class RegistroHabito {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,13 +38,13 @@ public class Registro {
     @JsonIgnore
     private Habito habito;
 
-    public Registro(LocalDate fechaCompletado, int monedasGanadas, Habito habito) {
+    public RegistroHabito(LocalDate fechaCompletado, int monedasGanadas, Habito habito) {
         this.fechaCompletado = fechaCompletado;
         this.monedasGanadas = monedasGanadas;
         this.habito = habito;
     }
 
-    public Registro() {
+    public RegistroHabito() {
     }
 
     public Long getId() {

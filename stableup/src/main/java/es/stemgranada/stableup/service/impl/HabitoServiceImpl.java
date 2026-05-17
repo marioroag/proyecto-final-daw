@@ -8,10 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import es.stemgranada.stableup.entity.Habito;
-import es.stemgranada.stableup.entity.Registro;
+import es.stemgranada.stableup.entity.RegistroHabito;
 import es.stemgranada.stableup.entity.Usuario;
 import es.stemgranada.stableup.repository.HabitoRepository;
-import es.stemgranada.stableup.repository.RegistroRepository;
+import es.stemgranada.stableup.repository.RegistroHabitoRepository;
 import es.stemgranada.stableup.repository.UsuarioRepository;
 import es.stemgranada.stableup.service.HabitoService;
 import jakarta.transaction.Transactional;
@@ -25,7 +25,7 @@ public class HabitoServiceImpl implements HabitoService {
     HabitoRepository habitoRepository;
 
     @Autowired
-    RegistroRepository registroRepository;
+    RegistroHabitoRepository registroHabitoRepository;
 
     @Override
     public List<Habito> findAll() {
@@ -65,8 +65,8 @@ public class HabitoServiceImpl implements HabitoService {
         habito.setMultiplicadorStreak(habito.getMultiplicadorStreak() + 1);
 
         // Registra la complecion
-        Registro nuevoRegistro = new Registro(LocalDate.now(), recompensa, habito);
-        registroRepository.save(nuevoRegistro);
+        RegistroHabito nuevoRegistro = new RegistroHabito(LocalDate.now(), recompensa, habito);
+        registroHabitoRepository.save(nuevoRegistro);
 
         // Guardado
         usuarioRepository.save(usuario);
