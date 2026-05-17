@@ -66,6 +66,7 @@ public class HabitoServiceImpl implements HabitoService {
 
         // Registra la complecion
         RegistroHabito nuevoRegistro = new RegistroHabito(LocalDate.now(), recompensa, habito);
+        habito.addRegistro(nuevoRegistro);
         registroHabitoRepository.save(nuevoRegistro);
 
         // Guardado

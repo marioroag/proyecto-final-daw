@@ -1,21 +1,46 @@
 import { emojiPorTipo } from '../utils/formatos.js';
 
-export function carruselHabitos(habitos) {
+export function carruselHabitos(habitos, habitoActivo) {
     let contenidoCarrousel = "";
 
     if (habitos.length > 0) {
+        const hoy = new Date().toJSON().slice(0, 10);
+
         habitos.forEach((habito, indice) => {
+
             const proximaRecompensa = habito.recompensaBase * habito.multiplicadorStreak;
             const emoji = emojiPorTipo(habito.tipo);
 
             let activo = "";
 
-            if (indice === 0) {
+            // Coloca el primer como activo si no se especifica lo contrario
+            if (habitoActivo == null && indice == 0) {
+                activo = "active";
+            } else if (habito.id == habitoActivo) {
                 activo = "active";
             }
 
+            // Muestra estilos de completado a los habitos con registros hoy
+            let completadoHoy = false;
+            habito.registros.forEach(function (registro) {
+                if (registro.fechaCompletado === hoy) {
+                    completadoHoy = true;
+                }
+            });
+
+            let botonCompletar = "";
+            let estiloTarjetaCompletado = "";
+
+            if (completadoHoy) {
+                botonCompletar = `<button class="btn btn-success btn-sm px-4 py-2" disabled>Completado hoy</button>`;
+                estiloTarjetaCompletado = `background-image: linear-gradient(to top, #3d9c38, #c6f3c4);`;
+            } else {
+                botonCompletar = `<button class="boton-completar-habito btn btn-success btn-sm px-4 py-2" data-id-habito="${habito.id}">Marcar como completado</button>`;
+                estiloTarjetaCompletado = "";
+            }
+
             contenidoCarrousel += `
-                    <div id="habito-${habito.id}" class="carousel-item ${activo} h-100">
+                    <div id="habito-${habito.id}" class="carousel-item ${activo} h-100" style="${estiloTarjetaCompletado}">
                     
                         <div class="text-center px-5 py-4">
                             <div class="mt-3" style="font-size: 4rem; line-height: 1;">${emoji}</div>
@@ -31,7 +56,7 @@ export function carruselHabitos(habitos) {
 
                             <div class="d-flex gap-2 justify-content-center">
                                 <button class="boton-editar-habito btn btn-warning btn-sm px-4 py-2 border" data-bs-toggle="modal" data-bs-target="#editarHabitoModal" data-id-habito="${habito.id}">Editar</button>
-                                <button class="btn btn-success btn-sm px-4 py-2 boton-completar-habito" data-id-habito="${habito.id}">Marcar como completado</button>
+                                ${botonCompletar}
                             </div>
 
                         </div>

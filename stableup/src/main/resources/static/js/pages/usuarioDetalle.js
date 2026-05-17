@@ -97,11 +97,11 @@ async function botonCrearHabito() {
 }
 
 // Lista de habitos
-async function cargarHabitosUsuario() {
+async function cargarHabitosUsuario(idHabitoActivo) {
     const habitosUsuario = await UsuarioAPI.obtenerHabitos(id);
 
     const contenedor = document.getElementById("lista-habitos");
-    contenedor.innerHTML = carruselHabitos(habitosUsuario);
+    contenedor.innerHTML = carruselHabitos(habitosUsuario, idHabitoActivo);
 
     prepararEditarHabito();
     prepararCompletarHabito();
@@ -137,26 +137,11 @@ function prepararCompletarHabito() {
 
             await HabitoAPI.completar(idHabito);
 
-            boton.innerText = "Completado hoy"
-            boton.classList.add("disabled")
-            boton.classList.add("border")
-
-            mostrarHabitoCompletado(idHabito)
+            cargarHabitosUsuario(idHabito)
+            cargarDatosUsuario()
 
         });
     });
-}
-
-function mostrarHabitoCompletado(id) {
-    const habito = document.getElementById("habito-" + id);
-    habito.innerHTML += `
-    <style>
-            #habito-${id} {
-                background-image: linear-gradient(to top, #3d9c38, #c6f3c4);
-            }
-    </style>
-    `
-    console.log(habito);
 }
 
 // Elimina el habito seleccionado
