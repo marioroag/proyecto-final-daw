@@ -2,7 +2,9 @@ export function emojiPorTipo(tipo) {
     let emoji = "";
     if (tipo === "STRENGTH") emoji = "💪";
     if (tipo === "WELLBEING") emoji = "🌱";
-    if (tipo === "MENTAL_HEALTH") emoji = "🧠";
+    if (tipo === "LEARNING") emoji = "🧠";
+    if (tipo === "ORGANIZATION") emoji = "📑";
+    if (tipo === "SOCIAL") emoji = "🧑‍🤝‍🧑";
     return emoji;
 }
 

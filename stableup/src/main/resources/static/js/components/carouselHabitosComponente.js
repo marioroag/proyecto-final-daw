@@ -51,7 +51,7 @@ export function carruselHabitos(habitos, habitoActivo) {
 
                             <!-- TODO: GRID TIPO GITHUB -->
                             <div class="mb-5 mx-5">
-                                <img class="card-img" src="https://placehold.co/600x400/png">
+                                <img class="card-img my-3" src="/images/grid-placeholder.png" style="width: 225px">
                             </div>
 
                             <div class="d-flex gap-2 justify-content-center">

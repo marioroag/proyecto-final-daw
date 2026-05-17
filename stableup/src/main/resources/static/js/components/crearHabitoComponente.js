@@ -22,7 +22,9 @@ export function cargarModalHabito() {
                                     <option value="" selected disabled>Elegir tipo</option>
                                     <option value="STRENGTH">Fuerza</option>
                                     <option value="WELLBEING">Bienestar</option>
-                                    <option value="MENTAL_HEALTH">Salúd Mental</option>
+                                    <option value="LEARNING">Aprendizaje</option>
+                                    <option value="ORGANIZATION">Organización</option>
+                                    <option value="SOCIAL">Social</option>
                                 </select>
                             </div>
                         </form>
