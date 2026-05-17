@@ -12,7 +12,7 @@ import { carruselHabitos } from '../components/carruselHabitosComponente.js';
 
 import { cargarModalHabito } from '../components/crearHabitoComponente.js';
 import { cargarModalEditarHabito } from '../components/editarHabitoComponente.js';
-import { cargarBarraExperiencia } from '../components/experienciaBarraComponenete.js';
+import { cargarBarraExperiencia } from '../components/barraExperienciaComponente.js';
 
 const params = new URLSearchParams(window.location.search);
 const id = params.get('id');
@@ -20,6 +20,25 @@ const id = params.get('id');
 // Navbar
 document.getElementById("navbar").innerHTML = crearBarraNavegacion();
 document.getElementById("stable-footer").innerHTML = crearFooter();
+
+textoRotacionEfecto()
+
+// Lo vi en una pagina y me gusto
+function textoRotacionEfecto() {
+    const elemento = document.querySelector(".nombre-stableup");
+    let palabra = elemento.innerText;
+
+    elemento.addEventListener("mouseover", function () {
+        for (let i = 0; i < palabra.length; i++) {
+            setTimeout(function () {
+                const primeraLetra = palabra.charAt(0);
+                palabra = palabra.slice(1) + primeraLetra;
+                elemento.textContent = palabra;
+            }, i * 75); // el bucle no espera al timeout para la siguiente itineracion 
+            // asi que si no lo escalonas se programan todas las acciones a la vez
+        }
+    });
+}
 
 // Datos del usuario
 async function cargarDatosUsuario() {
