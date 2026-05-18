@@ -5,8 +5,8 @@ export function tarjetaCaballo(caballo, indice) {
     const color = colorPorRareza(caballo.rareza);
 
     return `
-        <div style="width: 16rem;">
-            <div id="tarjeta-caballo-${indice}" class="card mb-2">
+        <div>
+            <div id="tarjeta-caballo-${indice}" class="card">
                 <div style="font-size: 5rem;">🐴</div>
 
                 <div class="card-body">

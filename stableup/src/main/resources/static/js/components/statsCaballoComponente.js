@@ -10,7 +10,7 @@ export function statsCaballo(caballo, indice) {
                 <p class="text-muted">Influye en la posibilidad de ganar en carreras cortas</p>
             </div>
 
-            <div class="p-3 mb-3 border border-secondary-subtle rounded bg-white">
+            <div class="p-3 border border-secondary-subtle rounded bg-white">
                 <h5 class="mb-1">Energía</h5>
                 <p class="fs-5 color-primary">${caballo.energia}</p>
                 <div class="mb-3">${cargarBarra(caballo.energia)}</div>

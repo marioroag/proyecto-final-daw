@@ -7,9 +7,12 @@ import { crearFooter } from '../components/footerComponente.js';
 
 import { presentarCaballo } from '../components/presentacionCaballoComponente.js';
 import { statsCaballo } from '../components/statsCaballoComponente.js';
+import { mostrarContringantes } from '../components/contringantesComponente.js';
 
 const params = new URLSearchParams(window.location.search);
 const id = params.get('id');
+
+const contringantesPagina = 8;
 
 // Navbar y footer
 document.getElementById("navbar").innerHTML = crearBarraNavegacion();
@@ -47,6 +50,14 @@ async function cargarStatsCaballo() {
     document.getElementById("stats-caballo").innerHTML = statsCaballo(caballo, id);
 }
 
+async function cargarContringantes() {
+    const caballo = await CaballoAPI.obtenerTodos(id);
+
+    document.getElementById("lista-contringantes").innerHTML = mostrarContringantes(caballo, contringantesPagina);
+}
+
 // Inicializa la pagina
 cargarTarjetaCaballo();
 cargarStatsCaballo();
+
+cargarContringantes();
