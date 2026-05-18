@@ -12,7 +12,7 @@ export function tarjetaContringante(caballo, indice) {
                 <div class="card-body">
                     <h5 class="card-title align-items-center">${caballo.nombre} <span class="badge rounded-pill bg-primary" style="font-size:0.75rem;">${rarezaMostrar}</span></h5>
                     <hr/>
-                    <p class="card-text">Velocidad: ${caballo.velocidad}<br>
+                    <p class="card-text text-muted">Velocidad: ${caballo.velocidad}<br>
                     Energía: ${caballo.energia}</p>
                     <a href="#" class="btn btn-dark">Desafiar</a>
                 </div>

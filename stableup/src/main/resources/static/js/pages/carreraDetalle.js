@@ -41,7 +41,7 @@ function textoRotacionEfecto() {
 async function cargarTarjetaCaballo() {
     const caballo = await CaballoAPI.obtenerPorId(id);
 
-    document.getElementById("tarjeta-caballo").innerHTML = presentarCaballo(caballo, id);
+    document.getElementById("tarjeta-caballo").innerHTML = presentarCaballo(caballo);
 }
 
 async function cargarStatsCaballo() {
