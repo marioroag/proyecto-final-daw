@@ -5,7 +5,7 @@ export function tarjetaContringante(caballo, indice) {
     const color = colorPorRareza(caballo.rareza);
 
     return `
-        <div style="width: 16rem;">
+        <div style="width: 16rem;" class="h-100">
             <div id="tarjeta-caballo-${indice}" class="card mb-2">
                 <div style="font-size: 5rem;">🐴</div>
 
@@ -14,7 +14,7 @@ export function tarjetaContringante(caballo, indice) {
                     <hr/>
                     <p class="card-text">Velocidad: ${caballo.velocidad}<br>
                     Energía: ${caballo.energia}</p>
-                    <a href="carreraDetalle.html?id=${caballo.id}" id="boton-carrera-caballo" class="btn btn-dark">Desafiar</a>
+                    <a href="#" class="btn btn-dark">Desafiar</a>
                 </div>
             </div>
             <style>
