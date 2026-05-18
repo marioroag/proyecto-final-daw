@@ -3,7 +3,7 @@ export function crearFooter() {
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                    <p class="mb-0">&copy; 2026 StableUp. Todos los derechos reservados.</p>
+                    <p class="mb-0 text-muted">&copy; 2026 StableUp. Todos los derechos reservados.</p>
                 </div>
                 <div class="col-md-6 text-center text-md-end">
                     <div class="social-icons d-flex justify-content-end gap-4 fs-4">

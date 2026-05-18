@@ -6,7 +6,7 @@ import { crearBarraNavegacion } from '../components/navbarComponente.js';
 import { crearFooter } from '../components/footerComponente.js';
 
 import { tarjetaUsuario } from '../components/tarjetaUsuarioComponente.js';
-import { cargarBarraExperiencia } from '../components/barraExperienciaComponente.js';
+import { cargarBarra } from '../components/barraComponente.js';
 
 import { establo } from '../components/establoComponente.js';
 
@@ -53,7 +53,7 @@ async function cargarDatosUsuario() {
 
     const porcentajeNivel = (usuario.nivel - Math.trunc(usuario.nivel)) * 100;
 
-    cargarBarraExperiencia(porcentajeNivel);
+    document.getElementById("barra-progreso").innerHTML = cargarBarra(porcentajeNivel, "bg-success");
 
     gachaCaballo();
 
