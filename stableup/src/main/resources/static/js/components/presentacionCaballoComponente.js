@@ -5,8 +5,7 @@ export function presentarCaballo(caballo, indice) {
     const color = colorPorRareza(caballo.rareza);
 
     return `
-        <div>
-            <div id="tarjeta-caballo-${indice}" class="card">
+            <div id="tarjeta-caballo-${indice}" class="card p-3 mb-3 border border-secondary-subtle rounded">
                 <div class="mt-4" style="font-size: 5rem;">🐴</div>
 
                 <div class="card-body p-5">
@@ -21,6 +20,5 @@ export function presentarCaballo(caballo, indice) {
                     transition: all .5s ease-in-out;
                 }
             </style>
-        </div>
     `;
 }
