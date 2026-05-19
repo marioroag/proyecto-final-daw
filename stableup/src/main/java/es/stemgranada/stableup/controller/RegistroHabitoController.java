@@ -18,7 +18,7 @@ import es.stemgranada.stableup.service.HabitoService;
 import es.stemgranada.stableup.service.RegistroHabitoService;
 
 @RestController
-@RequestMapping("api/v1/registros")
+@RequestMapping("/api/v1/registros")
 public class RegistroHabitoController {
     @Autowired
     RegistroHabitoService registroHabitoService;

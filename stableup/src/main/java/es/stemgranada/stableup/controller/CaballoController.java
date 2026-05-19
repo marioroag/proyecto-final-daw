@@ -16,7 +16,7 @@ import es.stemgranada.stableup.entity.Caballo;
 import es.stemgranada.stableup.service.CaballoService;
 
 @RestController
-@RequestMapping("api/v1/caballos")
+@RequestMapping("/api/v1/caballos")
 public class CaballoController {
     @Autowired
     CaballoService caballoService;

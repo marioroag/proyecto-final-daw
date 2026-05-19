@@ -17,9 +17,9 @@ import es.stemgranada.stableup.entity.Habito;
 import es.stemgranada.stableup.entity.Usuario;
 import es.stemgranada.stableup.service.UsuarioService;
 
-// Postman: http://localhost:8080/api/usuarios
+// Postman: http://localhost:8080/api/v1/usuarios
 @RestController
-@RequestMapping("api/v1/usuarios")
+@RequestMapping("/api/v1/usuarios")
 public class UsuarioController {
     @Autowired
     UsuarioService usuarioService;
@@ -54,7 +54,7 @@ public class UsuarioController {
         return usuarioService.findAll();
     }
 
-    @PostMapping("{id}/habitos")
+    @PostMapping("/{id}/habitos")
     public Habito crearHabito(@PathVariable Long id, @RequestBody Habito habito) {
         return usuarioService.crearHabito(id, habito);
     }

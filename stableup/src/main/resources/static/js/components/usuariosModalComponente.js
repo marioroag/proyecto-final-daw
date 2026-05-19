@@ -1,4 +1,5 @@
 import { UsuarioAPI } from '../api/usuarioApi.js';
+import { alertaErrorFormulario } from '../components/alertaFormularioComponente.js';
 
 async function cargarUsuariosModal() {
     const usuarios = await UsuarioAPI.obtenerTodos();
@@ -27,12 +28,8 @@ async function cargarUsuariosModal() {
         contenedor.appendChild(enlace);
     });
 
-    contenedor.innerHTML += `
-    <button id="boton-crear-usuario" class="btn btn-dark">Crear usuario</button>
-    `
-    botonEliminar()
+    botonEliminar();
 }
-
 
 async function botonEliminar() {
     document.querySelectorAll(".boton-eliminar-usuario").forEach(function (boton) {
@@ -48,19 +45,9 @@ async function botonEliminar() {
     })
 }
 
-async function botonCrear() {
-    document.getElementById("boton-crear-usuario").forEach(function (boton) {
-        boton.addEventListener("click", async function () {
-
-            await UsuarioAPI.eliminarPorId(idUsuario);
-            await cargarUsuariosModal();
-        })
-    })
-}
-
-async function cargarModalHabito() {
+async function prepararModalUsuario() {
     document.getElementById("modalCrearUsuario").innerHTML = `
-        <div class="modal fade" id="habitoModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        <div class="modal fade" id="modalCrear" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -70,35 +57,60 @@ async function cargarModalHabito() {
                     </div>
 
                     <div class="modal-body">
-                        <form id="formulario-crear-habito">
+                        <form id="formulario-crear-usuario">
                         <div id="mensaje-error-crear"></div>
                         <div class="mb-3">
                                 <label class="form-label">Nombre</label>
-                                <input id="nombre-habito" type="text" maxlength="20" class="form-control" placeholder="Leer">
+                                <input id="nombre-usuario" type="text" maxlength="20" class="form-control" placeholder="Pepe">
                             </div>
                             <div>
-                                <label class="form-label">Tipo</label>
-                                <select id="tipo-habito" class="form-select">
-                                    <option value="" selected disabled>Elegir tipo</option>
-                                    <option value="STRENGTH">Fuerza</option>
-                                    <option value="WELLBEING">Bienestar</option>
-                                    <option value="LEARNING">Aprendizaje</option>
-                                    <option value="ORGANIZATION">Organización</option>
-                                    <option value="SOCIAL">Social</option>
-                                </select>
+                                <label class="form-label">Correo electrónico</label>
+                                <input id="email-usuario" type="text" maxlength="20" class="form-control" placeholder="pepe@gmail.com">
                             </div>
                         </form>
                     </div>
                     
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="submit" id="boton-crear-habito" form="formulario-crear-habito" class="btn btn-primary">Crear</button>
+                        <button type="submit" id="boton-crear-usuario" form="formulario-crear-usuario" class="btn btn-primary">Crear</button>
                     </div>
                 </div>
             </div>
         </div>
         `
 }
-await cargarUsuariosModal();
 
-botonEliminar();
+function botonCrearUsuario() {
+    document.getElementById("formulario-crear-usuario").addEventListener("submit", async function (e) {
+
+        e.preventDefault();
+        // Resetea mensaje de error
+        document.getElementById("mensaje-error-crear").innerHTML = ""
+
+        const nombreUsuario = document.getElementById("nombre-usuario").value;
+        const emailUsuario = document.getElementById("email-usuario").value;
+
+        if (nombreUsuario != "" && emailUsuario != "") {
+            // Esconde el modal
+            const modal = bootstrap.Modal.getInstance(document.getElementById("modalCrear"));
+            modal.hide();
+
+            // Devuelve un objeto que la api convierte a json despues para java como usuario
+            const usuario = {
+                username: nombreUsuario,
+                email: emailUsuario
+            };
+
+            await UsuarioAPI.crearUsuario(usuario);
+
+            await cargarUsuariosModal();
+
+        } else {
+            document.getElementById("mensaje-error-crear").innerHTML = alertaErrorFormulario();
+        }
+    })
+}
+
+await cargarUsuariosModal();
+prepararModalUsuario();
+botonCrearUsuario();

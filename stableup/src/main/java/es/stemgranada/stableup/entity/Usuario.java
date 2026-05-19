@@ -27,7 +27,7 @@ public class Usuario {
     private Long id;
 
     @Column(nullable = false)
-    private LocalDate fechaRegistro;
+    private LocalDate fechaRegistro = LocalDate.now();
 
     @Column(nullable = false, length = 50, unique = true)
     private String username;
@@ -36,11 +36,10 @@ public class Usuario {
     private String email;
 
     @Column(nullable = false)
-    private int monedas;
+    private int monedas = 100;
 
     @Column(nullable = false)
-    private double nivel; // Es double por que tengo idea de que aunque solo se muestre el numero completo
-                          // (nivel: 10) los decimales estan ahi para manejar la barra de progreso
+    private double nivel = 1;
 
     // Relacion habitos
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -56,6 +55,11 @@ public class Usuario {
         this.monedas = monedas;
         this.nivel = nivel;
         this.fechaRegistro = LocalDate.now();
+    }
+
+    public Usuario(String username, String email) {
+        this.username = username;
+        this.email = email;
     }
 
     public Usuario() {
