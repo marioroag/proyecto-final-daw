@@ -19,10 +19,15 @@ import es.stemgranada.stableup.service.UsuarioService;
 
 // Postman: http://localhost:8080/api/usuarios
 @RestController
-@RequestMapping("api/usuarios")
+@RequestMapping("api/v1/usuarios")
 public class UsuarioController {
     @Autowired
     UsuarioService usuarioService;
+
+    @PostMapping
+    public Usuario crearUsuario(@RequestBody Usuario usuario) {
+        return usuarioService.save(usuario);
+    }
 
     @GetMapping("/{id}")
     public Optional<Usuario> obtenerUsuario(@PathVariable Long id) {

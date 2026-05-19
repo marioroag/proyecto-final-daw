@@ -13,7 +13,7 @@ import es.stemgranada.stableup.entity.Carrera;
 import es.stemgranada.stableup.service.CarreraService;
 
 @RestController
-@RequestMapping("api/carreras")
+@RequestMapping("api/v1/carreras")
 public class CarreraController {
     @Autowired
     CarreraService carreraService;

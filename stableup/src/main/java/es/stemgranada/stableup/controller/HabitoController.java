@@ -17,7 +17,7 @@ import es.stemgranada.stableup.entity.Habito;
 import es.stemgranada.stableup.service.HabitoService;
 
 @RestController
-@RequestMapping("api/habitos")
+@RequestMapping("api/v1/habitos")
 public class HabitoController {
     @Autowired
     HabitoService habitoService;
