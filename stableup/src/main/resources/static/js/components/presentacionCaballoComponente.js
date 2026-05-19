@@ -5,8 +5,6 @@ export function presentarCaballo(caballo) {
     const color = colorPorRareza(caballo.rareza);
 
     return `
-            <div id="tarjeta-caballo-presentacion" class="card border border-secondary-subtle rounded">
-            
             <div class="card-body p-3 mt-2">
                     <div class="mb-2" style="font-size: 5rem;">🐴</div>
                     <h5 class="card-title align-items-center mb-4">${caballo.nombre} <span class="badge rounded-pill bg-primary" style="font-size:0.75rem;">${rarezaMostrar}</span></h5>

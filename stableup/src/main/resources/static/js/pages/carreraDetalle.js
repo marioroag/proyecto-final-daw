@@ -8,6 +8,7 @@ import { crearFooter } from '../components/footerComponente.js';
 import { presentarCaballo } from '../components/presentacionCaballoComponente.js';
 import { statsCaballo } from '../components/statsCaballoComponente.js';
 import { mostrarContringantes } from '../components/contringantesComponente.js';
+import { preparacionCarrera } from '../components/preparacionCarreraComponente.js';
 
 const params = new URLSearchParams(window.location.search);
 const id = params.get('id');
@@ -56,8 +57,13 @@ async function cargarContringantes() {
     document.getElementById("lista-contringantes").innerHTML = mostrarContringantes(caballo, contringantesPagina);
 }
 
+async function cargarPreparacion() {
+    document.getElementById("preparacion-carrera").innerHTML = preparacionCarrera();
+}
+
 // Inicializa la pagina
 cargarTarjetaCaballo();
 cargarStatsCaballo();
 
 cargarContringantes();
+cargarPreparacion()

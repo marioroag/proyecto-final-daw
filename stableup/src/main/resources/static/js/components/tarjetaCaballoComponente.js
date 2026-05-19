@@ -14,7 +14,7 @@ export function tarjetaCaballo(caballo, indice) {
                     <hr/>
                     <p class="card-text">Velocidad: ${caballo.velocidad}<br>
                     Energía: ${caballo.energia}</p>
-                    <a href="carreraDetalle.html?id=${caballo.id}" id="boton-carrera-caballo" class="btn btn-dark">Ver historial</a>
+                    <a href="carreraDetalle.html?id=${caballo.id}" id="boton-carrera-caballo" class="btn btn-dark px-4">Correr</a>
                 </div>
             </div>
             <style>
