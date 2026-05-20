@@ -17,6 +17,8 @@ public interface UsuarioService {
 
     Usuario save(Usuario usuario);
 
+    Usuario editar(Long id, Usuario usuarioNuevo);
+
     void deleteById(Long id);
 
     void deleteAll();

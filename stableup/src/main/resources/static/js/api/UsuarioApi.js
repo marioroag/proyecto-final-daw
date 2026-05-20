@@ -3,6 +3,7 @@ import { fetchApi } from '../utils/apiUtils.js';
 
 export const UsuarioAPI = {
     crearUsuario: (usuario) => fetchApi('POST', `/usuarios`, usuario),
+    editarUsuario: (id, usuario) => fetchApi('PUT', `/usuarios/${id}`, usuario),
     obtenerTodos: () => fetchApi('GET', '/usuarios'),
     obtenerPorId: (id) => fetchApi('GET', `/usuarios/${id}`),
     obtenerCaballos: (id) => fetchApi('GET', `/usuarios/${id}/caballos`),

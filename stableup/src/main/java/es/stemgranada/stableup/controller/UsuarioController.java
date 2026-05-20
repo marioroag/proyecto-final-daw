@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,6 +30,11 @@ public class UsuarioController {
         return usuarioService.save(usuario);
     }
 
+    @PutMapping("/{id}")
+    public Usuario editarUsuario(@PathVariable Long id, @RequestBody Usuario usuarioNuevo) {
+        return usuarioService.editar(id, usuarioNuevo);
+    }
+
     @GetMapping("/{id}")
     public Optional<Usuario> obtenerUsuario(@PathVariable Long id) {
         return usuarioService.findById(id);
@@ -44,14 +50,14 @@ public class UsuarioController {
         return usuarioService.findCaballosById(id);
     }
 
-    @GetMapping("/{id}/habitos")
-    public List<Habito> obtenerHabitosUsuario(@PathVariable Long id) {
-        return usuarioService.findHabitosById(id);
-    }
-
     @GetMapping
     public List<Usuario> listarUsuarios() {
         return usuarioService.findAll();
+    }
+
+    @GetMapping("/{id}/habitos")
+    public List<Habito> obtenerHabitosUsuario(@PathVariable Long id) {
+        return usuarioService.findHabitosById(id);
     }
 
     @PostMapping("/{id}/habitos")

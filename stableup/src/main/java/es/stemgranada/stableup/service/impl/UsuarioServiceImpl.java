@@ -12,6 +12,7 @@ import es.stemgranada.stableup.entity.Usuario;
 import es.stemgranada.stableup.repository.HabitoRepository;
 import es.stemgranada.stableup.repository.UsuarioRepository;
 import es.stemgranada.stableup.service.UsuarioService;
+import jakarta.transaction.Transactional;
 
 @Service
 public class UsuarioServiceImpl implements UsuarioService {
@@ -34,6 +35,15 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public Usuario save(Usuario usuario) {
+        return usuarioRepository.save(usuario);
+    }
+
+    @Transactional
+    @Override
+    public Usuario editar(Long id, Usuario usuarioNuevo) {
+        Usuario usuario = usuarioRepository.findById(id).orElseThrow();
+        usuario.setUsername(usuarioNuevo.getUsername());
+        usuario.setEmail(usuarioNuevo.getEmail());
         return usuarioRepository.save(usuario);
     }
 
