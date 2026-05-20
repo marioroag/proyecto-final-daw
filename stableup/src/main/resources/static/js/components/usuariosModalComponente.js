@@ -11,15 +11,15 @@ async function cargarUsuariosModal() {
         const enlace = document.createElement("div");
         enlace.classList.add("btn", "btn-outline-secondary", "text-start");
         enlace.innerHTML = `
-        <div class="d-flex justify-content-between">
-            <a href="usuarioDetalle.html?id=${usuario.id}" style="text-decoration: none">
-                <strong>${usuario.username}</strong>
+        <div class="d-flex justify-content-between" style="height: 35px">
+            <a class="d-flex" style="line-height: 35px; text-decoration: none" href="usuarioDetalle.html?id=${usuario.id}" style="text-decoration: none">
+                <p class="text-dark fw-semibold">${usuario.username}</p>
                 <span class="text-muted ms-2">Nivel ${Math.trunc(usuario.nivel)}</span>
             </a>
 
             <div>
-                <button class="boton-editar-usuario btn btn-warning" data-id-usuario="${usuario.id}" data-bs-toggle="modal" data-bs-target="#modalEditar"><i class="bi bi-pencil-square"></i></button>
-                <button class="boton-eliminar-usuario btn btn-danger" data-id-usuario="${usuario.id}"><i class="bi bi-x-square"></i></button>
+                <button class="boton-editar-usuario btn btn-warning btn-sm" data-id-usuario="${usuario.id}" data-bs-toggle="modal" data-bs-target="#modalEditar"><i class="bi bi-pencil-square"></i></button>
+                <button class="boton-eliminar-usuario btn btn-danger btn-sm" data-id-usuario="${usuario.id}"><i class="bi bi-x-square"></i></button>
             </div>
             
         </div>
@@ -29,6 +29,7 @@ async function cargarUsuariosModal() {
     });
 
     botonEliminar();
+    prepararEditarUsuario();
 }
 
 async function botonEliminar() {
@@ -45,12 +46,10 @@ async function botonEliminar() {
     })
 }
 
-function botonCrearUsuario() {
+function formularioCrearUsuario() {
     document.getElementById("formulario-crear-usuario").addEventListener("submit", async function (e) {
 
         e.preventDefault();
-        // Resetea mensaje de error
-        document.getElementById("mensaje-error-crear").innerHTML = ""
 
         const nombreUsuario = document.getElementById("nombre-crear-usuario").value;
         const emailUsuario = document.getElementById("email-crear-usuario").value;
@@ -71,7 +70,7 @@ function botonCrearUsuario() {
             await cargarUsuariosModal();
 
         } else {
-            document.getElementById("mensaje-error-crear").innerHTML = alertaErrorFormulario();
+            document.getElementById("mensaje-error-crear").innerHTML = alertaErrorFormulario("Nombre o email inválidos");
         }
     })
 }
@@ -91,7 +90,7 @@ async function prepararModalUsuario(nombreBoton) {
 
                     <div class="modal-body">
                         <form id="formulario-${nombreBoton}-usuario">
-                        <div id="mensaje-error-crear"></div>
+                        <div id="mensaje-error-${nombreBoton}"></div>
                         <div class="mb-3">
                                 <label class="form-label">Nombre</label>
                                 <input id="nombre-${nombreBoton}-usuario" type="text" maxlength="20" class="form-control" placeholder="Pepe">
@@ -118,6 +117,9 @@ function prepararEditarUsuario() {
     document.querySelectorAll(".boton-editar-usuario").forEach(function (boton) {
         boton.addEventListener("click", async function () {
 
+            // Resetea mensaje de error
+            document.getElementById("mensaje-error-editar").innerHTML = ""
+
             const idUsuario = boton.dataset.idUsuario;
 
             // Aplica los datos actuales del usuario
@@ -125,18 +127,17 @@ function prepararEditarUsuario() {
 
             document.getElementById("nombre-editar-usuario").value = usuario.username;
             document.getElementById("email-editar-usuario").value = usuario.email;
+            document.getElementById("formulario-editar-usuario").dataset.idUsuario = idUsuario;
 
-            formularioEditarUsuario(idUsuario)
+            formularioEditarUsuario()
         });
     });
 }
 
-function formularioEditarUsuario(id) {
+function formularioEditarUsuario() {
     document.getElementById("formulario-editar-usuario").addEventListener("submit", async function (e) {
-
+        const id = this.dataset.idUsuario;
         e.preventDefault();
-        // Resetea mensaje de error
-        document.getElementById("mensaje-error-crear").innerHTML = ""
 
         const nombreUsuario = document.getElementById("nombre-editar-usuario").value;
         const emailUsuario = document.getElementById("email-editar-usuario").value;
@@ -157,7 +158,7 @@ function formularioEditarUsuario(id) {
             await cargarUsuariosModal();
 
         } else {
-            document.getElementById("mensaje-error-crear").innerHTML = alertaErrorFormulario();
+            document.getElementById("mensaje-error-editar").innerHTML = alertaErrorFormulario("Nombre o email inválidos");
         }
     })
 }
@@ -167,6 +168,6 @@ await cargarUsuariosModal();
 prepararModalUsuario("crear");
 prepararModalUsuario("editar");
 
-botonCrearUsuario();
+formularioCrearUsuario();
 
 prepararEditarUsuario();

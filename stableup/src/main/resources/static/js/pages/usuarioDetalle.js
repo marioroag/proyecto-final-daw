@@ -155,7 +155,7 @@ function botonGuardarHabito() {
             // Recarga
             cargarHabitosUsuario(idHabito);
         } else {
-            document.getElementById("mensaje-error-editar").innerHTML = alertaErrorFormulario();
+            document.getElementById("mensaje-error-editar").innerHTML = alertaErrorFormulario("Nombre o tipo inválidos");
         }
     });
 }
@@ -187,7 +187,7 @@ function botonCrearHabito() {
             cargarDatosUsuario();
             cargarHabitosUsuario();
         } else {
-            document.getElementById("mensaje-error-crear").innerHTML = alertaErrorFormulario();
+            document.getElementById("mensaje-error-crear").innerHTML = alertaErrorFormulario("Nombre o tipo inválidos");
         }
     });
 }
