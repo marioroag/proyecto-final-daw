@@ -11,13 +11,13 @@ async function cargarUsuariosModal() {
         const enlace = document.createElement("div");
         enlace.classList.add("btn", "btn-outline-secondary", "text-start");
         enlace.innerHTML = `
-        <div class="d-flex justify-content-between" style="height: 35px">
-            <a class="d-flex" style="line-height: 35px; text-decoration: none" href="usuarioDetalle.html?id=${usuario.id}" style="text-decoration: none">
+        <div class="d-flex justify-content-between" style="height: 30px">
+            <a class="d-flex" style="line-height: 30px; text-decoration: none" href="usuarioDetalle.html?id=${usuario.id}" style="text-decoration: none">
                 <p class="text-dark fw-semibold">${usuario.username}</p>
                 <span class="text-muted ms-2">Nivel ${Math.trunc(usuario.nivel)}</span>
             </a>
 
-            <div>
+            <div class="align-items-center">
                 <button class="boton-editar-usuario btn btn-warning btn-sm" data-id-usuario="${usuario.id}" data-bs-toggle="modal" data-bs-target="#modalEditar"><i class="bi bi-pencil-square"></i></button>
                 <button class="boton-eliminar-usuario btn btn-danger btn-sm" data-id-usuario="${usuario.id}"><i class="bi bi-x-square"></i></button>
             </div>
