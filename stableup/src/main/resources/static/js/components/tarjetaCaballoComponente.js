@@ -17,6 +17,7 @@ export function tarjetaCaballo(caballo, indice) {
                     <a href="carreraDetalle.html?id=${caballo.id}" id="boton-carrera-caballo" class="btn btn-dark px-4">Correr</a>
                 </div>
             </div>
+            
             <style>
                 #tarjeta-caballo-${indice} {
                     background-image: linear-gradient(to top, ${color}, white);
