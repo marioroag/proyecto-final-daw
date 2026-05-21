@@ -16,7 +16,7 @@ const id = params.get('id');
 
 const caballos = await CaballoAPI.obtenerContrincantes(id);
 
-const numCaballos = caballos.length
+const numCaballos = caballos.length;
 
 const TAMANIO_PAGINA = 8;
 let inicio = 0;

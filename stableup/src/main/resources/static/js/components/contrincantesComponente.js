@@ -16,12 +16,10 @@ export function mostrarContrincantes(caballos, numContrincantesMostrar, caballos
             <div class="d-flex flex-wrap justify-content-center gap-5 p-2 mt-4 mb-3">
                 ${contenidoCaballos}
             </div>
-        `;
-        seccionContrincantes += `
-        <div class="mb-4 d-flex justify-content-center gap-4">
-            <button id="volver-pagina" class="btn btn-dark"><i class="bi bi-arrow-left"></i></button>
-            <button id="pasar-pagina" class="btn btn-dark"><i class="bi bi-arrow-right"></i></button>
-        </div>
+            <div class="mb-4 d-flex justify-content-center gap-4">
+                <button id="volver-pagina" class="btn btn-dark"><i class="bi bi-arrow-left"></i></button>
+                <button id="pasar-pagina" class="btn btn-dark"><i class="bi bi-arrow-right"></i></button>
+            </div>
         `
     } else {
         seccionContrincantes = `

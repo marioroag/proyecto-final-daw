@@ -43,7 +43,7 @@ public class CaballoController {
         return caballoService.generarCaballoAleatorioAsignado(usuarioId);
     }
 
-    @GetMapping("/contrincantes/{usuarioId}")
+    @GetMapping("/{id}/contrincantes")
     public List<Caballo> obtenerContrincantes(@PathVariable Long id) {
         return caballoService.findContrincantesByCaballoId(id);
     }
