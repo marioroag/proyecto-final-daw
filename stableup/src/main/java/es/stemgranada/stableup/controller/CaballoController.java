@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import es.stemgranada.stableup.entity.Caballo;
+import es.stemgranada.stableup.entity.ParticipacionCarrera;
 import es.stemgranada.stableup.service.CaballoService;
 
 @RestController
@@ -24,6 +25,11 @@ public class CaballoController {
     @GetMapping("/{id}")
     public Optional<Caballo> obtenerCaballo(@PathVariable Long id) {
         return caballoService.findById(id);
+    }
+
+    @GetMapping("/{id}/participaciones")
+    public List<ParticipacionCarrera> obtenerParticipaciones(@PathVariable Long id) {
+        return caballoService.findParticipacionesById(id);
     }
 
     @GetMapping

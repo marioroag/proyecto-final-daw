@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import es.stemgranada.stableup.entity.Caballo;
+import es.stemgranada.stableup.entity.ParticipacionCarrera;
 import es.stemgranada.stableup.entity.Usuario;
 import es.stemgranada.stableup.repository.CaballoRepository;
+import es.stemgranada.stableup.repository.ParticipacionCarreraRepository;
 import es.stemgranada.stableup.repository.UsuarioRepository;
 import es.stemgranada.stableup.service.CaballoService;
 import jakarta.transaction.Transactional;
@@ -63,5 +65,11 @@ public class CaballoServiceImpl implements CaballoService {
         }
 
         return resultado;
+    }
+
+    @Override
+    public List<ParticipacionCarrera> findParticipacionesById(Long caballoId) {
+        return caballoRepository.findById(caballoId).get().getParticipaciones();
+
     }
 }

@@ -10,7 +10,7 @@ export function presentarCaballo(caballo) {
                     <h5 class="card-title align-items-center mb-4">${caballo.nombre} <span class="badge rounded-pill bg-primary" style="font-size:0.75rem;">${rarezaMostrar}</span></h5>
                     <hr/>
                     <p class="card-text text-muted mt-4">Descripcion generica del caballo</p>
-                    <a href="#" id="boton-historial-caballo" class="btn btn-dark mt-4 mb-4">Ver historial</a>
+                    <button id="boton-historial-caballo" class="btn btn-dark mt-4 mb-4" data-bs-toggle="modal" data-bs-target="#modalScrolleable">Ver historial</button>
                 </div>
                 </div>
             <style>

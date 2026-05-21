@@ -9,6 +9,7 @@ import { presentarCaballo } from '../components/presentacionCaballoComponente.js
 import { statsCaballo } from '../components/statsCaballoComponente.js';
 import { mostrarContringantes } from '../components/contringantesComponente.js';
 import { preparacionCarrera } from '../components/preparacionCarreraComponente.js';
+import { modalScrolleableComponente } from '../components/modalScrolleableComponente.js';
 
 const params = new URLSearchParams(window.location.search);
 const id = params.get('id');
@@ -91,6 +92,38 @@ async function cargarPreparacion() {
     document.getElementById("preparacion-carrera").innerHTML = preparacionCarrera();
 }
 
+function cargarModalScrolleable() {
+    document.getElementById("contenedorModalHistorialCaballo").innerHTML = modalScrolleableComponente();
+}
+
+
+async function cargarParticipacionesModal() {
+    cargarModalScrolleable();
+
+    const participacionesCaballo = CaballoAPI.obtenerParticipaciones(id);
+
+    const contenedor = document.getElementById("contenedorModalHistorialCaballo");
+    contenedor.innerHTML = "";
+
+    participacionesCaballo.forEach(participacion => {
+        const listaParticipaciones = document.createElement("div");
+        listaParticipaciones.classList.add("text-start", "border");
+        listaParticipaciones.innerHTML = `
+        <div class="d-flex justify-content-between" style="height: 30px">
+        
+            <p class="d-flex" style="line-height: 30px; text-decoration: none">
+                <p class="text-dark fw-semibold">${participacion.posicion}</p>
+                <span class="text-muted ms-2">Tiempo: ${participacion.tiempoFinal}</span>
+                <span class="text-muted ms-2">Recompensa: ${participacion.recompensa}</span>
+            </p>
+            
+        </div>
+            `;
+
+        contenedor.appendChild(listaParticipaciones);
+    });
+}
+
 // Inicializa la pagina
 cargarTarjetaCaballo();
 cargarStatsCaballo();
@@ -98,3 +131,5 @@ cargarStatsCaballo();
 await cargarContringantes();
 engancharBotonesPaginacion();
 cargarPreparacion();
+
+cargarParticipacionesModal();
