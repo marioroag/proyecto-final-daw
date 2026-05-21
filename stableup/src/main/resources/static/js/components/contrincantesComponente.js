@@ -23,19 +23,13 @@ export function mostrarContrincantes(caballos, numContrincantesMostrar, caballos
         `
     } else {
         seccionContrincantes = `
-            <div class="w-75">
-                <div class="card">
+                <div class="p-5">
                     <div style="font-size: 5rem;">🐴</div>
 
                     <div class="card-body">
-                        <h5 class="card-title">Aún no hay caballos contra los que competir</h5>
-                        <p class="card-text text-muted">
-                            Consigue tu primer caballo para empezar a competir.
-                        </p>
-                        <a href="#" class="btn btn-dark">Ir a la cuadra</a>
+                        <h5 class="card-title mb-5">No hay caballos disponibles con los que competir</h5>
                     </div>
                 </div>
-            </div>
         `;
     }
 

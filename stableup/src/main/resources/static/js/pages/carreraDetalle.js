@@ -67,7 +67,9 @@ async function cargarContrincantes() {
 
     document.getElementById("lista-contrincantes").innerHTML = mostrarContrincantes(caballosPagina, caballosPagina.length);
 
-    engancharBotonesPaginacion();
+    if (caballos.length > 0) {
+        engancharBotonesPaginacion();
+    }
 }
 
 function pasarPagina() {
@@ -115,7 +117,6 @@ cargarTarjetaCaballo();
 cargarStatsCaballo();
 
 await cargarContrincantes();
-engancharBotonesPaginacion();
-cargarPreparacion();
 
+cargarPreparacion();
 cargarParticipacionesModal();
