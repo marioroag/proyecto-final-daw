@@ -7,10 +7,11 @@ async function cargarUsuariosModal() {
     const contenedor = document.getElementById("lista-usuarios-login");
     contenedor.innerHTML = "";
 
-    usuarios.forEach(usuario => {
-        const enlace = document.createElement("div");
-        enlace.classList.add("btn", "text-start", "border");
-        enlace.innerHTML = `
+    if (usuarios.length > 0) {
+        usuarios.forEach(usuario => {
+            const enlace = document.createElement("div");
+            enlace.classList.add("btn", "text-start", "border");
+            enlace.innerHTML = `
         <div class="d-flex justify-content-between" style="height: 30px">
         
             <a class="d-flex btn-outline-secondary" style="line-height: 30px; text-decoration: none" href="usuarioDetalle.html?id=${usuario.id}" style="text-decoration: none">
@@ -26,8 +27,19 @@ async function cargarUsuariosModal() {
         </div>
             `;
 
-        contenedor.appendChild(enlace);
-    });
+            contenedor.appendChild(enlace);
+        });
+    } else {
+        const mensajeNoUsuarios = document.createElement("div");
+
+        mensajeNoUsuarios.innerHTML = `
+        <div>
+            <p>Todavía no hay usuarios registrados.</p>
+        </div>
+        `
+
+        contenedor.appendChild(mensajeNoUsuarios);
+    }
 
     botonEliminar();
     prepararEditarUsuario();
@@ -38,8 +50,6 @@ async function botonEliminar() {
         boton.addEventListener("click", async function () {
 
             const idUsuario = boton.dataset.idUsuario;
-
-            console.log(idUsuario);
 
             await UsuarioAPI.eliminarPorId(idUsuario);
             await cargarUsuariosModal();
