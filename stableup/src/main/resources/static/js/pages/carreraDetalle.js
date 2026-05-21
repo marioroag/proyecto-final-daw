@@ -92,36 +92,21 @@ async function cargarPreparacion() {
     document.getElementById("preparacion-carrera").innerHTML = preparacionCarrera();
 }
 
-function cargarModalScrolleable() {
-    document.getElementById("contenedorModalHistorialCaballo").innerHTML = modalScrolleableComponente();
-}
-
-
 async function cargarParticipacionesModal() {
-    cargarModalScrolleable();
+    const participaciones = await CaballoAPI.obtenerParticipaciones(id);
+    let filas = "";
 
-    const participacionesCaballo = CaballoAPI.obtenerParticipaciones(id);
-
-    const contenedor = document.getElementById("contenedorModalHistorialCaballo");
-    contenedor.innerHTML = "";
-
-    participacionesCaballo.forEach(participacion => {
-        const listaParticipaciones = document.createElement("div");
-        listaParticipaciones.classList.add("text-start", "border");
-        listaParticipaciones.innerHTML = `
-        <div class="d-flex justify-content-between" style="height: 30px">
-        
-            <p class="d-flex" style="line-height: 30px; text-decoration: none">
-                <p class="text-dark fw-semibold">${participacion.posicion}</p>
-                <span class="text-muted ms-2">Tiempo: ${participacion.tiempoFinal}</span>
-                <span class="text-muted ms-2">Recompensa: ${participacion.recompensa}</span>
-            </p>
-            
-        </div>
-            `;
-
-        contenedor.appendChild(listaParticipaciones);
+    participaciones.forEach(participacion => {
+        filas += `
+            <div class="d-flex justify-content-between border p-2 mb-1">
+                <span class="text-dark fw-semibold">Posición: ${participacion.posicion}</span>
+                <span class="text-muted">Tiempo: ${participacion.tiempoFinal}</span>
+                <span class="text-muted">Recompensa: ${participacion.recompensa}</span>
+            </div>
+        `;
     });
+
+    document.getElementById("contenedorModalHistorialCaballo").innerHTML = modalScrolleableComponente(filas, "Historial");
 }
 
 // Inicializa la pagina
