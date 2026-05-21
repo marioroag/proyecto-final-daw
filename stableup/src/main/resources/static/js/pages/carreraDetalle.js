@@ -14,9 +14,9 @@ import { modalScrolleableComponente } from '../components/modalScrolleableCompon
 const params = new URLSearchParams(window.location.search);
 const id = params.get('id');
 
-const caballos = await CaballoAPI.obtenerContrincantes(id);
+const caballosContrincantes = await CaballoAPI.obtenerContrincantes(id);
 
-const numCaballos = caballos.length;
+const numCaballos = caballosContrincantes.length;
 
 const TAMANIO_PAGINA = 8;
 let inicio = 0;
@@ -63,11 +63,11 @@ async function cargarContrincantes() {
     if (fin > numCaballos) {
         fin = numCaballos;
     }
-    const caballosPagina = caballos.slice(inicio, fin);
+    const caballosPagina = caballosContrincantes.slice(inicio, fin);
 
     document.getElementById("lista-contrincantes").innerHTML = mostrarContrincantes(caballosPagina, caballosPagina.length);
 
-    if (caballos.length > 0) {
+    if (caballosContrincantes.length > 0) {
         engancharBotonesPaginacion();
     }
 }
