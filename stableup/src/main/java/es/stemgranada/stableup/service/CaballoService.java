@@ -21,4 +21,6 @@ public interface CaballoService {
     void deleteAll();
 
     Optional<Caballo> generarCaballoAleatorioAsignado(Long usuarioId);
+
+    List<Caballo> findContrincantesParaUsuario(Long usuarioId);
 }

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import es.stemgranada.stableup.entity.Caballo;
@@ -40,5 +41,10 @@ public class CaballoController {
     @PostMapping("/usuario/{usuarioId}")
     public Optional<Caballo> generarParaUsuario(@PathVariable Long usuarioId) {
         return caballoService.generarCaballoAleatorioAsignado(usuarioId);
+    }
+
+    @GetMapping("/contrincantes/{usuarioId}")
+    public List<Caballo> obtenerContrincantes(@PathVariable Long usuarioId) {
+        return caballoService.findContrincantesParaUsuario(usuarioId);
     }
 }

@@ -1,6 +1,6 @@
 import { colorPorRareza } from '../utils/formatos.js';
 
-export function tarjetaContringante(caballo, indice) {
+export function tarjetaContrincante(caballo, indice) {
     const rarezaMostrar = caballo.rareza.replace("_", " ");
     const color = colorPorRareza(caballo.rareza);
 
@@ -17,6 +17,7 @@ export function tarjetaContringante(caballo, indice) {
                     <a href="#" class="btn btn-dark">Seleccionar</a>
                 </div>
             </div>
+
             <style>
                 #tarjeta-caballo-${indice} {
                     background-image: linear-gradient(to top, ${color}, white);

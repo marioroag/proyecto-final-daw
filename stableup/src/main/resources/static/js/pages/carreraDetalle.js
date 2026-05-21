@@ -7,7 +7,7 @@ import { crearFooter } from '../components/footerComponente.js';
 
 import { presentarCaballo } from '../components/presentacionCaballoComponente.js';
 import { statsCaballo } from '../components/statsCaballoComponente.js';
-import { mostrarContringantes } from '../components/contringantesComponente.js';
+import { mostrarContrincantes } from '../components/contrincantesComponente.js';
 import { preparacionCarrera } from '../components/preparacionCarreraComponente.js';
 import { modalScrolleableComponente } from '../components/modalScrolleableComponente.js';
 
@@ -56,7 +56,7 @@ async function cargarStatsCaballo() {
     document.getElementById("stats-caballo").innerHTML = statsCaballo(caballo, id);
 }
 
-async function cargarContringantes() {
+async function cargarContrincantes() {
     let fin = inicio + TAMANIO_PAGINA;
 
     if (fin > numCaballos) {
@@ -64,7 +64,7 @@ async function cargarContringantes() {
     }
     const caballosPagina = caballos.slice(inicio, fin);
 
-    document.getElementById("lista-contringantes").innerHTML = mostrarContringantes(caballosPagina, caballosPagina.length);
+    document.getElementById("lista-contrincantes").innerHTML = mostrarContrincantes(caballosPagina, caballosPagina.length);
 
     engancharBotonesPaginacion();
 }
@@ -72,14 +72,14 @@ async function cargarContringantes() {
 function pasarPagina() {
     if (inicio + TAMANIO_PAGINA < numCaballos) {
         inicio += TAMANIO_PAGINA;
-        cargarContringantes();
+        cargarContrincantes();
     }
 }
 
 function volverPagina() {
     if (inicio > 0) {
         inicio -= TAMANIO_PAGINA;
-        cargarContringantes();
+        cargarContrincantes();
     }
 }
 
@@ -113,7 +113,7 @@ async function cargarParticipacionesModal() {
 cargarTarjetaCaballo();
 cargarStatsCaballo();
 
-await cargarContringantes();
+await cargarContrincantes();
 engancharBotonesPaginacion();
 cargarPreparacion();
 

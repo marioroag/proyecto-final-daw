@@ -72,4 +72,9 @@ public class CaballoServiceImpl implements CaballoService {
         return caballoRepository.findById(caballoId).get().getParticipaciones();
 
     }
+
+    @Override
+    public List<Caballo> findContrincantesParaUsuario(Long usuarioId) {
+        return caballoRepository.findByUsuarioIdNot(usuarioId);
+    }
 }

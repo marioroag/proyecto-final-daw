@@ -12,4 +12,6 @@ import es.stemgranada.stableup.entity.ParticipacionCarrera;
 public interface CaballoRepository extends JpaRepository<Caballo, Long> {
     List<ParticipacionCarrera> findParticipacionesById(Long caballoId);
 
+    List<Caballo> findByUsuarioIdNot(Long usuarioId);
+
 }

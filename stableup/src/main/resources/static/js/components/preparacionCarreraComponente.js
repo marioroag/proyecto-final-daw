@@ -1,6 +1,6 @@
 export function preparacionCarrera() {
 
-    let contringantes = "" // funcion tarjetaSeleccionados
+    let contrincantes = "" // funcion tarjetaSeleccionados
     let porcentajeExito = ""
     let recompensaCarrera = ""
 
@@ -11,7 +11,7 @@ export function preparacionCarrera() {
                         <p>${porcentajeExito}</p>
                         <p>Posibilidad éxito</p>
                     </div>
-                    <div class="col-8 bg-light mt-3">${contringantes}</div>
+                    <div class="col-8 bg-light mt-3">${contrincantes}</div>
                 </div>
                 <hr>
                 <p class="fs-5 text-center">Recompensa: ${recompensaCarrera} 🪙</p>
