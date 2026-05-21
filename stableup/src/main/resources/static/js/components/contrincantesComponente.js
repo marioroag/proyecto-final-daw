@@ -6,10 +6,8 @@ export function mostrarContrincantes(caballos, numContrincantesMostrar, caballos
 
     if (caballos.length > 0) {
         for (let i = 0; i < numContrincantesMostrar; i++) {
-            // if (caballos[i].) {
             contenidoCaballos += tarjetaContrincante(caballos[i], i);
 
-            // }
         }
 
         seccionContrincantes = `
