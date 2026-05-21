@@ -76,6 +76,11 @@ public class Carrera {
         this.participaciones = participaciones;
     }
 
+    public void addParticipacion(ParticipacionCarrera p) {
+        participaciones.add(p);
+        p.setCarrera(this);
+    }
+
     public int getRecompensaBase() {
         return recompensaBase;
     }
