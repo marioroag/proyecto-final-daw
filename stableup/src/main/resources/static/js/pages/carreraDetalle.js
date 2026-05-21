@@ -14,7 +14,8 @@ import { modalScrolleableComponente } from '../components/modalScrolleableCompon
 const params = new URLSearchParams(window.location.search);
 const id = params.get('id');
 
-const caballos = await CaballoAPI.obtenerTodos();
+const caballos = await CaballoAPI.obtenerContrincantes(id);
+
 const numCaballos = caballos.length
 
 const TAMANIO_PAGINA = 8;

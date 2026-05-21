@@ -44,7 +44,7 @@ public class CaballoController {
     }
 
     @GetMapping("/contrincantes/{usuarioId}")
-    public List<Caballo> obtenerContrincantes(@PathVariable Long usuarioId) {
-        return caballoService.findContrincantesParaUsuario(usuarioId);
+    public List<Caballo> obtenerContrincantes(@PathVariable Long id) {
+        return caballoService.findContrincantesByCaballoId(id);
     }
 }

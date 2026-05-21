@@ -22,5 +22,5 @@ public interface CaballoService {
 
     Optional<Caballo> generarCaballoAleatorioAsignado(Long usuarioId);
 
-    List<Caballo> findContrincantesParaUsuario(Long usuarioId);
+    List<Caballo> findContrincantesByCaballoId(Long usuarioId);
 }
