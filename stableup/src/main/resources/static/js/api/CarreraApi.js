@@ -3,5 +3,6 @@ import { fetchApi } from '../utils/apiUtils.js';
 
 export const CarreraAPI = {
     obtenerTodos: () => fetchApi('GET', '/carreras'),
-    obtenerPorId: (id) => fetchApi('GET', `/carreras/${id}`)
+    obtenerPorId: (id) => fetchApi('GET', `/carreras/${id}`),
+    iniciar: (idCaballoPropio, idsContrincantes) => fetchApi('POST', `/carreras/iniciar/${idCaballoPropio}`, idsContrincantes)
 };

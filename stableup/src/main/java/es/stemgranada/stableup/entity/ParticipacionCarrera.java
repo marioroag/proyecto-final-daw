@@ -14,7 +14,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "participacion_carrera")
-@JsonPropertyOrder({ "id", "posicion", "tiempoFinal", "recompensa" })
+@JsonPropertyOrder({ "id", "idCaballo", "posicion", "tiempoFinal", "recompensa" })
 public class ParticipacionCarrera {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -80,6 +80,14 @@ public class ParticipacionCarrera {
 
     public void setCarrera(Carrera carrera) {
         this.carrera = carrera;
+    }
+
+    public Long getIdCaballo() {
+        Long resultado = null;
+        if (caballo != null) {
+            resultado = caballo.getId();
+        }
+        return resultado;
     }
 
     public double getTiempoFinal() {

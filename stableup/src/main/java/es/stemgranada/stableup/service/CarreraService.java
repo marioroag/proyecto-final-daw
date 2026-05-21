@@ -16,4 +16,6 @@ public interface CarreraService {
     void deleteById(Long id);
 
     void deleteAll();
+
+    Carrera iniciarCarrera(Long idCaballoPropio, List<Long> idsContrincantes);
 }
