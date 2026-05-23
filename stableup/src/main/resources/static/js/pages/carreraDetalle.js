@@ -1,6 +1,7 @@
 import { UsuarioAPI } from '../api/UsuarioApi.js';
 import { CaballoAPI } from '../api/CaballoApi.js';
 import { HabitoAPI } from '../api/HabitoApi.js';
+import { CarreraAPI } from '../api/CarreraApi.js';
 
 import { crearBarraNavegacion } from '../components/navbarComponente.js';
 import { crearFooter } from '../components/footerComponente.js';
@@ -15,6 +16,8 @@ const params = new URLSearchParams(window.location.search);
 const id = params.get('id');
 
 const caballosContrincantes = await CaballoAPI.obtenerContrincantes(id);
+const caballoPropio = await CaballoAPI.obtenerPorId(id);
+let contrincantesSeleccionados = [];
 
 const numCaballos = caballosContrincantes.length;
 
@@ -69,6 +72,7 @@ async function cargarContrincantes() {
 
     if (caballosContrincantes.length > 0) {
         engancharBotonesPaginacion();
+        engancharBotonesSeleccionar();
     }
 }
 
@@ -91,8 +95,141 @@ function engancharBotonesPaginacion() {
     document.getElementById("volver-pagina").addEventListener("click", volverPagina);
 }
 
-async function cargarPreparacion() {
-    document.getElementById("preparacion-carrera").innerHTML = preparacionCarrera();
+function actualizarPreparacionCarrera() {
+    const posibilidadExito = calcularPosibilidadExito(caballoPropio, contrincantesSeleccionados);
+    const recompensa = calcularRecompensa(posibilidadExito);
+
+    document.getElementById("preparacion-carrera").innerHTML = preparacionCarrera(contrincantesSeleccionados, posibilidadExito, recompensa);
+
+    engancharBotonesQuitar();
+    engancharBotonIniciar();
+}
+
+function calcularPosibilidadExito(caballoPropio, contrincantes) {
+    let resultado = 0;
+
+    if (contrincantes.length > 0) {
+        let sumaStatsRivales = 0;
+
+        contrincantes.forEach(function (caballo) {
+            sumaStatsRivales += caballo.velocidad + caballo.energia;
+        });
+
+        const mediaStatsRivales = sumaStatsRivales / contrincantes.length;
+        const statsCaballoPropio = caballoPropio.velocidad + caballoPropio.energia;
+
+        resultado = Math.round((statsCaballoPropio / (statsCaballoPropio + mediaStatsRivales)) * 100);
+    }
+
+    return resultado;
+}
+
+function calcularRecompensa(posibilidadExito) {
+    const recompensaMinima = 50;
+    const recompensaMaxima = 500;
+    const posibilidadFracaso = (100 - posibilidadExito) / 100;
+    const resultado = Math.round(recompensaMinima + (recompensaMaxima - recompensaMinima) * posibilidadFracaso);
+
+    return resultado;
+}
+
+function seleccionarContrincante(idCaballoSeleccionar) {
+    if (contrincantesSeleccionados.length < 4) {
+        let seleccionado = false;
+
+        // Comprueba si ya esta seleccionado
+        contrincantesSeleccionados.forEach(function (caballoSeleccionado) {
+            if (caballoSeleccionado.id == idCaballoSeleccionar) {
+                seleccionado = true;
+            }
+        });
+
+        if (!seleccionado) {
+            let caballoEncontrado = null;
+            // Busca el caballo en el array que ya tenemos
+            caballosContrincantes.forEach(function (caballo) {
+                if (caballo.id == idCaballoSeleccionar) {
+                    caballoEncontrado = caballo;
+                }
+            });
+
+            contrincantesSeleccionados.push(caballoEncontrado);
+            actualizarPreparacionCarrera();
+        }
+    }
+}
+
+function quitarContrincante(idCaballo) {
+    const nuevosContrincantes = [];
+    contrincantesSeleccionados.forEach(function (caballo) {
+        if (caballo.id != idCaballo) {
+            nuevosContrincantes.push(caballo);
+        }
+    });
+
+    contrincantesSeleccionados = nuevosContrincantes;
+    actualizarPreparacionCarrera();
+}
+
+function engancharBotonesSeleccionar() {
+    document.querySelectorAll(".boton-seleccionar-contrincante").forEach(function (boton) {
+        boton.addEventListener("click", function () {
+            const idCaballo = boton.dataset.idCaballo;
+            seleccionarContrincante(idCaballo);
+        });
+    });
+}
+
+function engancharBotonesQuitar() {
+    document.querySelectorAll(".boton-quitar-contrincante").forEach(function (boton) {
+        boton.addEventListener("click", function () {
+            const idCaballo = boton.dataset.idCaballo;
+            quitarContrincante(idCaballo);
+        });
+    });
+}
+
+function engancharBotonIniciar() {
+    const botonIniciar = document.getElementById("boton-iniciar-carrera");
+
+    // Esta el boton?
+    if (!(botonIniciar == null)) {
+        botonIniciar.addEventListener("click", async function () {
+
+            // Hay 4 contrincantes seleccionados?
+            if (contrincantesSeleccionados.length == 4) {
+                const idsContrincantes = [];
+
+                contrincantesSeleccionados.forEach(function (caballo) {
+                    idsContrincantes.push(caballo.id);
+                });
+
+                const carreraResultado = await CarreraAPI.iniciar(id, idsContrincantes);
+
+                // Busca su participacion
+                let participacionPropia = null;
+                carreraResultado.participaciones.forEach(function (participacion) {
+                    if (participacion.idCaballo == id) {
+                        participacionPropia = participacion;
+                    }
+                });
+
+                let mensaje = "";
+
+                if (participacionPropia.posicion === 1) {
+                    mensaje = `Posicion: ${participacionPropia.posicion}\nTiempo: ${participacionPropia.tiempoFinal}s\nRecompensa: ${participacionPropia.recompensa} 🪙`;
+                } else {
+                    mensaje = `Posicion: ${participacionPropia.posicion}\nTiempo: ${participacionPropia.tiempoFinal}s\nRecompensa: ${participacionPropia.recompensa} 🪙`;
+                }
+                alert(mensaje);
+
+                cargarParticipacionesModal()
+                console.log("AAAA");
+                contrincantesSeleccionados = [];
+                actualizarPreparacionCarrera();
+            };
+        })
+    }
 }
 
 async function cargarParticipacionesModal() {
@@ -101,7 +238,7 @@ async function cargarParticipacionesModal() {
 
     participaciones.forEach(participacion => {
         filas += `
-            <div class="d-flex justify-content-between border p-2 mb-1">
+            <div class="d-flex justify-content-between border rounded p-2 mb-2">
                 <span class="text-dark fw-semibold">Posición: ${participacion.posicion}</span>
                 <span class="text-muted">Tiempo: ${participacion.tiempoFinal}</span>
                 <span class="text-muted">Recompensa: ${participacion.recompensa}</span>
@@ -118,5 +255,5 @@ cargarStatsCaballo();
 
 await cargarContrincantes();
 
-cargarPreparacion();
+actualizarPreparacionCarrera()
 cargarParticipacionesModal();

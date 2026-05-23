@@ -14,7 +14,7 @@ export function tarjetaContrincante(caballo, indice) {
                     <hr/>
                     <p class="card-text text-muted">Velocidad: ${caballo.velocidad}<br>
                     Energía: ${caballo.energia}</p>
-                    <a href="#" class="btn btn-dark">Seleccionar</a>
+                    <button class="boton-seleccionar-contrincante btn btn-dark" data-id-caballo="${caballo.id}">Seleccionar</button>
                 </div>
             </div>
 

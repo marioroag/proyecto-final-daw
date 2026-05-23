@@ -78,9 +78,7 @@ function prepararCompletarHabito() {
     // Recorre botones de editar (hay uno por habito)
     document.querySelectorAll(".boton-completar-habito").forEach(function (boton) {
         boton.addEventListener("click", async function () {
-
             const idHabito = boton.dataset.idHabito;
-
             await HabitoAPI.completar(idHabito);
 
             cargarHabitosUsuario(idHabito);
@@ -95,12 +93,10 @@ function prepararEditarHabito() {
     // Recorre botones de editar (hay uno por habito)
     document.querySelectorAll(".boton-editar-habito").forEach(function (boton) {
         boton.addEventListener("click", async function () {
-
             const idHabito = boton.dataset.idHabito;
 
             // Aplica los datos actuales del habito
             const habito = await HabitoAPI.obtenerPorId(idHabito);
-
             document.getElementById("nuevo-nombre-habito").value = habito.nombre;
             document.getElementById("nuevo-tipo-habito").value = habito.tipo;
 
@@ -145,7 +141,6 @@ function botonGuardarHabito() {
                 nombre: nuevoNombre,
                 tipo: nuevoTipo
             };
-
             await HabitoAPI.editar(idHabito, habitoNuevo);
 
             // Cierra el modal
@@ -180,7 +175,6 @@ function botonCrearHabito() {
                 nombre: nombreHabito,
                 tipo: tipoHabito
             };
-
             await UsuarioAPI.crearHabito(id, habito);
 
             // Recarga
