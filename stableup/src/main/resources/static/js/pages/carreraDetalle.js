@@ -5,6 +5,7 @@ import { CarreraAPI } from '../api/CarreraApi.js';
 
 import { crearBarraNavegacion } from '../components/navbarComponente.js';
 import { crearFooter } from '../components/footerComponente.js';
+import { textoRotacionEfecto } from '../components/efectoTextoRotacion.js';
 
 import { presentarCaballo } from '../components/presentacionCaballoComponente.js';
 import { statsCaballo } from '../components/statsCaballoComponente.js';
@@ -15,6 +16,7 @@ import { modalScrolleableComponente } from '../components/modalScrolleableCompon
 const params = new URLSearchParams(window.location.search);
 const id = params.get('id');
 
+const CONTRINCANTES_CARRERA = 4;
 const caballosContrincantes = await CaballoAPI.obtenerContrincantes(id);
 const caballoPropio = await CaballoAPI.obtenerPorId(id);
 let contrincantesSeleccionados = [];
@@ -28,24 +30,7 @@ let inicio = 0;
 document.getElementById("navbar").innerHTML = crearBarraNavegacion();
 document.getElementById("stable-footer").innerHTML = crearFooter();
 
-textoRotacionEfecto();
-
-// Lo vi en una pagina y me gusto
-function textoRotacionEfecto() {
-    const elemento = document.querySelector(".nombre-stableup");
-    let palabra = elemento.innerText;
-
-    elemento.addEventListener("mouseover", function () {
-        for (let i = 0; i < palabra.length; i++) {
-            setTimeout(function () {
-                const primeraLetra = palabra.charAt(0);
-                palabra = palabra.slice(1) + primeraLetra;
-                elemento.textContent = palabra;
-            }, i * 75); // el bucle no espera al timeout para la siguiente itineracion 
-            // asi que si no lo escalonas se programan todas las acciones a la vez
-        }
-    });
-}
+textoRotacionEfecto(".nombre-stableup");
 
 // Tarjeta del caballo
 async function cargarTarjetaCaballo() {
@@ -99,7 +84,7 @@ function actualizarPreparacionCarrera() {
     const posibilidadExito = calcularPosibilidadExito(caballoPropio, contrincantesSeleccionados);
     const recompensa = calcularRecompensa(posibilidadExito);
 
-    document.getElementById("preparacion-carrera").innerHTML = preparacionCarrera(contrincantesSeleccionados, posibilidadExito, recompensa);
+    document.getElementById("preparacion-carrera").innerHTML = preparacionCarrera(contrincantesSeleccionados, posibilidadExito, recompensa, CONTRINCANTES_CARRERA);
 
     engancharBotonesQuitar();
     engancharBotonIniciar();
@@ -197,7 +182,7 @@ function engancharBotonIniciar() {
         botonIniciar.addEventListener("click", async function () {
 
             // Hay 4 contrincantes seleccionados?
-            if (contrincantesSeleccionados.length == 4) {
+            if (contrincantesSeleccionados.length == CONTRINCANTES_CARRERA) {
                 const idsContrincantes = [];
 
                 contrincantesSeleccionados.forEach(function (caballo) {
@@ -217,14 +202,13 @@ function engancharBotonIniciar() {
                 let mensaje = "";
 
                 if (participacionPropia.posicion === 1) {
-                    mensaje = `Posicion: ${participacionPropia.posicion}\nTiempo: ${participacionPropia.tiempoFinal}s\nRecompensa: ${participacionPropia.recompensa} 🪙`;
+                    mensaje = `GANADOR!\nPosicion: ${participacionPropia.posicion}\nTiempo: ${participacionPropia.tiempoFinal}s\nRecompensa: ${participacionPropia.recompensa} 🪙`;
                 } else {
                     mensaje = `Posicion: ${participacionPropia.posicion}\nTiempo: ${participacionPropia.tiempoFinal}s\nRecompensa: ${participacionPropia.recompensa} 🪙`;
                 }
                 alert(mensaje);
 
                 cargarParticipacionesModal()
-                console.log("AAAA");
                 contrincantesSeleccionados = [];
                 actualizarPreparacionCarrera();
             };

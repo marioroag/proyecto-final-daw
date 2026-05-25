@@ -1,6 +1,6 @@
 import { colorPorRareza } from '../utils/formatos.js';
 
-export function preparacionCarrera(contrincantesSeleccionados, posibilidadExito, recompensa) {
+export function preparacionCarrera(contrincantesSeleccionados, posibilidadExito, recompensa, cantidadContrincantesMax) {
     let tarjetasContrincantes = "";
 
     contrincantesSeleccionados.forEach(function (caballo) {
@@ -21,7 +21,7 @@ export function preparacionCarrera(contrincantesSeleccionados, posibilidadExito,
     });
 
     let atributoDeshabilitar = "disabled";
-    if (contrincantesSeleccionados.length === 4) {
+    if (contrincantesSeleccionados.length === cantidadContrincantesMax) {
         atributoDeshabilitar = "";
     }
 

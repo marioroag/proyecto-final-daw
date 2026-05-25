@@ -4,6 +4,7 @@ import { HabitoAPI } from '../api/HabitoApi.js';
 
 import { crearBarraNavegacion } from '../components/navbarComponente.js';
 import { crearFooter } from '../components/footerComponente.js';
+import { textoRotacionEfecto } from '../components/efectoTextoRotacion.js';
 
 import { tarjetaUsuario } from '../components/tarjetaUsuarioComponente.js';
 import { cargarBarra } from '../components/barraComponente.js';
@@ -24,24 +25,7 @@ const id = params.get('id');
 document.getElementById("navbar").innerHTML = crearBarraNavegacion();
 document.getElementById("stable-footer").innerHTML = crearFooter();
 
-textoRotacionEfecto();
-
-// Lo vi en una pagina y me gusto
-function textoRotacionEfecto() {
-    const elemento = document.querySelector(".nombre-stableup");
-    let palabra = elemento.innerText;
-
-    elemento.addEventListener("mouseover", function () {
-        for (let i = 0; i < palabra.length; i++) {
-            setTimeout(function () {
-                const primeraLetra = palabra.charAt(0);
-                palabra = palabra.slice(1) + primeraLetra;
-                elemento.textContent = palabra;
-            }, i * 75); // el bucle no espera al timeout para la siguiente itineracion 
-            // asi que si no lo escalonas se programan todas las acciones a la vez
-        }
-    });
-}
+textoRotacionEfecto(".nombre-stableup");
 
 // Datos del usuario
 async function cargarDatosUsuario() {

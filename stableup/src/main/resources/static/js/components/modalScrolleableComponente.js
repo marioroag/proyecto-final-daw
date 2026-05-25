@@ -1,4 +1,7 @@
 export function modalScrolleableComponente(contenido, titulo) {
+    if (!contenido) {
+        contenido = "No hay carreras que mostrar todavía."
+    }
     return `
         <div class="modal fade" id="modalScrolleable" data-bs-backdrop="static" data-bs-keyboard="false" tabindex = "-1">
             <div class="modal-dialog modal-dialog-scrollable">
