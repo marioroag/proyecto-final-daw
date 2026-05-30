@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -46,5 +47,17 @@ public class CaballoController {
     @GetMapping("/{id}/contrincantes")
     public List<Caballo> obtenerContrincantes(@PathVariable Long id) {
         return caballoService.findContrincantesByCaballoId(id);
+    }
+
+    @PutMapping("/{id}")
+    public Caballo editarCaballo(@PathVariable Long id, @RequestBody Caballo caballoNuevo) {
+        return caballoService.editar(id, caballoNuevo);
+    }
+
+    @DeleteMapping("/{id}")
+    public Caballo eliminarCaballo(@PathVariable Long id) {
+        Caballo caballo = caballoService.findById(id).orElseThrow();
+        caballoService.deleteById(id);
+        return caballo;
     }
 }

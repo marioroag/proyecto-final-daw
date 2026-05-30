@@ -18,4 +18,5 @@ public interface ParticipacionCarreraService {
     void deleteAll();
 
     ParticipacionCarrera inscribir(Long caballoId, Long carreraId);
+
 }

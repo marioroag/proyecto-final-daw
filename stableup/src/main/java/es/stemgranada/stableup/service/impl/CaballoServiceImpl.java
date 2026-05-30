@@ -79,4 +79,15 @@ public class CaballoServiceImpl implements CaballoService {
         Long idDueno = caballo.getUsuario().getId();
         return caballoRepository.findByUsuarioIdNot(idDueno);
     }
+
+    @Transactional
+    @Override
+    public Caballo editar(Long id, Caballo caballoNuevo) {
+        Caballo caballo = caballoRepository.findById(id).orElseThrow();
+        caballo.setNombre(caballoNuevo.getNombre());
+        caballo.setVelocidad(caballoNuevo.getVelocidad());
+        caballo.setEnergia(caballoNuevo.getEnergia());
+        caballo.setNivel(caballoNuevo.getNivel());
+        return caballoRepository.save(caballo);
+    }
 }

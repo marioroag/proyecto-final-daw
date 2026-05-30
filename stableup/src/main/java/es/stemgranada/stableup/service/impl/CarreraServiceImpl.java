@@ -134,4 +134,13 @@ public class CarreraServiceImpl implements CarreraService {
         return resultado;
     }
 
+    @Transactional
+    @Override
+    public Carrera editar(Long id, Carrera carreraNueva) {
+        Carrera carrera = carreraRepository.findById(id).orElseThrow();
+        carrera.setAforoCaballos(carreraNueva.getAforoCaballos());
+        carrera.setDistancia(carreraNueva.getDistancia());
+        carrera.setRecompensaBase(carreraNueva.getRecompensaBase());
+        return carreraRepository.save(carrera);
+    }
 }
