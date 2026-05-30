@@ -49,6 +49,15 @@ public class CarreraServiceImpl implements CarreraService {
         carreraRepository.deleteAll();
     }
 
+    /**
+     * Crea una carrera con el caballo propio y los contrincantes indicados.
+     * Simula el tiempo de cada uno según sus stats, los ordena por tiempo y
+     * reparte recompensa al caballo del jugador según la posición final.
+     *
+     * @param idCaballoPropio  id del caballo del jugador
+     * @param idsContrincantes ids de los caballos rivales
+     * @return la carrera ya resuelta y guardada
+     */
     @Override
     @Transactional
     public Carrera iniciarCarrera(Long idCaballoPropio, List<Long> idsContrincantes) {
@@ -112,6 +121,14 @@ public class CarreraServiceImpl implements CarreraService {
         return carreraRepository.save(carrera);
     }
 
+    /**
+     * Calcula el tiempo de un caballo en la carrera a partir de su velocidad
+     * y energía, con un pequeño factor aleatorio para que no salga siempre igual.
+     *
+     * @param caballo   caballo que corre
+     * @param distancia distancia de la carrera
+     * @return el tiempo en segundos redondeado a dos decimales
+     */
     // Calcula los resultados de cada caballo
     private double simularTiempo(Caballo caballo, double distancia) {
         int statsTotales = caballo.getVelocidad() + caballo.getEnergia();

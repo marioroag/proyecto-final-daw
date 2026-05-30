@@ -52,6 +52,14 @@ public class HabitoServiceImpl implements HabitoService {
         habitoRepository.deleteAll();
     }
 
+    /**
+     * Completa un hábito si no se ha completado ya hoy. Da monedas y XP al
+     * usuario, sube el multiplicador de racha y guarda un nuevo registro.
+     * Si llevaba más de un día sin completarse, reinicia la racha.
+     *
+     * @param habitoId id del habito a completar
+     * @return el hábito actualizado
+     */
     @Override
     @Transactional
     public Habito completarHabito(Long habitoId) {

@@ -49,6 +49,13 @@ public class CaballoServiceImpl implements CaballoService {
         caballoRepository.deleteAll();
     }
 
+    /**
+     * Genera un caballo aleatorio para el usuario si tiene monedas suficientes.
+     * Descuenta el coste del gacha y lo asigna al usuario.
+     *
+     * @param usuarioId id del usuario que quiere el caballo
+     * @return el caballo generado, o vacío si no le llega el dinero
+     */
     @Transactional
     public Optional<Caballo> generarCaballoAleatorioAsignado(Long usuarioId) {
         Usuario usuario = usuarioRepository.findById(usuarioId).orElseThrow();
@@ -70,7 +77,6 @@ public class CaballoServiceImpl implements CaballoService {
     @Override
     public List<ParticipacionCarrera> findParticipacionesById(Long caballoId) {
         return caballoRepository.findById(caballoId).get().getParticipaciones();
-
     }
 
     @Override
