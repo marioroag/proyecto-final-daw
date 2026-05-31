@@ -16,4 +16,6 @@ public interface RegistroHabitoService {
     void deleteById(Long id);
 
     void deleteAll();
+
+    RegistroHabito editar(Long id, RegistroHabito registroNuevo);
 }
