@@ -78,6 +78,14 @@ public class HabitoServiceImpl implements HabitoService {
         }
 
         if (!completadoHoy) {
+            // Si lleva mas de un dia sin completarse rompe la racha (antes de recompensar)
+            if (!registros.isEmpty()) {
+                LocalDate ayer = LocalDate.now().minusDays(1);
+                if (registros.getLast().getFechaCompletado().isBefore(ayer)) {
+                    habito.setMultiplicadorStreak(1);
+                }
+            }
+
             // Recompensa al usuario y actualiza el streak
             int recompensa = habito.getRecompensaBase() * habito.getMultiplicadorStreak();
             usuario.setMonedas(usuario.getMonedas() + recompensa);
@@ -91,15 +99,6 @@ public class HabitoServiceImpl implements HabitoService {
 
             // Guardado
             usuarioRepository.save(usuario);
-        }
-
-        // Si lleva mas de un dia sin completarse rompe la racha
-        if (!registros.isEmpty()) {
-            LocalDate ayer = LocalDate.now().minusDays(1);
-
-            if (registros.getLast().getFechaCompletado().isBefore(ayer)) {
-                habito.setMultiplicadorStreak(1);
-            }
         }
 
         return habitoRepository.save(habito);
