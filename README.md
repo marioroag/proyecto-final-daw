@@ -2,9 +2,42 @@
 
 # StableUp
 
-StableUp es una API REST hecha con Spring Boot para gestionar habitos de forma gamificada. Cuando completas un hábito ganas monedas y experiencia, y con esas monedas puedes conseguir caballos (de forma aleatoria, tipo gacha) que luego compiten en carreras contra los de otros usuarios.
+StableUp es una aplicación web hecha con Spring Boot para gestionar habitos de forma gamificada. Cuando completas un hábito ganas monedas y experiencia, y con esas monedas puedes conseguir caballos (de forma aleatoria, tipo gacha) que luego compiten en carreras contra los de otros usuarios.
 
 Proyecto final del 3er trimestre para STEM GRANADA.
+
+## Tecnologías usadas
+
+### Backend
+- **Java 25**
+- **Spring Boot 4** — Spring Web MVC + Spring Data JPA
+- **Hibernate** — ORM (mapeo objeto-relacional)
+- **H2 Database** — base de datos en memoria
+- **JavaFaker** — generación de datos de prueba
+- **Maven** — gestión de dependencias y build
+
+### Frontend
+- **HTML5**
+- **CSS3**
+- **JavaScript (ES Modules)** — vanilla, sin frameworks
+- **Bootstrap 5** — estilos y componentes
+- **Bootstrap Icons** — iconografía
+
+### Herramientas
+- **Git / GitHub** — control de versiones
+- **JavaDoc** — documentación del backend
+- **draw.io** — diagrama de clases UML
+- **Postman** — pruebas de la API
+
+## Organización del proyecto
+
+El backend sigue una **arquitectura por capas**, donde cada capa tiene una
+responsabilidad y se comunica solo con la siguiente:
+
+- **controller** — recibe las peticiones HTTP (REST) y devuelve las respuestas.
+- **service** — contiene la lógica de negocio (interfaz + implementación).
+- **repository** — acceso a datos mediante Spring Data JPA.
+- **entity** — las clases del modelo, mapeadas a tablas con JPA.
 
 ## Requisitos del sistema
 
@@ -109,6 +142,9 @@ Resumen de las relaciones:
 - Un **Caballo** participa en **Carreras** a través de **ParticipacionCarrera**.
 
 ![Diagrama UML](diagrama-uml.svg)
+
+## Video explicación
+[![Ver vídeo](https://img.youtube.com/vi/26Q3oTDxfro/0.jpg)](https://youtu.be/26Q3oTDxfro)
 
 ## Autor
 
