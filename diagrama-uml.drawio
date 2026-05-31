@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="msylreXHKsMDxy6LZf9t" name="StableUp">
-        <mxGraphModel dx="1130" dy="853" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="900" math="0" shadow="0">
+        <mxGraphModel dx="887" dy="731" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="900" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -254,6 +254,15 @@
                 </mxCell>
                 <mxCell id="eCRC" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=open;dashed=1;" parent="1" source="C" target="ERC" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="2" value="Tienen" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="330" y="115" width="80" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="Al completarlos crean" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="750" y="115" width="80" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="Participan&lt;div&gt;en&lt;/div&gt;" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="340" y="564" width="80" height="80" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
