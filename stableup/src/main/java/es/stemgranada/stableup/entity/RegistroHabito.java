@@ -26,9 +26,6 @@ public class RegistroHabito {
     @Column
     private LocalDate fechaCompletado;
 
-    // @Enumerated(EnumType.STRING)
-    // private SatisfaccionHabito satisfaccion; //TODO: Implementar si da tiempo
-
     @Column
     private int monedasGanadas;
 

@@ -23,7 +23,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "caballos")
-@JsonPropertyOrder({ "id", "nombre", "rareza", "velocidad", "energia", "nivel", "participaciones" })
+@JsonPropertyOrder({ "id", "nombre", "rareza", "velocidad", "energia", "nivel", "descripcion", "participaciones" })
 public class Caballo {
     private static final int RANGO_STATS = 30;
     private static final int BONUS_COMUN = 10, BONUS_POCO_COMUN = 20, BONUS_RARO = 30, BONUS_EPICO = 40,
@@ -38,12 +38,27 @@ public class Caballo {
             "Trueno", "Aurora", "Titan", "Sombra", "Huracan",
             "Luna", "Bandido", "Centella", "Destino", "Rayo"));
 
+    private static final List<String> DESCRIPCIONES = new ArrayList<>(Arrays.asList(
+            "Criado en las montañas, no conoce el cansancio.",
+            "Dicen que nunca ha perdido una carrera bajo la lluvia.",
+            "Tranquilo en el establo, imparable en la pista.",
+            "Su galope hace temblar el suelo.",
+            "Veloz como el viento del norte.",
+            "Tiene la mirada de un auténtico campeón.",
+            "Pequeño de tamaño, enorme de corazón.",
+            "Su melena ondea como una bandera de victoria.",
+            "Nacido para competir, criado para ganar.",
+            "Reservado, pero letal en la recta final."));
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false, length = 50)
     private String nombre;
+
+    @Column(length = 255)
+    private String descripcion;
 
     @Enumerated(EnumType.ORDINAL)
     private RarezaCaballo rareza;
@@ -75,6 +90,7 @@ public class Caballo {
         this.energia = energia;
         this.nivel = nivel;
         this.usuario = usuario;
+        this.descripcion = generarDescripcion();
     }
 
     // Generador aleatorio
@@ -85,9 +101,23 @@ public class Caballo {
         this.energia = generarEnergia(rareza);
         this.nivel = 1;
         this.usuario = usuario;
+        this.descripcion = generarDescripcion();
     }
 
     public Caballo() {
+    }
+
+    private String generarDescripcion() {
+        int numeroRandom = (int) (Math.random() * DESCRIPCIONES.size());
+        return DESCRIPCIONES.get(numeroRandom);
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public Long getId() {

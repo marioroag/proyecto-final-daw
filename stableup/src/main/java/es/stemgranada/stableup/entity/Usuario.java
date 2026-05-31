@@ -20,8 +20,6 @@ import jakarta.persistence.Table;
 @Table(name = "usuarios")
 @JsonPropertyOrder({ "id", "username", "email", "fechaRegistro", "monedas", "nivel", "caballos", "habitos" })
 public class Usuario {
-    // TODO: Formar sistema de experiencia y niveles ¿Como funcionara?
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

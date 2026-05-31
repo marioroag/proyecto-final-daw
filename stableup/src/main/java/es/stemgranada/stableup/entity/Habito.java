@@ -35,7 +35,6 @@ public class Habito {
     @Enumerated(EnumType.STRING)
     private TipoHabito tipo;
 
-    // TODO: Cambiar por variable de veces completado estatica?
     @Column(nullable = false)
     private int multiplicadorStreak;
 
