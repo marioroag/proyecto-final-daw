@@ -1,151 +1,141 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/buS8y_oD)
-
 # StableUp
 
-StableUp es una aplicación web hecha con Spring Boot para gestionar habitos de forma gamificada. Cuando completas un hábito ganas monedas y experiencia, y con esas monedas puedes conseguir caballos (de forma aleatoria, tipo gacha) que luego compiten en carreras contra los de otros usuarios.
+Aplicación web para gestionar hábitos de forma gamificada. Cada vez que completas un hábito ganas monedas y experiencia. Con las monedas consigues caballos aleatorios (estilo gacha) que después compiten en carreras contra los caballos de otros usuarios.
 
-Proyecto final del 3er trimestre para STEM GRANADA.
+Proyecto final del 1.º curso de DAW (3.er trimestre) en STEM Granada.
 
-## Tecnologías usadas
+[![Ver vídeo de demostración](https://img.youtube.com/vi/26Q3oTDxfro/0.jpg)](https://youtu.be/26Q3oTDxfro)
 
-### Backend
-- **Java 25**
-- **Spring Boot 4** — Spring Web MVC + Spring Data JPA
-- **Hibernate** — ORM (mapeo objeto-relacional)
-- **H2 Database** — base de datos en memoria
-- **JavaFaker** — generación de datos de prueba
-- **Maven** — gestión de dependencias y build
+## Funcionalidades
 
-### Frontend
-- **HTML5**
-- **CSS3**
-- **JavaScript (ES Modules)** — vanilla, sin frameworks
-- **Bootstrap 5** — estilos y componentes
-- **Bootstrap Icons** — iconografía
+- **Hábitos con rachas.** Cada hábito se puede completar una vez al día. Completarlo da monedas y XP, y cada día seguido sube el multiplicador de la recompensa. Si pasa más de un día sin completarlo, la racha se reinicia.
+- **Gacha de caballos.** Por 100 monedas obtienes un caballo con nombre, velocidad y energía aleatorios según su rareza:
 
-### Herramientas
-- **Git / GitHub** — control de versiones
-- **JavaDoc** — documentación del backend
-- **draw.io** — diagrama de clases UML
-- **Postman** — pruebas de la API
+  | Rareza | Probabilidad |
+  |---|---|
+  | Común | 30 % |
+  | Poco común | 25 % |
+  | Raro | 20 % |
+  | Épico | 19 % |
+  | Legendario | 6 % |
 
-## Organización del proyecto
+- **Carreras.** Eliges uno de tus caballos y rivales de otros usuarios. El tiempo de cada caballo se calcula con sus stats y un pequeño factor aleatorio, y según la posición final ganas entre 50 y 300 monedas.
+- **Frontend sin frameworks.** Interfaz en HTML, CSS y JavaScript vanilla con ES Modules, organizada en componentes reutilizables que consumen la API REST.
 
-El backend sigue una **arquitectura por capas**, donde cada capa tiene una
-responsabilidad y se comunica solo con la siguiente:
+## Tecnologías
 
-- **controller** — recibe las peticiones HTTP (REST) y devuelve las respuestas.
-- **service** — contiene la lógica de negocio (interfaz + implementación).
-- **repository** — acceso a datos mediante Spring Data JPA.
-- **entity** — las clases del modelo, mapeadas a tablas con JPA.
+| Parte | Stack |
+|---|---|
+| Backend | Java 25, Spring Boot 4 (Web MVC + Data JPA), Hibernate, H2, JavaFaker, Maven |
+| Frontend | HTML5, CSS3, JavaScript (ES Modules), Bootstrap 5, Bootstrap Icons |
+| Herramientas | Git/GitHub, JavaDoc, draw.io (UML), Postman |
 
-## Requisitos del sistema
+## Arquitectura
 
-- Java 25 (JDK)
-- Maven (no hace falta instalarlo, el proyecto trae el wrapper `mvnw`)
-- Cualquier cliente para probar peticiones (Postman, Insomnia, curl...)
+El backend sigue una **arquitectura por capas**, en la que cada capa solo se comunica con la siguiente:
 
-Se usa H2 en memoria, así que se crea sola al arrancar.
+- **controller**: recibe las peticiones HTTP y devuelve las respuestas (REST).
+- **service**: lógica de negocio, separada en interfaz e implementación.
+- **repository**: acceso a datos con Spring Data JPA.
+- **entity**: modelo de dominio mapeado a tablas con JPA.
 
-## Compilar y ejecutar
-
-Todos los comandos se lanzan desde la carpeta `stableup`:
-
-Compilar el proyecto:
-
-```bash
-./mvnw clean package
-```
-
-Arrancar la aplicación:
-
-```bash
-./mvnw spring-boot:run
-```
-
-Pasar los tests:
-
-```bash
-./mvnw test
-```
-
-> En Windows usa `mvnw.cmd` en lugar de `./mvnw`.
-
-Una vez arrancado, la app queda en `http://localhost:8080`.
-
-## Consola H2
-
-La base de datos es en memoria, así que cada vez que reinicias la app se borra todo y se vuelve a crear.
-
-Para entrar a la consola y ver las tablas:
-
-1. Arranca la aplicación.
-2. Abre en el navegador: `http://localhost:8080/h2-console`
-3. Rellena los datos de conexión:
-   - **JDBC URL:** `jdbc:h2:mem:StableUp`
-   - **User Name:** `sa`
-   - **Password:** (déjalo en blanco)
-4. Pulsa *Connect*.
-
-## Rutas de la API
-
-Todo cuelga de `/api/v1`. Por ejemplo: `http://localhost:8080/api/v1/usuarios`.
-
-### Usuarios — `/usuarios`
-- `GET /usuarios` — listar todos
-- `GET /usuarios/{id}` — obtener uno
-- `POST /usuarios` — crear
-- `PUT /usuarios/{id}` — editar
-- `DELETE /usuarios/{id}` — borrar
-- `GET /usuarios/{id}/caballos` — caballos del usuario
-- `GET /usuarios/{id}/habitos` — hábitos del usuario
-- `POST /usuarios/{id}/habitos` — crear un hábito para ese usuario
-
-### Hábitos — `/habitos`
-- `GET /habitos` — listar todos
-- `GET /habitos/{id}` — obtener uno
-- `PUT /habitos/{id}` — editar
-- `DELETE /habitos/{id}` — borrar
-- `POST /habitos/{id}/completar` — completar el hábito y recibir la recompensa
-
-### Registros — `/registros`
-- `GET /registros` — listar todos
-- `GET /registros/{id}` — obtener uno
-- `POST /registros` — crear
-- `PUT /registros/{id}` — editar
-- `DELETE /registros/{id}` — borrar
-
-### Caballos — `/caballos`
-- `GET /caballos` — listar todos
-- `GET /caballos/{id}` — obtener uno
-- `GET /caballos/{id}/participaciones` — sus participaciones en carreras
-- `GET /caballos/{id}/contrincantes` — caballos de otros usuarios (posibles rivales)
-- `POST /caballos/usuario/{usuarioId}` — generar un caballo aleatorio (cuesta 100 monedas)
-- `PUT /caballos/{id}` — editar
-- `DELETE /caballos/{id}` — borrar
-
-### Carreras — `/carreras`
-- `GET /carreras` — listar todas
-- `GET /carreras/{id}` — obtener una
-- `POST /carreras/iniciar/{idCaballoPropio}` — iniciar una carrera (en el body va la lista de IDs de los rivales)
-- `PUT /carreras/{id}` — editar
-- `DELETE /carreras/{id}` — borrar
+La documentación JavaDoc generada está en la carpeta [`docs/`](docs/).
 
 ## Diagrama UML
 
-El diagrama de clases está en el archivo [`diagrama-uml.drawio`](diagrama-uml.drawio). Se puede abrir con [draw.io](https://app.diagrams.net/) (o la extensión de draw.io en VS Code).
-
-Resumen de las relaciones:
-
-- Un **Usuario** tiene varios **Caballos** y varios **Hábitos**.
-- Un **Hábito** guarda varios **Registros** (uno por cada vez que se completa).
-- Un **Caballo** participa en **Carreras** a través de **ParticipacionCarrera**.
-
 ![Diagrama UML](diagrama-uml.svg)
 
-## Video explicación
-[![Ver vídeo](https://img.youtube.com/vi/26Q3oTDxfro/0.jpg)](https://youtu.be/26Q3oTDxfro)
+El original se puede editar en [`diagrama-uml.drawio`](diagrama-uml.drawio) con [draw.io](https://app.diagrams.net/).
+
+- Un **Usuario** tiene varios **Caballos** y varios **Hábitos**.
+- Un **Hábito** guarda un **Registro** por cada vez que se completa.
+- Un **Caballo** participa en **Carreras** a través de **ParticipacionCarrera**.
+
+## Cómo ejecutarlo
+
+Requisitos: **JDK 25**. Maven no hace falta, porque el proyecto incluye el wrapper `mvnw`.
+
+Desde la carpeta `stableup`:
+
+```bash
+./mvnw spring-boot:run      # arrancar la aplicación
+./mvnw clean package        # compilar
+./mvnw test                 # pasar los tests
+```
+
+En Windows usa `mvnw.cmd` en lugar de `./mvnw`.
+
+La app queda disponible en `http://localhost:8080`. Al arrancar se generan usuarios, caballos y carreras de prueba.
+
+### Consola H2
+
+La base de datos es en memoria, así que se borra y se vuelve a crear en cada arranque. Para ver las tablas:
+
+1. Abre `http://localhost:8080/h2-console`.
+2. Conecta con:
+   - **JDBC URL:** `jdbc:h2:mem:StableUp`
+   - **User Name:** `sa`
+   - **Password:** (vacío)
+
+## API REST
+
+Todas las rutas cuelgan de `/api/v1`, por ejemplo `http://localhost:8080/api/v1/usuarios`.
+
+### Usuarios: `/usuarios`
+
+| Método | Ruta | Descripción |
+|---|---|---|
+| GET | `/usuarios` | Listar todos |
+| GET | `/usuarios/{id}` | Obtener uno |
+| POST | `/usuarios` | Crear |
+| PUT | `/usuarios/{id}` | Editar |
+| DELETE | `/usuarios/{id}` | Borrar |
+| GET | `/usuarios/{id}/caballos` | Caballos del usuario |
+| GET | `/usuarios/{id}/habitos` | Hábitos del usuario |
+| POST | `/usuarios/{id}/habitos` | Crear un hábito para ese usuario |
+
+### Hábitos: `/habitos`
+
+| Método | Ruta | Descripción |
+|---|---|---|
+| GET | `/habitos` | Listar todos |
+| GET | `/habitos/{id}` | Obtener uno |
+| PUT | `/habitos/{id}` | Editar |
+| DELETE | `/habitos/{id}` | Borrar |
+| POST | `/habitos/{id}/completar` | Completar el hábito y recibir la recompensa |
+
+### Registros: `/registros`
+
+| Método | Ruta | Descripción |
+|---|---|---|
+| GET | `/registros` | Listar todos |
+| GET | `/registros/{id}` | Obtener uno |
+| POST | `/registros` | Crear |
+| PUT | `/registros/{id}` | Editar |
+| DELETE | `/registros/{id}` | Borrar |
+
+### Caballos: `/caballos`
+
+| Método | Ruta | Descripción |
+|---|---|---|
+| GET | `/caballos` | Listar todos |
+| GET | `/caballos/{id}` | Obtener uno |
+| GET | `/caballos/{id}/participaciones` | Sus participaciones en carreras |
+| GET | `/caballos/{id}/contrincantes` | Caballos de otros usuarios (posibles rivales) |
+| POST | `/caballos/usuario/{usuarioId}` | Generar un caballo aleatorio (cuesta 100 monedas) |
+| PUT | `/caballos/{id}` | Editar |
+| DELETE | `/caballos/{id}` | Borrar |
+
+### Carreras: `/carreras`
+
+| Método | Ruta | Descripción |
+|---|---|---|
+| GET | `/carreras` | Listar todas |
+| GET | `/carreras/{id}` | Obtener una |
+| POST | `/carreras/iniciar/{idCaballoPropio}` | Iniciar una carrera (el body lleva la lista de IDs de los rivales) |
+| PUT | `/carreras/{id}` | Editar |
+| DELETE | `/carreras/{id}` | Borrar |
 
 ## Autor
 
-Mario Rodríguez Aguado
+**Mario Rodríguez Aguado** · [GitHub](https://github.com/marioroag)
